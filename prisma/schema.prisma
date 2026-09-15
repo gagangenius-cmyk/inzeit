@@ -1,0 +1,534 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Main Lead Management Table
+model Lead {
+  id                Int      @id
+  fname             String   @map("fname") @db.VarChar(555)
+  mname             String   @map("mname") @db.VarChar(555)
+  lname             String   @map("lname") @db.VarChar(555)
+  email             String   @map("email") @db.VarChar(555)
+  phone             String   @map("phone") @db.VarChar(555)
+  mobile            String   @map("mobile") @db.VarChar(555)
+  nationality       String   @map("nationality") @db.VarChar(555)
+  address           String   @map("address") @db.Text
+  dob               DateTime? @map("dob") @db.Date
+  gender            String   @map("gender") @db.VarChar(55)
+  idNumber          String   @map("id_number") @db.VarChar(255)
+  idExpiry          DateTime @map("id_expiry") @db.Date
+  countryInterest   String   @map("country_interest") @db.VarChar(555)
+  serviceInterest   String   @map("service_interest") @db.VarChar(555)
+  marketSource      String   @map("market_source") @db.VarChar(555)
+  countryInterestId Int      @map("country_interest_id")
+  serviceInterestId Int      @map("service_interest_id")
+  marketSourceId    Int      @map("market_source_id")
+  appointment       DateTime? @map("appointment") @db.Date
+  followup          DateTime @map("followup") @db.Date
+  followupTime      DateTime @map("folowuptime") @db.Time
+  followupStat      Int      @map("followupstat") @default(0)
+  enquiry           String   @map("enquiry") @db.VarChar(555)
+  convert           String   @map("convet") @db.VarChar(555)
+  priority          String   @map("priority") @db.VarChar(10)
+  regdate           DateTime @map("regdate") @db.Date
+  lastUpdated       String   @map("last_updated") @db.VarChar(30)
+  lastUpdatedTime   String   @map("last_updtd_time") @db.VarChar(50)
+  stepComplete      Int      @map("stepComplete") @default(1)
+  payType           String?  @map("payType") @db.VarChar(55)
+  assignTo          Int      @map("assignTo")
+  caseOfficer       Int      @map("case_officer")
+  counsilor         Int      @map("Counsilor")
+  branch            Int      @map("branch")
+  region            Int      @map("region")
+  payTotal          Decimal  @map("payTotal") @default(0.00) @db.Decimal(10, 2)
+  discount          Decimal  @map("discount") @default(0.00) @db.Decimal(10, 2)
+  paidYet           Decimal? @map("paidYet") @default(0.00) @db.Decimal(10, 2)
+  payBalance        Decimal  @map("payBalance") @default(0.00) @db.Decimal(10, 2)
+  feeAgreeDate      DateTime? @map("feeAgreeDate") @db.Date
+  demandAmt         Decimal  @map("demandAmt") @default(0.00) @db.Decimal(10, 2)
+  dueDate           DateTime? @map("dueDate") @db.Date
+  demandRemark      String?  @map("demdRemark") @db.Text
+  agreeDate         DateTime? @map("agreeDate") @db.Date
+  renDate           DateTime? @map("renDate") @db.Date
+  renExpiryDate     DateTime? @map("renExpiryDate") @db.Date
+  renewType         String?  @map("renew_type") @db.VarChar(50)
+  status            String?  @map("status") @db.VarChar(55)
+  statusDate        DateTime @map("status_date") @db.Date
+  notf              Int      @map("notf") @default(0)
+  type              String   @map("type") @db.Text
+  password          String?  @map("password") @db.VarChar(30)
+  noOfApplicants    Int?     @map("no_of_applicants")
+
+  // Relations
+  assessments       LeadAssessment[]
+  contracts         LeadContract[]
+  fees              LeadFee[]
+  fees2             Fee[]
+  observations      LeadObservation[]
+  remarks           LeadRemark[]
+  payments          Payment[]
+  vendorDocuments   VendorDocument[] @relation("VendorDocuments")
+  marketingSource   MarketingSource? @relation(fields: [marketSourceId], references: [id])
+  countryProcess    CountryProcess? @relation(fields: [countryInterestId], references: [id])
+  service           Service? @relation(fields: [serviceInterestId], references: [id])
+
+  // Foreign key relations
+  assignedEmployee   Employee? @relation("AssignedLeads", fields: [assignTo], references: [id])
+  counseledEmployee  Employee? @relation("CounseledLeads", fields: [counsilor], references: [id])
+  caseOfficerEmployee Employee? @relation("CaseOfficerLeads", fields: [caseOfficer], references: [id])
+  branchInfo         Branch?   @relation(fields: [branch], references: [id])
+  regionInfo         Region?   @relation(fields: [region], references: [id])
+
+  @@map("dmc_forum_leads")
+}
+
+// Lead Assessments
+model LeadAssessment {
+  id          Int      @id
+  leadId      Int      @map("lead")
+  designation String   @map("assesment_desgn") @db.Text
+  education   String   @map("assesment_edu") @db.Text
+  created     DateTime @default(now()) @db.Timestamp
+  createdBy   Int      @map("created_by")
+
+  lead Lead @relation(fields: [leadId], references: [id])
+
+  @@map("dmc_forum_leads_assesments")
+}
+
+// Lead Contracts
+model LeadContract {
+  id        Int      @id
+  leadId    Int      @map("lead")
+  agreeNo   String   @map("agreeNo") @db.VarChar(100)
+  filename  String   @map("filename") @db.VarChar(255)
+  created   DateTime @default(now()) @db.Timestamp
+
+  lead Lead @relation(fields: [leadId], references: [id])
+  batchCases EuropeBatchCase[]
+  workPermitCases WorkPermitCase[]
+
+  @@map("dmc_forum_leads_contracts")
+}
+
+// Lead Fees
+model LeadFee {
+  id        Int      @id
+  leadId    Int      @map("lead")
+  feeType   String   @map("fee_type") @db.VarChar(100)
+  amount    Decimal  @map("amount") @db.Decimal(10, 2)
+  status    String   @map("status") @db.VarChar(50)
+  created   DateTime @default(now()) @db.Timestamp
+
+  lead Lead @relation(fields: [leadId], references: [id])
+
+  @@map("dmc_forum_leads_fee")
+}
+
+// Lead Observations
+model LeadObservation {
+  id        Int      @id
+  leadId    Int      @map("lead")
+  remark    String   @map("remark") @db.Text
+  created   DateTime @default(now()) @db.Timestamp
+  createdBy Int      @map("created_by")
+
+  lead     Lead @relation(fields: [leadId], references: [id])
+  employee Employee? @relation("ObservationRelation", fields: [createdBy], references: [id])
+
+  @@map("dmc_forum_leads_observations")
+}
+
+// Lead Remarks
+model LeadRemark {
+  id      Int      @id
+  leadId  Int      @map("lead")
+  date    DateTime @map("date") @db.Date
+  remark  String   @map("remark") @db.Text
+  emp     Int      @map("emp") @default(0)
+  created DateTime @map("created") @db.Time
+
+  lead     Lead @relation(fields: [leadId], references: [id])
+  employee Employee? @relation(fields: [emp], references: [id])
+
+  @@map("dmc_forum_leads_remarks")
+}
+
+// Employees
+model Employee {
+  id          Int      @id
+  name        String   @db.VarChar(255)
+  email       String   @db.VarChar(255)
+  phone       String?  @db.VarChar(50)
+  role        Int      @map("role")
+  branch      Int      @map("branch")
+  region      Int      @map("region")
+  status      Int      @default(1)
+  created     DateTime @default(now()) @db.Timestamp
+  password    String   @db.VarChar(255)
+
+  // Relations
+  leadsAssigned    Lead[] @relation("AssignedLeads")
+  leadsCounseled   Lead[] @relation("CounseledLeads")
+  leadsCaseOfficer Lead[] @relation("CaseOfficerLeads")
+  remarks          LeadRemark[]
+  observations     LeadObservation[] @relation("ObservationRelation")
+  branchInfo       Branch? @relation("EmployeeBranch", fields: [branch], references: [id])
+  regionInfo       Region? @relation("EmployeeRegion", fields: [region], references: [id])
+
+    // Europe Batch Relations
+  createdBatches     EuropeBatch[] @relation("BatchCreator")
+  vendorBatches      EuropeBatch[] @relation("BatchVendor")
+
+  // Allocation Relations
+  branchAllocations  BranchAllocation[] @relation("BranchAllocations")
+  branchAllocationsCreatedBy BranchAllocation[] @relation("BranchAllocationCreator")
+  counselorAllocations CounselorAllocation[] @relation("CounselorAllocationCreator")
+  tasks              Task[] @relation("TaskAssignee")
+  vendorBatchCases   EuropeBatchCase[] @relation("VendorBatchCases")
+  vendorInvoices     VendorInvoice[] @relation("VendorInvoiceCreator")
+  vendorInvoicesAsVendor VendorInvoice[] @relation("VendorInvoiceVendor")
+  vendorDocuments    VendorDocument[] @relation("VendorDocumentVendor")
+  createdVendorDocuments VendorDocument[] @relation("VendorDocumentCreator")
+
+  @@map("dm_employee")
+}
+
+// Branches
+model Branch {
+  id     Int    @id
+  name   String @db.VarChar(255)
+  region Int    @map("region")
+  status Int    @default(1)
+
+  // Relations
+  employees Employee[] @relation("EmployeeBranch")
+  leads    Lead[]
+  regionInfo Region? @relation("BranchRegion", fields: [region], references: [id])
+  allocations CounselorAllocation[] @relation("CounselorAllocations")
+  tasks Task[] @relation("TaskBranch")
+
+  @@map("dm_branch")
+}
+
+// Regions
+model Region {
+  id     Int    @id
+  name   String @db.VarChar(255)
+  status Int    @default(1)
+
+  // Relations
+  branches  Branch[] @relation("BranchRegion")
+  employees Employee[] @relation("EmployeeRegion")
+  leads     Lead[]
+
+  @@map("dm_region")
+}
+
+// Appointments
+model Appointment {
+  id          Int      @id
+  leadId      Int?     @map("leadid")
+  date        String   @map("date") @db.VarChar(50)
+  time        DateTime @map("appointtime") @db.Time
+  counsilorId Int?     @map("counsilorid")
+  booked      Int?     @map("booked")
+  done        Int?     @map("done")
+  notDone     Int?     @map("not_done")
+  region      Int?     @map("region")
+  branch      Int      @default(0) @map("branch")
+  screenshot  String   @map("screenshot") @db.VarChar(255)
+
+  @@map("appointments")
+}
+
+// Payments
+model Payment {
+  id          Int      @id
+  leadId      Int      @map("lead")
+  amount      Decimal  @map("amount") @db.Decimal(10, 2)
+  paymentType String   @map("payment_type") @db.VarChar(100)
+  status      String   @map("status") @db.VarChar(50)
+  date        DateTime @map("date") @db.Date
+  created     DateTime @default(now()) @db.Timestamp
+  currencyId  Int?     @map("curValue")
+
+  lead Lead @relation(fields: [leadId], references: [id])
+  currency Currency? @relation(fields: [currencyId], references: [id])
+
+  @@map("dm_pay_history")
+}
+
+// Saved Reports
+model SavedReport {
+  id          Int      @id @default(autoincrement())
+  report_name String   @map("report_name") @db.VarChar(255)
+  report_type String   @map("report_type") @db.VarChar(50)
+  filters     String   @map("filters") @db.Text
+  columns     String   @map("columns") @db.Text
+  group_by    String?  @map("group_by") @db.VarChar(50)
+  created_by  Int      @map("created_by")
+  created_at  DateTime @default(now()) @db.DateTime(3)
+  updated_at  DateTime @default(now()) @updatedAt @db.DateTime(3)
+
+  @@map("dm_saved_reports")
+}
+
+// Europe Batch
+model EuropeBatch {
+  id         Int      @id @default(autoincrement())
+  batchName  String   @map("batch_name") @db.VarChar(255)
+  created    DateTime @default(now()) @db.Date
+  createdBy  Int      @map("created_by")
+  vendorId   Int      @map("vendor_id")
+  status     Int      @default(1)
+
+  // Relations
+  vendor Employee @relation("BatchVendor", fields: [vendorId], references: [id])
+  creator Employee @relation("BatchCreator", fields: [createdBy], references: [id])
+  cases  EuropeBatchCase[]
+  workPermitCases WorkPermitCase[] @relation("WorkPermitCases")
+  vendorInvoices VendorInvoice[] @relation("VendorInvoices")
+  vendorDocuments VendorDocument[]
+
+  @@map("dm_batch")
+}
+
+// Europe Batch Case
+model EuropeBatchCase {
+  id         Int     @id @default(autoincrement())
+  batchId    Int     @map("wp_batch_id")
+  contractId Int     @map("ag_no")
+  vendorId   Int     @map("vendor_id")
+
+  // Relations
+  batch      EuropeBatch @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  contract   LeadContract @relation(fields: [contractId], references: [id], onDelete: Cascade)
+  vendor     Employee @relation("VendorBatchCases", fields: [vendorId], references: [id])
+
+  @@map("dm_batch_cases")
+  @@unique([batchId, contractId])
+}
+
+// Work Permit Case
+model WorkPermitCase {
+  id              Int      @id @default(autoincrement())
+  agreementNo     Int      @map("ag_no")
+  batchId         Int      @map("batch_id")
+  approve         Int      @default(0) @map("approve")
+  approveBy       Int?     @map("approve_by")
+  approveDate     DateTime? @map("approve_date") @db.DateTime
+  amount          Decimal? @map("amount") @db.Decimal(10, 2)
+  amountStage2    Decimal? @map("amount_stage_2") @db.Decimal(10, 2)
+  amountStage3    Decimal? @map("amount_stage_3") @db.Decimal(10, 2)
+  stage2Approve   Int      @default(0) @map("stage_2_approve")
+  stage2ApproveBy Int?     @map("stage_2_approve_by")
+  stage2ApproveDate DateTime? @map("stage_2_approve_date") @db.DateTime
+  stage3Approve   Int      @default(0) @map("stage_3_approve")
+  stage3ApproveBy Int?     @map("stage_3_approve_by")
+  stage3ApproveDate DateTime? @map("stage_3_approve_date") @db.DateTime
+  accountApprove  Int      @default(0) @map("account_approve")
+  accountApproveBy Int?    @map("account_approve_by")
+  accountApproveDate DateTime? @map("account_approve_date") @db.DateTime
+  opsApprove      Int      @default(0) @map("ops_approve")
+  opsApproveBy    Int?     @map("ops_approve_by")
+  opsApproveDate  DateTime? @map("ops_approve_date") @db.DateTime
+  rejection       String?  @map("rejection") @db.Text
+  remarks         String?  @map("remarks") @db.Text
+  created         DateTime @default(now()) @db.DateTime
+
+  // Relations
+  agreement      LeadContract @relation(fields: [agreementNo], references: [id], onDelete: Cascade)
+  batch          EuropeBatch @relation("WorkPermitCases", fields: [batchId], references: [id], onDelete: Cascade)
+
+  @@map("dm_wp_cases")
+}
+
+// Europe Cases Verification
+model EuropeCasesVerification {
+  id          Int    @id @default(autoincrement())
+  leadId      Int    @map("lead_id")
+  osForEu     String @map("os_for_eu") @db.VarChar(255)
+  created     DateTime @default(now()) @db.DateTime
+
+
+
+  @@map("dm_europe_cases_verification")
+}
+
+// Vendor Documents
+model VendorDocument {
+  id        Int      @id @default(autoincrement())
+  leadId    Int      @map("leadId")
+  docType   String   @map("doc_type") @db.VarChar(50)
+  file      String   @map("file") @db.VarChar(255)
+  batchId   Int      @map("batch_id")
+  vendorId  Int      @map("vendor_id")
+  created   DateTime @default(now()) @db.DateTime
+  status    Int      @default(1)
+  createdBy Int      @map("created_by")
+
+  // Relations
+  lead   Lead @relation("VendorDocuments", fields: [leadId], references: [id], onDelete: Cascade)
+  batch  EuropeBatch @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  vendor Employee @relation("VendorDocumentVendor", fields: [vendorId], references: [id])
+  creator Employee @relation("VendorDocumentCreator", fields: [createdBy], references: [id])
+
+  @@map("dm_vendor_documents")
+}
+
+// Vendor Invoice
+model VendorInvoice {
+  id         Int      @id @default(autoincrement())
+  vendorId   Int      @map("vendor_id")
+  created    DateTime @default(now()) @db.Date
+  batchId    Int      @map("batch_id")
+  agreementNos String @map("ag_no") @db.Text // Can store multiple IDs as comma-separated
+  createdBy  Int      @map("created_by")
+  invoice    String?  @map("invoice") @db.VarChar(255)
+  created_at DateTime @default(now()) @db.DateTime(3)
+
+  // Relations
+  vendor    Employee @relation("VendorInvoiceVendor", fields: [vendorId], references: [id])
+  batch     EuropeBatch @relation("VendorInvoices", fields: [batchId], references: [id], onDelete: Cascade)
+  creator   Employee @relation("VendorInvoiceCreator", fields: [createdBy], references: [id])
+
+  @@map("dm_vendor_invoice")
+}
+
+// Branch Allocation - Allows allocation of branches to employees
+model BranchAllocation {
+  id         Int      @id @default(autoincrement())
+  empId      Int      @map("emp_id")
+  branches   String   @map("branches") @db.VarChar(255) // Comma-separated branch IDs
+  status     Int      @default(1)
+  created    DateTime @default(now()) @db.DateTime(3)
+  createdBy  Int      @map("created_by")
+
+  // Relations
+  employee Employee @relation("BranchAllocations", fields: [empId], references: [id])
+  creator  Employee @relation("BranchAllocationCreator", fields: [createdBy], references: [id])
+
+  @@map("dm_branch_allocations")
+}
+
+// Counselor Allocation - Allows allocation of counselors to branches
+model CounselorAllocation {
+  id          Int      @id @default(autoincrement())
+  branchId    Int      @map("branch_id")
+  counselors  String   @map("counsilors") @db.VarChar(255) // Comma-separated counselor IDs
+  status      Int      @default(1)
+  created     DateTime @default(now()) @db.DateTime(3)
+  createdBy   Int      @map("created_by")
+
+  // Relations
+  branch Branch @relation("CounselorAllocations", fields: [branchId], references: [id])
+  creator Employee @relation("CounselorAllocationCreator", fields: [createdBy], references: [id])
+
+  @@map("dm_counsilor_allocations")
+}
+
+// Marketing Source
+model MarketingSource {
+  id        Int     @id @default(autoincrement())
+  name      String  @db.VarChar(255)
+  status    Int     @default(1)
+
+  // Relations
+  leads Lead[]
+
+  @@map("dm_source")
+}
+
+// Country Process
+model CountryProcess {
+  id           Int     @id @default(autoincrement())
+  name         String  @db.VarChar(255)
+  status       Int     @default(1)
+  subCountries Int     @map("sub_counteries")
+
+  // Relations
+  leads Lead[]
+
+  @@map("dm_country_proces")
+}
+
+// Service
+model Service {
+  id       Int     @id @default(autoincrement())
+  name     String  @db.VarChar(255)
+  validity String? @db.VarChar(50)
+  status   Int     @default(1)
+
+  // Relations
+  leads Lead[]
+
+  @@map("dm_service")
+}
+
+// Fee
+model Fee {
+  id        Int      @id @default(autoincrement())
+  leadId    Int      @map("lead")
+  feeType   String   @map("fee_type") @db.VarChar(100)
+  amount    Decimal  @map("amount") @db.Decimal(10, 2)
+  status    String   @map("status") @db.VarChar(50)
+  created   DateTime @default(now()) @db.Timestamp
+
+  lead Lead @relation(fields: [leadId], references: [id])
+
+  @@map("dm_forum_leads_fee")
+}
+
+// Currency
+model Currency {
+  id           Int    @id @default(autoincrement())
+  name         String @db.VarChar(100)
+  currencyCode String @map("currency_code") @db.VarChar(10)
+
+  // Relations
+  payments Payment[]
+
+  @@map("dm_currency")
+}
+
+// Task
+model Task {
+  id         Int      @id @default(autoincrement())
+  taskText   String?  @map("task") @db.Text
+  status     String?  @map("status") @db.VarChar(50)
+  assignTo   Int      @map("asignTo")
+  branchId   Int?     @map("branch")
+  dob        DateTime @map("dob") @db.Date
+  created    DateTime @default(now()) @db.Timestamp
+
+  // Relations
+  assignee Employee @relation("TaskAssignee", fields: [assignTo], references: [id])
+  branch   Branch?  @relation("TaskBranch", fields: [branchId], references: [id])
+  remarks  TaskRemark[] @relation("TaskRemarks")
+
+  @@map("dm_task")
+}
+
+// Task Remark
+model TaskRemark {
+  id      Int      @id @default(autoincrement())
+  taskId  Int      @map("taskid")
+  date    DateTime @map("date") @db.Date
+  remarks String?  @map("remarks") @db.Text
+  empName String   @map("emp") @db.VarChar(255)
+  notf    Int      @default(1)
+
+  // Relations
+  task Task @relation("TaskRemarks", fields: [taskId], references: [id])
+
+  @@map("task_remarks")
+}

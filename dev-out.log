@@ -1,0 +1,996 @@
+
+> dm-next@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.118.1.68:3000
+- Environments: .env.local, .env
+
+✓ Starting...
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+Renewal reminder cron scheduled: 0 8 * * * Asia/Dubai
+✓ Ready in 21.5s
+○ Compiling / ...
+ GET / 200 in 17.7s (compile: 17.3s, render: 390ms)
+ GET / 200 in 70ms (compile: 14ms, render: 56ms)
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+Executing (default): SELECT 1+1 AS result
+✅ Database connected successfully with Sequelize
+Executing (default): SELECT COUNT(*) AS total FROM dmc_forum_leads WHERE REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(phone,''), '+', ''), '-', ''), ' ', ''), '(', ''), ')', ''), '.', '') = '9715000000366' OR LOWER(COALESCE(email,'')) = 'e2e.1005.1783381950366@example.com'
+Executing (default): INSERT INTO dmc_forum_leads (
+        fname, mname, lname, email, phone, mobile, nationality, address, dob, gender,
+        id_number, id_expiry, id_issue_date, country_interest, sub_country_interest,
+        service_interest, market_source, sub_market_source, appointment, followup, folowuptime,
+        followupstat, sf, enquiry, convet, priority, regdate, regtime, last_updated, last_updtd_time,
+        stepComplete, payType, assignTo, case_officer, Counsilor, branch, region, payTotal,
+        discount, paidYet, payBalance, feeAgreeDate, demandAmt, dueDate, demdRemark, agreeDate,
+        renDate, renExpiryDate, renew_type, status, status_date, notf, type, password, novat,
+        i_p, escalation, transfer_date, transfer_time, transfered, transfered_by, otp_status,
+        otp, otp_date, otp_email, browser, hostname, digital_signature, lead_import_by,
+        lead_import, education, profession, exist, no_of_applicants, advanced, do_status,
+        arm_status, gm_status, discount_status, discount_remarks, discount_by, discount_date,
+        campaign, campaign_group, pa_fname, pa_lname, lead_remark, created, created_by, alert,
+        area, lead_quality, transferred_remark_update, untouch_transfer, lead_nq_reason,
+        tele_caller_alert, tele_caller_remark, tele_caller_remark_by, tele_date, lead_date,
+        duplicate, duplicate_count, ref_remark, na_record, old_assgined, nal_count, campaign_id,
+        old_branch
+      ) VALUES (
+        'Ethan', '', 'TestClient', 'e2e.1005.1783381950366@example.com', '9715000000366', '9715000000366', 'UAE', '', NULL, 'Male', '', '2025-12-31 04:00:00',
+        '2015-01-01 04:00:00', 'Canada', 0, 'Economic Immigration Program', 'Website', 0, NULL, '2026-07-07 03:52:33', '03:52:33', 0, 0, 'New lead enquiry',
+        'New', 'Medium', '2026-07-07 03:52:33', '2026-07-07 03:52:33', '7/7/2026', '03:52:33', 1, NULL, NULL, NULL, NULL, 1,
+        1, 0, 0, 0, 0, NULL, 0, NULL, '', NULL, NULL, NULL,
+        NULL, 'New', '2026-07-07 03:52:33', 0, 'lead', NULL, 0, '', 0, NULL, '03:52:33', 0,
+        1, 0, NULL, NULL, '', '', '', '', NULL, 0, '', '',
+        0, 1, 0, 0, 0, 0, 0, '', 1, '2026-07-07 03:52:33', '', '',
+        '', '', 'New lead created', '2026-07-07 03:52:33', 1, 0, 'Dubai', 'Warm', 0, 0, '', 0,
+        '', 1, '2026-07-07 03:52:33', '2026-07-07 03:52:33', 0, 0, '', 0, 0, 0, 0, 0
+      )
+Executing (default): SELECT 
+        l.*, e1.name as assigned_to_name, e2.name as counselor_name, b.name as branch_name
+      FROM dmc_forum_leads l
+      LEFT JOIN dm_employee e1 ON l.assignTo = e1.id
+      LEFT JOIN dm_employee e2 ON l.Counsilor = e2.id
+      LEFT JOIN dm_branch b ON l.branch = b.id
+      WHERE l.id = 115
+ POST /api/leads 201 in 3.2s (compile: 1482ms, render: 1737ms)
+Executing (default): SELECT 1+1 AS result
+✅ Database connected successfully with Sequelize
+Executing (default): SELECT id FROM dm_service WHERE LOWER(name) = LOWER('Economic Immigration Program') LIMIT 1
+Executing (default): SELECT id FROM dm_country_proces WHERE LOWER(name) = LOWER('Canada') LIMIT 1
+Executing (default): SELECT
+        f.id, f.service, f.country, f.branch, f.currency,
+        f.upfront, f.prof_fee,
+        f.firstMonth, f.secondMonth, f.thirdMonth, f.prof_fee_month,
+        f.firstStage, f.secondStage, f.thirdStage, f.forthStage, f.fifthStage, f.prof_fee_stage,
+        c.currency_code AS currencyCode,
+        s.name          AS serviceName,
+        co.name         AS countryName,
+        b.name          AS branchName
+      FROM dm_fee f
+      LEFT JOIN dm_currency   c ON f.currency = c.id
+      LEFT JOIN dm_service    s ON f.service  = s.id
+      LEFT JOIN dm_country_proces co ON f.country = co.id
+      LEFT JOIN dm_branch     b ON f.branch   = b.id
+      WHERE f.status = 1 AND f.service = 23 AND f.branch = 1 AND f.country = 2
+      ORDER BY f.id DESC
+      LIMIT 1
+ GET /api/admin/fees/lookup?service=Economic%20Immigration%20Program&country=Canada&branch=1 200 in 447ms (compile: 73ms, render: 374ms)
+Executing (086efc2c-6bde-41c4-9037-1145d68f233e): START TRANSACTION;
+Executing (086efc2c-6bde-41c4-9037-1145d68f233e): SHOW COLUMNS FROM dmc_forum_leads
+Executing (086efc2c-6bde-41c4-9037-1145d68f233e): SELECT `DmcForumLeads`.`id`, `DmcForumLeads`.`fname`, `DmcForumLeads`.`lname`, `DmcForumLeads`.`email`, `DmcForumLeads`.`phone`, `DmcForumLeads`.`mobile`, `DmcForumLeads`.`nationality`, `DmcForumLeads`.`country_interest`, `DmcForumLeads`.`id_number`, `DmcForumLeads`.`address`, `DmcForumLeads`.`dob`, `DmcForumLeads`.`service_interest`, `DmcForumLeads`.`market_source`, `DmcForumLeads`.`priority`, `DmcForumLeads`.`assignTo`, `DmcForumLeads`.`case_officer`, `DmcForumLeads`.`Counsilor`, `DmcForumLeads`.`branch`, `DmcForumLeads`.`region`, `DmcForumLeads`.`payTotal`, `DmcForumLeads`.`discount`, `DmcForumLeads`.`paidYet`, `DmcForumLeads`.`payBalance`, `DmcForumLeads`.`followup`, `DmcForumLeads`.`folowuptime`, `DmcForumLeads`.`followupstat`, `DmcForumLeads`.`status`, `DmcForumLeads`.`area`, `DmcForumLeads`.`lead_remark`, `dmEmployeeByASSIGNTo`.`id` AS `dmEmployeeByASSIGNTo.id`, `dmEmployeeByASSIGNTo`.`name` AS `dmEmployeeByASSIGNTo.name`, `dmBranch`.`id` AS `dmBranch.id`, `dmBranch`.`name` AS `dmBranch.name` FROM `dmc_forum_leads` AS `DmcForumLeads` LEFT OUTER JOIN `dm_employee` AS `dmEmployeeByASSIGNTo` ON `DmcForumLeads`.`assignTo` = `dmEmployeeByASSIGNTo`.`id` LEFT OUTER JOIN `dm_branch` AS `dmBranch` ON `DmcForumLeads`.`branch` = `dmBranch`.`id` WHERE `DmcForumLeads`.`id` = 115;
+Executing (default): SELECT
+       b.id AS branchId,
+       b.name AS branchName,
+       b.address AS branchAddress,
+       c.currency_code AS currencyCode
+     FROM dm_branch b
+     INNER JOIN dm_currency c
+       ON c.status = 1
+      AND LOWER(TRIM(c.country)) IN (
+        LOWER(TRIM(b.branch)),
+        LOWER(TRIM(b.name)),
+        LOWER(TRIM(b.abbrv)),
+        CASE
+          WHEN LOWER(CONCAT_WS(' ', b.name, b.branch, b.abbrv, b.address)) REGEXP 'dubai|abu dhabi|sharjah|ajman|fujairah|ras al khaimah|umm al quwain'
+            THEN 'united arab emirates'
+          ELSE ''
+        END
+      )
+     WHERE b.id = 1 AND b.status = 1
+     ORDER BY CASE
+       WHEN LOWER(TRIM(c.country)) = LOWER(TRIM(b.branch)) THEN 1
+       WHEN LOWER(TRIM(c.country)) = LOWER(TRIM(b.name)) THEN 2
+       ELSE 3
+     END
+     LIMIT 1
+Executing (086efc2c-6bde-41c4-9037-1145d68f233e): INSERT INTO `dmc_opportunities` (`id`,`leadId`,`opportunityNumber`,`opportunityName`,`opportunityType`,`serviceType`,`estimatedValue`,`actualValue`,`currency`,`priority`,`status`,`stage`,`probability`,`expectedCloseDate`,`description`,`serviceRequired`,`source`,`leadSource`,`branchId`,`assignedTo`,`createdBy`,`createdAt`,`updatedAt`,`nextAction`,`tags`,`notes`,`conversionDate`,`retentionAmount`,`retentionStatus`,`agreementGenerated`,`agreementSent`,`agreementSigned`,`paymentReceived`,`documentsVerified`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (086efc2c-6bde-41c4-9037-1145d68f233e): SELECT id FROM dmc_opportunities WHERE opportunityNumber = 'OPP-1783381955082-SKANZTUTA'
+Executing (086efc2c-6bde-41c4-9037-1145d68f233e): INSERT INTO dm_opportunity_handover_notes (lead_id, opportunity_id, counselor_id, conversation_summary, client_commitments, next_action, created_at)
+         VALUES (115, 0, 1, 'E2E automated test conversation summary for opportunity creation covering client needs and next steps.', NULL, NULL, '2026-07-07 03:52:35')
+Executing (086efc2c-6bde-41c4-9037-1145d68f233e): INSERT INTO dm_opportunity_workflow_reviews
+       (opportunity_id, lead_id, workflow_status, official_id_data, payment_data, finance_status, compliance_status, created_at, updated_at)
+       VALUES (0, 115, 'opportunity_created', '{\"passportNumber\":null,\"passportIssueDate\":null,\"passportExpiryDate\":null,\"emiratesIdNumber\":null,\"emiratesIdExpiryDate\":null,\"dateOfBirth\":null,\"gender\":null}', '{\"totalFee\":7000,\"discount\":0,\"discountApprovalReference\":null,\"netPayable\":7000,\"paymentMethod\":\"cash\",\"firstInstallment\":7000,\"receiptNumber\":\"RCP-E2E-1783381954155\",\"receiptDate\":\"2026-07-06T23:52:35.082Z\",\"paymentSchedule\":null,\"bankReference\":null,\"paymentProofUrl\":\"\"}', 'pending', 'pending', '2026-07-07 03:52:35', '2026-07-07 03:52:35')
+Executing (086efc2c-6bde-41c4-9037-1145d68f233e): ROLLBACK;
+ POST /api/lead-to-opportunity 500 in 1708ms (compile: 62ms, render: 1646ms)
+Executing (default): SELECT COUNT(*) AS total FROM dmc_forum_leads WHERE REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(phone,''), '+', ''), '-', ''), ' ', ''), '(', ''), ')', ''), '.', '') = '9715000005749' OR LOWER(COALESCE(email,'')) = 'e2e.1005.1783382125749@example.com'
+Executing (default): INSERT INTO dmc_forum_leads (
+        fname, mname, lname, email, phone, mobile, nationality, address, dob, gender,
+        id_number, id_expiry, id_issue_date, country_interest, sub_country_interest,
+        service_interest, market_source, sub_market_source, appointment, followup, folowuptime,
+        followupstat, sf, enquiry, convet, priority, regdate, regtime, last_updated, last_updtd_time,
+        stepComplete, payType, assignTo, case_officer, Counsilor, branch, region, payTotal,
+        discount, paidYet, payBalance, feeAgreeDate, demandAmt, dueDate, demdRemark, agreeDate,
+        renDate, renExpiryDate, renew_type, status, status_date, notf, type, password, novat,
+        i_p, escalation, transfer_date, transfer_time, transfered, transfered_by, otp_status,
+        otp, otp_date, otp_email, browser, hostname, digital_signature, lead_import_by,
+        lead_import, education, profession, exist, no_of_applicants, advanced, do_status,
+        arm_status, gm_status, discount_status, discount_remarks, discount_by, discount_date,
+        campaign, campaign_group, pa_fname, pa_lname, lead_remark, created, created_by, alert,
+        area, lead_quality, transferred_remark_update, untouch_transfer, lead_nq_reason,
+        tele_caller_alert, tele_caller_remark, tele_caller_remark_by, tele_date, lead_date,
+        duplicate, duplicate_count, ref_remark, na_record, old_assgined, nal_count, campaign_id,
+        old_branch
+      ) VALUES (
+        'Ethan', '', 'TestClient', 'e2e.1005.1783382125749@example.com', '9715000005749', '9715000005749', 'UAE', '', NULL, 'Male', '', '2025-12-31 04:00:00',
+        '2015-01-01 04:00:00', 'Canada', 0, 'Economic Immigration Program', 'Website', 0, NULL, '2026-07-07 03:55:26', '03:55:26', 0, 0, 'New lead enquiry',
+        'New', 'Medium', '2026-07-07 03:55:26', '2026-07-07 03:55:26', '7/7/2026', '03:55:26', 1, NULL, NULL, NULL, NULL, 1,
+        1, 0, 0, 0, 0, NULL, 0, NULL, '', NULL, NULL, NULL,
+        NULL, 'New', '2026-07-07 03:55:26', 0, 'lead', NULL, 0, '', 0, NULL, '03:55:26', 0,
+        1, 0, NULL, NULL, '', '', '', '', NULL, 0, '', '',
+        0, 1, 0, 0, 0, 0, 0, '', 1, '2026-07-07 03:55:26', '', '',
+        '', '', 'New lead created', '2026-07-07 03:55:26', 1, 0, 'Dubai', 'Warm', 0, 0, '', 0,
+        '', 1, '2026-07-07 03:55:26', '2026-07-07 03:55:26', 0, 0, '', 0, 0, 0, 0, 0
+      )
+Executing (default): SELECT 
+        l.*, e1.name as assigned_to_name, e2.name as counselor_name, b.name as branch_name
+      FROM dmc_forum_leads l
+      LEFT JOIN dm_employee e1 ON l.assignTo = e1.id
+      LEFT JOIN dm_employee e2 ON l.Counsilor = e2.id
+      LEFT JOIN dm_branch b ON l.branch = b.id
+      WHERE l.id = 116
+ POST /api/leads 201 in 1444ms (compile: 87ms, render: 1357ms)
+Executing (default): SELECT id FROM dm_service WHERE LOWER(name) = LOWER('Economic Immigration Program') LIMIT 1
+Executing (default): SELECT id FROM dm_country_proces WHERE LOWER(name) = LOWER('Canada') LIMIT 1
+Executing (default): SELECT
+        f.id, f.service, f.country, f.branch, f.currency,
+        f.upfront, f.prof_fee,
+        f.firstMonth, f.secondMonth, f.thirdMonth, f.prof_fee_month,
+        f.firstStage, f.secondStage, f.thirdStage, f.forthStage, f.fifthStage, f.prof_fee_stage,
+        c.currency_code AS currencyCode,
+        s.name          AS serviceName,
+        co.name         AS countryName,
+        b.name          AS branchName
+      FROM dm_fee f
+      LEFT JOIN dm_currency   c ON f.currency = c.id
+      LEFT JOIN dm_service    s ON f.service  = s.id
+      LEFT JOIN dm_country_proces co ON f.country = co.id
+      LEFT JOIN dm_branch     b ON f.branch   = b.id
+      WHERE f.status = 1 AND f.service = 23 AND f.branch = 1 AND f.country = 2
+      ORDER BY f.id DESC
+      LIMIT 1
+ GET /api/admin/fees/lookup?service=Economic%20Immigration%20Program&country=Canada&branch=1 200 in 623ms (compile: 67ms, render: 556ms)
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): START TRANSACTION;
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): SHOW COLUMNS FROM dmc_forum_leads
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): SELECT `DmcForumLeads`.`id`, `DmcForumLeads`.`fname`, `DmcForumLeads`.`lname`, `DmcForumLeads`.`email`, `DmcForumLeads`.`phone`, `DmcForumLeads`.`mobile`, `DmcForumLeads`.`nationality`, `DmcForumLeads`.`country_interest`, `DmcForumLeads`.`id_number`, `DmcForumLeads`.`address`, `DmcForumLeads`.`dob`, `DmcForumLeads`.`service_interest`, `DmcForumLeads`.`market_source`, `DmcForumLeads`.`priority`, `DmcForumLeads`.`assignTo`, `DmcForumLeads`.`case_officer`, `DmcForumLeads`.`Counsilor`, `DmcForumLeads`.`branch`, `DmcForumLeads`.`region`, `DmcForumLeads`.`payTotal`, `DmcForumLeads`.`discount`, `DmcForumLeads`.`paidYet`, `DmcForumLeads`.`payBalance`, `DmcForumLeads`.`followup`, `DmcForumLeads`.`folowuptime`, `DmcForumLeads`.`followupstat`, `DmcForumLeads`.`status`, `DmcForumLeads`.`area`, `DmcForumLeads`.`lead_remark`, `dmEmployeeByASSIGNTo`.`id` AS `dmEmployeeByASSIGNTo.id`, `dmEmployeeByASSIGNTo`.`name` AS `dmEmployeeByASSIGNTo.name`, `dmBranch`.`id` AS `dmBranch.id`, `dmBranch`.`name` AS `dmBranch.name` FROM `dmc_forum_leads` AS `DmcForumLeads` LEFT OUTER JOIN `dm_employee` AS `dmEmployeeByASSIGNTo` ON `DmcForumLeads`.`assignTo` = `dmEmployeeByASSIGNTo`.`id` LEFT OUTER JOIN `dm_branch` AS `dmBranch` ON `DmcForumLeads`.`branch` = `dmBranch`.`id` WHERE `DmcForumLeads`.`id` = 116;
+Executing (default): SELECT
+       b.id AS branchId,
+       b.name AS branchName,
+       b.address AS branchAddress,
+       c.currency_code AS currencyCode
+     FROM dm_branch b
+     INNER JOIN dm_currency c
+       ON c.status = 1
+      AND LOWER(TRIM(c.country)) IN (
+        LOWER(TRIM(b.branch)),
+        LOWER(TRIM(b.name)),
+        LOWER(TRIM(b.abbrv)),
+        CASE
+          WHEN LOWER(CONCAT_WS(' ', b.name, b.branch, b.abbrv, b.address)) REGEXP 'dubai|abu dhabi|sharjah|ajman|fujairah|ras al khaimah|umm al quwain'
+            THEN 'united arab emirates'
+          ELSE ''
+        END
+      )
+     WHERE b.id = 1 AND b.status = 1
+     ORDER BY CASE
+       WHEN LOWER(TRIM(c.country)) = LOWER(TRIM(b.branch)) THEN 1
+       WHEN LOWER(TRIM(c.country)) = LOWER(TRIM(b.name)) THEN 2
+       ELSE 3
+     END
+     LIMIT 1
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): INSERT INTO `dmc_opportunities` (`id`,`leadId`,`opportunityNumber`,`opportunityName`,`opportunityType`,`serviceType`,`estimatedValue`,`actualValue`,`currency`,`priority`,`status`,`stage`,`probability`,`expectedCloseDate`,`description`,`serviceRequired`,`source`,`leadSource`,`branchId`,`assignedTo`,`createdBy`,`createdAt`,`updatedAt`,`nextAction`,`tags`,`notes`,`conversionDate`,`retentionAmount`,`retentionStatus`,`agreementGenerated`,`agreementSent`,`agreementSigned`,`paymentReceived`,`documentsVerified`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): SELECT id FROM dmc_opportunities WHERE opportunityNumber = 'OPP-1783382132730-J3XH1OLNI' ORDER BY id DESC LIMIT 1
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): INSERT INTO dm_opportunity_handover_notes (lead_id, opportunity_id, counselor_id, conversation_summary, client_commitments, next_action, created_at)
+         VALUES (116, 12, 1, 'E2E automated test conversation summary for opportunity creation covering client needs and next steps.', NULL, NULL, '2026-07-07 03:55:32')
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): INSERT INTO dm_opportunity_workflow_reviews
+       (opportunity_id, lead_id, workflow_status, official_id_data, payment_data, finance_status, compliance_status, created_at, updated_at)
+       VALUES (12, 116, 'opportunity_created', '{\"passportNumber\":null,\"passportIssueDate\":null,\"passportExpiryDate\":null,\"emiratesIdNumber\":null,\"emiratesIdExpiryDate\":null,\"dateOfBirth\":null,\"gender\":null}', '{\"totalFee\":7000,\"discount\":0,\"discountApprovalReference\":null,\"netPayable\":7000,\"paymentMethod\":\"cash\",\"firstInstallment\":7000,\"receiptNumber\":\"RCP-E2E-1783382128027\",\"receiptDate\":\"2026-07-06T23:55:32.730Z\",\"paymentSchedule\":null,\"bankReference\":null,\"paymentProofUrl\":\"\"}', 'pending', 'pending', '2026-07-07 03:55:32', '2026-07-07 03:55:32')
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): INSERT INTO dm_opportunity_accounting_verifications (lead_id, opportunity_id, payment_proof_url, payment_received, documents_complete, status, submitted_at)
+       VALUES (116, 12, NULL, 1, 0, 'pending', '2026-07-07 03:55:32')
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): INSERT INTO `dm_opportunity_payments` (`id`,`opportunityId`,`paymentNumber`,`receiptNumber`,`paymentStructure`,`paymentType`,`totalAmount`,`amount`,`paidAmount`,`remainingBalance`,`balanceAmount`,`currency`,`paymentMethod`,`transactionId`,`paymentDate`,`status`,`dueDate`,`receiptUrl`,`description`,`clientName`,`clientEmail`,`clientPhone`,`clientAddress`,`serviceName`,`branchName`,`consultantName`,`taxAmount`,`discountAmount`,`notes`,`createdBy`,`createdAt`,`updatedAt`,`accountantStatus`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): INSERT INTO dm_pay_history
+           (leadId, amount, counselor_receipt, tabby, date, payMethod, payoption, paycardoption,
+            payNextDate, payBalance, tax, payCategory, payment_remarks, remark, status, proof_url,
+            thirdPartyAmt, dmAmt, dmTax, dmRefundAmt, curValue, refNumber,
+            created_by, stage, totaltillnow)
+         VALUES
+           (116, 7000, 'RCP-E2E-1783382128027', 0, '2026-07-07 03:55:32', 'cash', 'full', '',
+            '2026-08-06 03:55:33', 0, 0, 'payment', 'Initial payment recorded during opportunity conversion (PAY-1783382133446-97FXFL)', NULL, 1, NULL,
+            0, 7000, 0, 0, 0, 'PAY-1783382133446-97FXFL',
+            1, 'opportunity_conversion', 7000)
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): SELECT COALESCE(MAX(id), 0) + 1 AS nextId FROM dm_b2b_invoices
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): INSERT INTO dm_b2b_invoices
+        (id, region, receipt, branch, company, purpose, narration, vat, taxAmt, totPayAmt, payBalance, payment_mode, amount, discount, status, created, Counsilor, created_by)
+       VALUES (9, 1, 'INV-1783382133958-Z4BBJ7', 1, 'Ethan TestClient', 'Economic Immigration Program', 'Invoice generated for opportunity OPP-1783382132730-J3XH1OLNI', 0, 0, 7000, 0, 'cash', 7000, 0, 1, '2026-07-07 03:55:32', 1, 1)
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): INSERT INTO `dm_opportunity_agreements` (`id`,`opportunityId`,`agreementNumber`,`agreementType`,`templateId`,`agreementTitle`,`title`,`description`,`duration`,`startDate`,`endDate`,`amount`,`totalAmount`,`currency`,`terms`,`termsAndConditions`,`specialConditions`,`content`,`status`,`generatedDate`,`signedDate`,`clientSignature`,`signatureDate`,`documentUrl`,`clientName`,`clientEmail`,`clientPhone`,`companyName`,`companyAddress`,`uploadedToCrm`,`uploadedBy`,`createdBy`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): INSERT INTO `dmc_forum_leads_contracts` (`id`,`leadId`,`contract`,`unsigned_contract`,`new_contract`,`ar_contract`,`garys`,`verify`,`remarks`,`verify_by`,`verify_date`,`batch_id`,`wp_batch_id`,`vendor_id`,`employer_id`,`old_crm_ag_id`,`payment_status`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): INSERT INTO dm_client_upload_portals (client_id, lead_id, opportunity_id, agreement_number, access_token, status, expires_at, created_at)
+       VALUES ('CMG-000116-000012', 116, 12, 'AGR-1783382134162-T75QEH', '4ea45d440e469b896eff70a67b3a2560d7076cc6008b895be143b0855ab8f37a', 'active', '2026-10-05 03:55:34', '2026-07-07 03:55:32')
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): INSERT INTO dm_client_upload_checklist_items (portal_id, item_name, required, status)
+       SELECT id, 'Passport copy', 1, 'pending' FROM dm_client_upload_portals WHERE access_token = '4ea45d440e469b896eff70a67b3a2560d7076cc6008b895be143b0855ab8f37a'
+       UNION ALL SELECT id, 'National / Emirates ID copy', 1, 'pending' FROM dm_client_upload_portals WHERE access_token = '4ea45d440e469b896eff70a67b3a2560d7076cc6008b895be143b0855ab8f37a'
+       UNION ALL SELECT id, 'Signed agreement', 1, 'pending' FROM dm_client_upload_portals WHERE access_token = '4ea45d440e469b896eff70a67b3a2560d7076cc6008b895be143b0855ab8f37a'
+       UNION ALL SELECT id, 'Proof of address', 1, 'pending' FROM dm_client_upload_portals WHERE access_token = '4ea45d440e469b896eff70a67b3a2560d7076cc6008b895be143b0855ab8f37a'
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): UPDATE dmc_opportunities SET agreementId = 0, agreementGenerated = true, paymentReceived = true, updatedAt = '2026-07-07 03:55:32' WHERE id = 12
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): SELECT `id`, `leadId`, `first_name`, `last_name`, `email`, `image`, `dob`, `address`, `full_address`, `token`, `token_validity`, `verify`, `password`, `hash_password`, `status`, `accept`, `created`, `case_manager`, `backend_person`, `is_deleted`, `city`, `nationality` FROM `dm_clients` AS `DmClients` WHERE `DmClients`.`leadId` = 116 LIMIT 1;
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): SELECT COALESCE(MAX(id), 0) + 1 AS nextId FROM dm_clients
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): INSERT INTO dm_clients
+            (id, leadId, first_name, last_name, email, image, dob, address, full_address, token, token_validity, verify, password, hash_password, status, accept, created, case_manager, backend_person, is_deleted, city, nationality)
+           VALUES (2, 116, 'Ethan', 'TestClient', 'e2e.1005.1783382125749@example.com', '', '1970-01-01 04:00:00', '', '', '9VHJWWFVF7', '2026-07-14 03:55:35', 0, '', '', 0, 0, '2026-07-07 03:55:32', 1, 1, 0, 'Dubai', 'UAE')
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): UPDATE `dmc_forum_leads` SET `status`=?,`convet`=?,`opportunity_status`=?,`conversion_date`=?,`last_updated`=?,`last_updtd_time`=?,`stepComplete`=?,`paidYet`=?,`payBalance`=?,`payTotal`=?,`followup`=?,`status_date`=?,`demandAmt`=? WHERE `id` = ?
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): UPDATE dmc_forum_leads SET opportunity_id = 12 WHERE id = 116
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): INSERT INTO `dmc_opportunity_activities` (`id`,`opportunityId`,`activityType`,`activityTitle`,`description`,`activityDate`,`duration`,`outcome`,`nextStep`,`assignedTo`,`priority`,`status`,`location`,`attendees`,`notes`,`createdBy`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (1ea4d100-3081-448e-9435-8ec293883eb4): COMMIT;
+ POST /api/lead-to-opportunity 200 in 8.1s (compile: 2.4s, render: 5.7s)
+Executing (default): SELECT
+       b.id AS branchId,
+       b.name AS branchName,
+       b.address AS branchAddress,
+       c.currency_code AS currencyCode
+     FROM dm_branch b
+     INNER JOIN dm_currency c
+       ON c.status = 1
+      AND LOWER(TRIM(c.country)) IN (
+        LOWER(TRIM(b.branch)),
+        LOWER(TRIM(b.name)),
+        LOWER(TRIM(b.abbrv)),
+        CASE
+          WHEN LOWER(CONCAT_WS(' ', b.name, b.branch, b.abbrv, b.address)) REGEXP 'dubai|abu dhabi|sharjah|ajman|fujairah|ras al khaimah|umm al quwain'
+            THEN 'united arab emirates'
+          ELSE ''
+        END
+      )
+     WHERE b.id = 1 AND b.status = 1
+     ORDER BY CASE
+       WHEN LOWER(TRIM(c.country)) = LOWER(TRIM(b.branch)) THEN 1
+       WHEN LOWER(TRIM(c.country)) = LOWER(TRIM(b.name)) THEN 2
+       ELSE 3
+     END
+     LIMIT 1
+ POST /api/discount-approvals 500 in 1243ms (compile: 943ms, render: 300ms)
+Executing (default): SELECT `DmcOpportunityPayments`.`id`, `DmcOpportunityPayments`.`opportunityId`, `DmcOpportunityPayments`.`paymentNumber`, `DmcOpportunityPayments`.`receiptNumber`, `DmcOpportunityPayments`.`paymentStructure`, `DmcOpportunityPayments`.`paymentType`, `DmcOpportunityPayments`.`totalAmount`, `DmcOpportunityPayments`.`amount`, `DmcOpportunityPayments`.`paidAmount`, `DmcOpportunityPayments`.`remainingBalance`, `DmcOpportunityPayments`.`balanceAmount`, `DmcOpportunityPayments`.`currency`, `DmcOpportunityPayments`.`paymentMethod`, `DmcOpportunityPayments`.`transactionId`, `DmcOpportunityPayments`.`paymentDate`, `DmcOpportunityPayments`.`status`, `DmcOpportunityPayments`.`dueDate`, `DmcOpportunityPayments`.`installmentNumber`, `DmcOpportunityPayments`.`totalInstallments`, `DmcOpportunityPayments`.`milestoneName`, `DmcOpportunityPayments`.`gateway`, `DmcOpportunityPayments`.`gatewayTransactionId`, `DmcOpportunityPayments`.`receiptUrl`, `DmcOpportunityPayments`.`description`, `DmcOpportunityPayments`.`receiptType`, `DmcOpportunityPayments`.`clientName`, `DmcOpportunityPayments`.`clientEmail`, `DmcOpportunityPayments`.`clientPhone`, `DmcOpportunityPayments`.`clientAddress`, `DmcOpportunityPayments`.`serviceName`, `DmcOpportunityPayments`.`branchName`, `DmcOpportunityPayments`.`consultantName`, `DmcOpportunityPayments`.`taxAmount`, `DmcOpportunityPayments`.`discountAmount`, `DmcOpportunityPayments`.`notes`, `DmcOpportunityPayments`.`createdBy`, `DmcOpportunityPayments`.`createdAt`, `DmcOpportunityPayments`.`updatedAt`, `DmcOpportunityPayments`.`accountantStatus`, `DmcOpportunityPayments`.`accountantRemarks`, `DmcOpportunityPayments`.`accountantId`, `DmcOpportunityPayments`.`accountantVerifiedAt`, `dmcOpportunity`.`id` AS `dmcOpportunity.id`, `dmcOpportunity`.`opportunityName` AS `dmcOpportunity.opportunityName`, `dmcOpportunity`.`estimatedValue` AS `dmcOpportunity.estimatedValue`, `dmcOpportunity`.`currency` AS `dmcOpportunity.currency`, `dmcOpportunity`.`leadId` AS `dmcOpportunity.leadId`, `createdEmployee`.`id` AS `createdEmployee.id`, `createdEmployee`.`name` AS `createdEmployee.name` FROM `dm_opportunity_payments` AS `DmcOpportunityPayments` LEFT OUTER JOIN `dmc_opportunities` AS `dmcOpportunity` ON `DmcOpportunityPayments`.`opportunityId` = `dmcOpportunity`.`id` LEFT OUTER JOIN `dm_employee` AS `createdEmployee` ON `DmcOpportunityPayments`.`createdBy` = `createdEmployee`.`id` WHERE `DmcOpportunityPayments`.`opportunityId` = '12' ORDER BY `DmcOpportunityPayments`.`createdAt` DESC;
+Executing (default): SELECT a.opportunityId, a.agreementNumber
+         FROM dm_opportunity_agreements a
+         INNER JOIN (
+           SELECT opportunityId, MAX(id) AS latestId
+           FROM dm_opportunity_agreements
+           WHERE opportunityId IN (12)
+           GROUP BY opportunityId
+         ) latest ON latest.latestId = a.id
+ GET /api/opportunity-payments?opportunityId=12 200 in 382ms (compile: 82ms, render: 299ms)
+Executing (default): SELECT 1+1 AS result
+✅ Database connected successfully with Sequelize
+Executing (default): UPDATE dm_opportunity_payments
+       SET accountantStatus = 'verified',
+           accountantRemarks = 'E2E verified',
+           accountantId = 33,
+           accountantVerifiedAt = NOW(),
+           updatedAt = NOW()
+       WHERE id = 11
+Executing (default): SELECT p.opportunityId, o.leadId,
+              COALESCE(p.clientName, CONCAT(l.fname,' ',COALESCE(l.lname,''))) AS clientName,
+              COALESCE(p.totalAmount,0) AS totalAmount,
+              COALESCE(p.currency,'AED') AS currency
+       FROM dm_opportunity_payments p
+       LEFT JOIN dmc_opportunities o ON o.id = p.opportunityId
+       LEFT JOIN dmc_forum_leads  l ON l.id = o.leadId
+       WHERE p.id = 11 LIMIT 1
+Executing (default): UPDATE dm_opportunity_workflow_reviews
+         SET finance_status = 'approved',
+             finance_reviewed_by = 33,
+             finance_reviewed_at = NOW(),
+             workflow_status = 'pending_compliance',
+             updated_at = NOW()
+         WHERE opportunity_id = 12
+Executing (default): SELECT id, agreementNumber FROM dm_opportunity_agreements WHERE opportunityId = 12 LIMIT 1
+ PUT /api/admin/opportunity-payments/verify 200 in 713ms (compile: 79ms, render: 634ms)
+Executing (default): CREATE TABLE IF NOT EXISTS dm_opportunity_compliance_approvals (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      leadId INT NOT NULL,
+      opportunityId INT NULL,
+      signedAgreementUrl TEXT NOT NULL,
+      clientSignature VARCHAR(255) NULL,
+      signatureDate DATE NULL,
+      status VARCHAR(30) NOT NULL DEFAULT 'pending',
+      submittedBy INT NULL,
+      reviewedBy VARCHAR(255) NULL,
+      reviewerRole VARCHAR(80) NULL,
+      reviewNotes TEXT NULL,
+      submittedAt DATETIME NOT NULL,
+      reviewedAt DATETIME NULL,
+      createdAt DATETIME NOT NULL,
+      updatedAt DATETIME NOT NULL,
+      INDEX idx_compliance_lead (leadId),
+      INDEX idx_compliance_status (status)
+    )
+Executing (default): INSERT INTO dm_opportunity_compliance_approvals (
+        leadId, opportunityId, signedAgreementUrl, clientSignature, signatureDate,
+        status, submittedBy, submittedAt, createdAt, updatedAt
+      ) VALUES (116, 12, '/uploads/e2e-signed.pdf', 'E2E TestClient1005', '2026-07-06', 'pending', NULL, '2026-07-07 03:55:38', '2026-07-07 03:55:38', '2026-07-07 03:55:38')
+ POST /api/opportunity-compliance-approvals 201 in 299ms (compile: 76ms, render: 222ms)
+Executing (default): CREATE TABLE IF NOT EXISTS dm_opportunity_compliance_approvals (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      leadId INT NOT NULL,
+      opportunityId INT NULL,
+      signedAgreementUrl TEXT NOT NULL,
+      clientSignature VARCHAR(255) NULL,
+      signatureDate DATE NULL,
+      status VARCHAR(30) NOT NULL DEFAULT 'pending',
+      submittedBy INT NULL,
+      reviewedBy VARCHAR(255) NULL,
+      reviewerRole VARCHAR(80) NULL,
+      reviewNotes TEXT NULL,
+      submittedAt DATETIME NOT NULL,
+      reviewedAt DATETIME NULL,
+      createdAt DATETIME NOT NULL,
+      updatedAt DATETIME NOT NULL,
+      INDEX idx_compliance_lead (leadId),
+      INDEX idx_compliance_status (status)
+    )
+Executing (default): SELECT *
+      FROM dm_opportunity_compliance_approvals
+      WHERE leadId = '116'
+      ORDER BY createdAt DESC
+ GET /api/opportunity-compliance-approvals?leadId=116 200 in 326ms (compile: 6ms, render: 320ms)
+Executing (default): CREATE TABLE IF NOT EXISTS dm_opportunity_compliance_approvals (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      leadId INT NOT NULL,
+      opportunityId INT NULL,
+      signedAgreementUrl TEXT NOT NULL,
+      clientSignature VARCHAR(255) NULL,
+      signatureDate DATE NULL,
+      status VARCHAR(30) NOT NULL DEFAULT 'pending',
+      submittedBy INT NULL,
+      reviewedBy VARCHAR(255) NULL,
+      reviewerRole VARCHAR(80) NULL,
+      reviewNotes TEXT NULL,
+      submittedAt DATETIME NOT NULL,
+      reviewedAt DATETIME NULL,
+      createdAt DATETIME NOT NULL,
+      updatedAt DATETIME NOT NULL,
+      INDEX idx_compliance_lead (leadId),
+      INDEX idx_compliance_status (status)
+    )
+Executing (default): UPDATE dm_opportunity_compliance_approvals
+      SET status = 'approved', reviewedBy = 'E2E CEO', reviewerRole = 'compliance_officer', reviewNotes = 'E2E approved', reviewedAt = '2026-07-07 03:55:39', updatedAt = '2026-07-07 03:55:39'
+      WHERE id = '4'
+Executing (default): SELECT opportunityId FROM dm_opportunity_compliance_approvals WHERE id = '4'
+Executing (default): UPDATE dm_opportunity_workflow_reviews
+          SET compliance_status = 'approved',
+              compliance_reviewed_at = '2026-07-07 03:55:39',
+              workflow_status = 'client',
+              case_activated_at = '2026-07-07 03:55:39',
+              updated_at = '2026-07-07 03:55:39'
+          WHERE opportunity_id = 12
+ PUT /api/opportunity-compliance-approvals?id=4 200 in 591ms (compile: 7ms, render: 584ms)
+Executing (default): SELECT 1+1 AS result
+✅ Database connected successfully with Sequelize
+Executing (default): SELECT
+         w.id, w.lead_id AS leadId, w.case_activated_at,
+         l.fname, l.lname, l.email, l.dob, l.address, l.area, l.nationality, l.assignTo
+       FROM dm_opportunity_workflow_reviews w
+       INNER JOIN (
+         SELECT lead_id, MAX(id) AS maxId
+         FROM dm_opportunity_workflow_reviews
+         WHERE finance_status = 'approved' AND compliance_status = 'approved'
+         GROUP BY lead_id
+       ) latest ON latest.maxId = w.id
+       JOIN dmc_forum_leads l ON l.id = w.lead_id
+       WHERE w.finance_status = 'approved' AND w.compliance_status = 'approved' AND (l.fname LIKE '%TestClient%' OR l.lname LIKE '%TestClient%' OR l.email LIKE '%TestClient%')
+       ORDER BY w.case_activated_at DESC
+       LIMIT 200
+ GET /api/admin/clients?search=TestClient 200 in 302ms (compile: 58ms, render: 244ms)
+Executing (default): SELECT COUNT(*) AS total FROM dmc_forum_leads WHERE REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(phone,''), '+', ''), '-', ''), ' ', ''), '(', ''), ')', ''), '.', '') = '9715000003766' OR LOWER(COALESCE(email,'')) = 'e2e.1005.1783382253765@example.com'
+Executing (default): INSERT INTO dmc_forum_leads (
+        fname, mname, lname, email, phone, mobile, nationality, address, dob, gender,
+        id_number, id_expiry, id_issue_date, country_interest, sub_country_interest,
+        service_interest, market_source, sub_market_source, appointment, followup, folowuptime,
+        followupstat, sf, enquiry, convet, priority, regdate, regtime, last_updated, last_updtd_time,
+        stepComplete, payType, assignTo, case_officer, Counsilor, branch, region, payTotal,
+        discount, paidYet, payBalance, feeAgreeDate, demandAmt, dueDate, demdRemark, agreeDate,
+        renDate, renExpiryDate, renew_type, status, status_date, notf, type, password, novat,
+        i_p, escalation, transfer_date, transfer_time, transfered, transfered_by, otp_status,
+        otp, otp_date, otp_email, browser, hostname, digital_signature, lead_import_by,
+        lead_import, education, profession, exist, no_of_applicants, advanced, do_status,
+        arm_status, gm_status, discount_status, discount_remarks, discount_by, discount_date,
+        campaign, campaign_group, pa_fname, pa_lname, lead_remark, created, created_by, alert,
+        area, lead_quality, transferred_remark_update, untouch_transfer, lead_nq_reason,
+        tele_caller_alert, tele_caller_remark, tele_caller_remark_by, tele_date, lead_date,
+        duplicate, duplicate_count, ref_remark, na_record, old_assgined, nal_count, campaign_id,
+        old_branch
+      ) VALUES (
+        'Ethan', '', 'TestClient', 'e2e.1005.1783382253765@example.com', '9715000003766', '9715000003766', 'UAE', '', NULL, 'Male', '', '2025-12-31 04:00:00',
+        '2015-01-01 04:00:00', 'Canada', 0, 'Economic Immigration Program', 'Website', 0, NULL, '2026-07-07 03:57:35', '03:57:35', 0, 0, 'New lead enquiry',
+        'New', 'Medium', '2026-07-07 03:57:35', '2026-07-07 03:57:35', '7/7/2026', '03:57:35', 1, NULL, NULL, NULL, NULL, 1,
+        1, 0, 0, 0, 0, NULL, 0, NULL, '', NULL, NULL, NULL,
+        NULL, 'New', '2026-07-07 03:57:35', 0, 'lead', NULL, 0, '', 0, NULL, '03:57:35', 0,
+        1, 0, NULL, NULL, '', '', '', '', NULL, 0, '', '',
+        0, 1, 0, 0, 0, 0, 0, '', 1, '2026-07-07 03:57:35', '', '',
+        '', '', 'New lead created', '2026-07-07 03:57:35', 1, 0, 'Dubai', 'Warm', 0, 0, '', 0,
+        '', 1, '2026-07-07 03:57:35', '2026-07-07 03:57:35', 0, 0, '', 0, 0, 0, 0, 0
+      )
+Executing (default): SELECT 
+        l.*, e1.name as assigned_to_name, e2.name as counselor_name, b.name as branch_name
+      FROM dmc_forum_leads l
+      LEFT JOIN dm_employee e1 ON l.assignTo = e1.id
+      LEFT JOIN dm_employee e2 ON l.Counsilor = e2.id
+      LEFT JOIN dm_branch b ON l.branch = b.id
+      WHERE l.id = 117
+ POST /api/leads 201 in 1403ms (compile: 77ms, render: 1327ms)
+Executing (default): SELECT id FROM dm_service WHERE LOWER(name) = LOWER('Economic Immigration Program') LIMIT 1
+Executing (default): SELECT id FROM dm_country_proces WHERE LOWER(name) = LOWER('Canada') LIMIT 1
+Executing (default): SELECT
+        f.id, f.service, f.country, f.branch, f.currency,
+        f.upfront, f.prof_fee,
+        f.firstMonth, f.secondMonth, f.thirdMonth, f.prof_fee_month,
+        f.firstStage, f.secondStage, f.thirdStage, f.forthStage, f.fifthStage, f.prof_fee_stage,
+        c.currency_code AS currencyCode,
+        s.name          AS serviceName,
+        co.name         AS countryName,
+        b.name          AS branchName
+      FROM dm_fee f
+      LEFT JOIN dm_currency   c ON f.currency = c.id
+      LEFT JOIN dm_service    s ON f.service  = s.id
+      LEFT JOIN dm_country_proces co ON f.country = co.id
+      LEFT JOIN dm_branch     b ON f.branch   = b.id
+      WHERE f.status = 1 AND f.service = 23 AND f.branch = 1 AND f.country = 2
+      ORDER BY f.id DESC
+      LIMIT 1
+ GET /api/admin/fees/lookup?service=Economic%20Immigration%20Program&country=Canada&branch=1 200 in 508ms (compile: 12ms, render: 496ms)
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): START TRANSACTION;
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): SHOW COLUMNS FROM dmc_forum_leads
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): SELECT `DmcForumLeads`.`id`, `DmcForumLeads`.`fname`, `DmcForumLeads`.`lname`, `DmcForumLeads`.`email`, `DmcForumLeads`.`phone`, `DmcForumLeads`.`mobile`, `DmcForumLeads`.`nationality`, `DmcForumLeads`.`country_interest`, `DmcForumLeads`.`id_number`, `DmcForumLeads`.`address`, `DmcForumLeads`.`dob`, `DmcForumLeads`.`service_interest`, `DmcForumLeads`.`market_source`, `DmcForumLeads`.`priority`, `DmcForumLeads`.`assignTo`, `DmcForumLeads`.`case_officer`, `DmcForumLeads`.`Counsilor`, `DmcForumLeads`.`branch`, `DmcForumLeads`.`region`, `DmcForumLeads`.`payTotal`, `DmcForumLeads`.`discount`, `DmcForumLeads`.`paidYet`, `DmcForumLeads`.`payBalance`, `DmcForumLeads`.`followup`, `DmcForumLeads`.`folowuptime`, `DmcForumLeads`.`followupstat`, `DmcForumLeads`.`status`, `DmcForumLeads`.`area`, `DmcForumLeads`.`lead_remark`, `dmEmployeeByASSIGNTo`.`id` AS `dmEmployeeByASSIGNTo.id`, `dmEmployeeByASSIGNTo`.`name` AS `dmEmployeeByASSIGNTo.name`, `dmBranch`.`id` AS `dmBranch.id`, `dmBranch`.`name` AS `dmBranch.name` FROM `dmc_forum_leads` AS `DmcForumLeads` LEFT OUTER JOIN `dm_employee` AS `dmEmployeeByASSIGNTo` ON `DmcForumLeads`.`assignTo` = `dmEmployeeByASSIGNTo`.`id` LEFT OUTER JOIN `dm_branch` AS `dmBranch` ON `DmcForumLeads`.`branch` = `dmBranch`.`id` WHERE `DmcForumLeads`.`id` = 117;
+Executing (default): SELECT
+       b.id AS branchId,
+       b.name AS branchName,
+       b.address AS branchAddress,
+       c.currency_code AS currencyCode
+     FROM dm_branch b
+     INNER JOIN dm_currency c
+       ON c.status = 1
+      AND LOWER(TRIM(c.country)) IN (
+        LOWER(TRIM(b.branch)),
+        LOWER(TRIM(b.name)),
+        LOWER(TRIM(b.abbrv)),
+        CASE
+          WHEN LOWER(CONCAT_WS(' ', b.name, b.branch, b.abbrv, b.address)) REGEXP 'dubai|abu dhabi|sharjah|ajman|fujairah|ras al khaimah|umm al quwain'
+            THEN 'united arab emirates'
+          ELSE ''
+        END
+      )
+     WHERE b.id = 1 AND b.status = 1
+     ORDER BY CASE
+       WHEN LOWER(TRIM(c.country)) = LOWER(TRIM(b.branch)) THEN 1
+       WHEN LOWER(TRIM(c.country)) = LOWER(TRIM(b.name)) THEN 2
+       ELSE 3
+     END
+     LIMIT 1
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): INSERT INTO `dmc_opportunities` (`id`,`leadId`,`opportunityNumber`,`opportunityName`,`opportunityType`,`serviceType`,`estimatedValue`,`actualValue`,`currency`,`priority`,`status`,`stage`,`probability`,`expectedCloseDate`,`description`,`serviceRequired`,`source`,`leadSource`,`branchId`,`assignedTo`,`createdBy`,`createdAt`,`updatedAt`,`nextAction`,`tags`,`notes`,`conversionDate`,`retentionAmount`,`retentionStatus`,`agreementGenerated`,`agreementSent`,`agreementSigned`,`paymentReceived`,`documentsVerified`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): SELECT id FROM dmc_opportunities WHERE opportunityNumber = 'OPP-1783382260010-6AIU30UWF' ORDER BY id DESC LIMIT 1
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): INSERT INTO dm_opportunity_handover_notes (lead_id, opportunity_id, counselor_id, conversation_summary, client_commitments, next_action, created_at)
+         VALUES (117, 13, 1, 'E2E automated test conversation summary for opportunity creation covering client needs and next steps.', NULL, NULL, '2026-07-07 03:57:40')
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): INSERT INTO dm_opportunity_workflow_reviews
+       (opportunity_id, lead_id, workflow_status, official_id_data, payment_data, finance_status, compliance_status, created_at, updated_at)
+       VALUES (13, 117, 'opportunity_created', '{\"passportNumber\":null,\"passportIssueDate\":null,\"passportExpiryDate\":null,\"emiratesIdNumber\":null,\"emiratesIdExpiryDate\":null,\"dateOfBirth\":null,\"gender\":null}', '{\"totalFee\":7000,\"discount\":0,\"discountApprovalReference\":null,\"netPayable\":7000,\"paymentMethod\":\"cash\",\"firstInstallment\":7000,\"receiptNumber\":\"RCP-E2E-1783382255821\",\"receiptDate\":\"2026-07-06T23:57:40.010Z\",\"paymentSchedule\":null,\"bankReference\":null,\"paymentProofUrl\":\"\"}', 'pending', 'pending', '2026-07-07 03:57:40', '2026-07-07 03:57:40')
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): INSERT INTO dm_opportunity_accounting_verifications (lead_id, opportunity_id, payment_proof_url, payment_received, documents_complete, status, submitted_at)
+       VALUES (117, 13, NULL, 1, 0, 'pending', '2026-07-07 03:57:40')
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): INSERT INTO `dm_opportunity_payments` (`id`,`opportunityId`,`paymentNumber`,`receiptNumber`,`paymentStructure`,`paymentType`,`totalAmount`,`amount`,`paidAmount`,`remainingBalance`,`balanceAmount`,`currency`,`paymentMethod`,`transactionId`,`paymentDate`,`status`,`dueDate`,`receiptUrl`,`description`,`clientName`,`clientEmail`,`clientPhone`,`clientAddress`,`serviceName`,`branchName`,`consultantName`,`taxAmount`,`discountAmount`,`notes`,`createdBy`,`createdAt`,`updatedAt`,`accountantStatus`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): SELECT id FROM dm_opportunity_payments WHERE paymentNumber = 'PAY-1783382260870-2SMUF1' ORDER BY id DESC LIMIT 1
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): INSERT INTO dm_pay_history
+           (leadId, amount, counselor_receipt, tabby, date, payMethod, payoption, paycardoption,
+            payNextDate, payBalance, tax, payCategory, payment_remarks, remark, status, proof_url,
+            thirdPartyAmt, dmAmt, dmTax, dmRefundAmt, curValue, refNumber,
+            created_by, stage, totaltillnow)
+         VALUES
+           (117, 7000, 'RCP-E2E-1783382255821', 0, '2026-07-07 03:57:40', 'cash', 'full', '',
+            '2026-08-06 03:57:41', 0, 0, 'payment', 'Initial payment recorded during opportunity conversion (PAY-1783382260870-2SMUF1)', NULL, 1, NULL,
+            0, 7000, 0, 0, 0, 'PAY-1783382260870-2SMUF1',
+            1, 'opportunity_conversion', 7000)
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): SELECT COALESCE(MAX(id), 0) + 1 AS nextId FROM dm_b2b_invoices
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): INSERT INTO dm_b2b_invoices
+        (id, region, receipt, branch, company, purpose, narration, vat, taxAmt, totPayAmt, payBalance, payment_mode, amount, discount, status, created, Counsilor, created_by)
+       VALUES (10, 1, 'INV-1783382261342-CUTUEP', 1, 'Ethan TestClient', 'Economic Immigration Program', 'Invoice generated for opportunity OPP-1783382260010-6AIU30UWF', 0, 0, 7000, 0, 'cash', 7000, 0, 1, '2026-07-07 03:57:40', 1, 1)
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): INSERT INTO `dm_opportunity_agreements` (`id`,`opportunityId`,`agreementNumber`,`agreementType`,`templateId`,`agreementTitle`,`title`,`description`,`duration`,`startDate`,`endDate`,`amount`,`totalAmount`,`currency`,`terms`,`termsAndConditions`,`specialConditions`,`content`,`status`,`generatedDate`,`signedDate`,`clientSignature`,`signatureDate`,`documentUrl`,`clientName`,`clientEmail`,`clientPhone`,`companyName`,`companyAddress`,`uploadedToCrm`,`uploadedBy`,`createdBy`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): SELECT id FROM dm_opportunity_agreements WHERE agreementNumber = 'AGR-1783382261574-4P7303' ORDER BY id DESC LIMIT 1
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): INSERT INTO `dmc_forum_leads_contracts` (`id`,`leadId`,`contract`,`unsigned_contract`,`new_contract`,`ar_contract`,`garys`,`verify`,`remarks`,`verify_by`,`verify_date`,`batch_id`,`wp_batch_id`,`vendor_id`,`employer_id`,`old_crm_ag_id`,`payment_status`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): INSERT INTO dm_client_upload_portals (client_id, lead_id, opportunity_id, agreement_number, access_token, status, expires_at, created_at)
+       VALUES ('CMG-000117-000013', 117, 13, 'AGR-1783382261574-4P7303', '55ce258251002c5ae7bd9ac8f0a6f3a83215897d7831e5a8cd7bc6a247ccadbd', 'active', '2026-10-05 03:57:42', '2026-07-07 03:57:40')
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): INSERT INTO dm_client_upload_checklist_items (portal_id, item_name, required, status)
+       SELECT id, 'Passport copy', 1, 'pending' FROM dm_client_upload_portals WHERE access_token = '55ce258251002c5ae7bd9ac8f0a6f3a83215897d7831e5a8cd7bc6a247ccadbd'
+       UNION ALL SELECT id, 'National / Emirates ID copy', 1, 'pending' FROM dm_client_upload_portals WHERE access_token = '55ce258251002c5ae7bd9ac8f0a6f3a83215897d7831e5a8cd7bc6a247ccadbd'
+       UNION ALL SELECT id, 'Signed agreement', 1, 'pending' FROM dm_client_upload_portals WHERE access_token = '55ce258251002c5ae7bd9ac8f0a6f3a83215897d7831e5a8cd7bc6a247ccadbd'
+       UNION ALL SELECT id, 'Proof of address', 1, 'pending' FROM dm_client_upload_portals WHERE access_token = '55ce258251002c5ae7bd9ac8f0a6f3a83215897d7831e5a8cd7bc6a247ccadbd'
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): UPDATE dmc_opportunities SET agreementId = 9, agreementGenerated = true, paymentReceived = true, updatedAt = '2026-07-07 03:57:40' WHERE id = 13
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): SELECT `id`, `leadId`, `first_name`, `last_name`, `email`, `image`, `dob`, `address`, `full_address`, `token`, `token_validity`, `verify`, `password`, `hash_password`, `status`, `accept`, `created`, `case_manager`, `backend_person`, `is_deleted`, `city`, `nationality` FROM `dm_clients` AS `DmClients` WHERE `DmClients`.`leadId` = 117 LIMIT 1;
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): SELECT COALESCE(MAX(id), 0) + 1 AS nextId FROM dm_clients
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): INSERT INTO dm_clients
+            (id, leadId, first_name, last_name, email, image, dob, address, full_address, token, token_validity, verify, password, hash_password, status, accept, created, case_manager, backend_person, is_deleted, city, nationality)
+           VALUES (3, 117, 'Ethan', 'TestClient', 'e2e.1005.1783382253765@example.com', '', '1970-01-01 04:00:00', '', '', 'HB9WNR97IV', '2026-07-14 03:57:42', 0, '', '', 0, 0, '2026-07-07 03:57:40', 1, 1, 0, 'Dubai', 'UAE')
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): UPDATE `dmc_forum_leads` SET `status`=?,`convet`=?,`opportunity_status`=?,`conversion_date`=?,`last_updated`=?,`last_updtd_time`=?,`stepComplete`=?,`paidYet`=?,`payBalance`=?,`payTotal`=?,`followup`=?,`status_date`=?,`demandAmt`=? WHERE `id` = ?
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): UPDATE dmc_forum_leads SET opportunity_id = 13 WHERE id = 117
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): INSERT INTO `dmc_opportunity_activities` (`id`,`opportunityId`,`activityType`,`activityTitle`,`description`,`activityDate`,`duration`,`outcome`,`nextStep`,`assignedTo`,`priority`,`status`,`location`,`attendees`,`notes`,`createdBy`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (afc95f57-2a29-4fa9-861b-ad7c7a2a80d3): COMMIT;
+ POST /api/lead-to-opportunity 200 in 8.0s (compile: 1427ms, render: 6.5s)
+Executing (default): SELECT
+       b.id AS branchId,
+       b.name AS branchName,
+       b.address AS branchAddress,
+       c.currency_code AS currencyCode
+     FROM dm_branch b
+     INNER JOIN dm_currency c
+       ON c.status = 1
+      AND LOWER(TRIM(c.country)) IN (
+        LOWER(TRIM(b.branch)),
+        LOWER(TRIM(b.name)),
+        LOWER(TRIM(b.abbrv)),
+        CASE
+          WHEN LOWER(CONCAT_WS(' ', b.name, b.branch, b.abbrv, b.address)) REGEXP 'dubai|abu dhabi|sharjah|ajman|fujairah|ras al khaimah|umm al quwain'
+            THEN 'united arab emirates'
+          ELSE ''
+        END
+      )
+     WHERE b.id = 1 AND b.status = 1
+     ORDER BY CASE
+       WHEN LOWER(TRIM(c.country)) = LOWER(TRIM(b.branch)) THEN 1
+       WHEN LOWER(TRIM(c.country)) = LOWER(TRIM(b.name)) THEN 2
+       ELSE 3
+     END
+     LIMIT 1
+ POST /api/discount-approvals 500 in 890ms (compile: 13ms, render: 877ms)
+Executing (default): SELECT `DmcOpportunityPayments`.`id`, `DmcOpportunityPayments`.`opportunityId`, `DmcOpportunityPayments`.`paymentNumber`, `DmcOpportunityPayments`.`receiptNumber`, `DmcOpportunityPayments`.`paymentStructure`, `DmcOpportunityPayments`.`paymentType`, `DmcOpportunityPayments`.`totalAmount`, `DmcOpportunityPayments`.`amount`, `DmcOpportunityPayments`.`paidAmount`, `DmcOpportunityPayments`.`remainingBalance`, `DmcOpportunityPayments`.`balanceAmount`, `DmcOpportunityPayments`.`currency`, `DmcOpportunityPayments`.`paymentMethod`, `DmcOpportunityPayments`.`transactionId`, `DmcOpportunityPayments`.`paymentDate`, `DmcOpportunityPayments`.`status`, `DmcOpportunityPayments`.`dueDate`, `DmcOpportunityPayments`.`installmentNumber`, `DmcOpportunityPayments`.`totalInstallments`, `DmcOpportunityPayments`.`milestoneName`, `DmcOpportunityPayments`.`gateway`, `DmcOpportunityPayments`.`gatewayTransactionId`, `DmcOpportunityPayments`.`receiptUrl`, `DmcOpportunityPayments`.`description`, `DmcOpportunityPayments`.`receiptType`, `DmcOpportunityPayments`.`clientName`, `DmcOpportunityPayments`.`clientEmail`, `DmcOpportunityPayments`.`clientPhone`, `DmcOpportunityPayments`.`clientAddress`, `DmcOpportunityPayments`.`serviceName`, `DmcOpportunityPayments`.`branchName`, `DmcOpportunityPayments`.`consultantName`, `DmcOpportunityPayments`.`taxAmount`, `DmcOpportunityPayments`.`discountAmount`, `DmcOpportunityPayments`.`notes`, `DmcOpportunityPayments`.`createdBy`, `DmcOpportunityPayments`.`createdAt`, `DmcOpportunityPayments`.`updatedAt`, `DmcOpportunityPayments`.`accountantStatus`, `DmcOpportunityPayments`.`accountantRemarks`, `DmcOpportunityPayments`.`accountantId`, `DmcOpportunityPayments`.`accountantVerifiedAt`, `dmcOpportunity`.`id` AS `dmcOpportunity.id`, `dmcOpportunity`.`opportunityName` AS `dmcOpportunity.opportunityName`, `dmcOpportunity`.`estimatedValue` AS `dmcOpportunity.estimatedValue`, `dmcOpportunity`.`currency` AS `dmcOpportunity.currency`, `dmcOpportunity`.`leadId` AS `dmcOpportunity.leadId`, `createdEmployee`.`id` AS `createdEmployee.id`, `createdEmployee`.`name` AS `createdEmployee.name` FROM `dm_opportunity_payments` AS `DmcOpportunityPayments` LEFT OUTER JOIN `dmc_opportunities` AS `dmcOpportunity` ON `DmcOpportunityPayments`.`opportunityId` = `dmcOpportunity`.`id` LEFT OUTER JOIN `dm_employee` AS `createdEmployee` ON `DmcOpportunityPayments`.`createdBy` = `createdEmployee`.`id` WHERE `DmcOpportunityPayments`.`opportunityId` = '13' ORDER BY `DmcOpportunityPayments`.`createdAt` DESC;
+Executing (default): SELECT a.opportunityId, a.agreementNumber
+         FROM dm_opportunity_agreements a
+         INNER JOIN (
+           SELECT opportunityId, MAX(id) AS latestId
+           FROM dm_opportunity_agreements
+           WHERE opportunityId IN (13)
+           GROUP BY opportunityId
+         ) latest ON latest.latestId = a.id
+ GET /api/opportunity-payments?opportunityId=13 200 in 228ms (compile: 7ms, render: 221ms)
+Executing (default): UPDATE dm_opportunity_payments
+       SET accountantStatus = 'verified',
+           accountantRemarks = 'E2E verified',
+           accountantId = 33,
+           accountantVerifiedAt = NOW(),
+           updatedAt = NOW()
+       WHERE id = 12
+Executing (default): SELECT p.opportunityId, o.leadId,
+              COALESCE(p.clientName, CONCAT(l.fname,' ',COALESCE(l.lname,''))) AS clientName,
+              COALESCE(p.totalAmount,0) AS totalAmount,
+              COALESCE(p.currency,'AED') AS currency
+       FROM dm_opportunity_payments p
+       LEFT JOIN dmc_opportunities o ON o.id = p.opportunityId
+       LEFT JOIN dmc_forum_leads  l ON l.id = o.leadId
+       WHERE p.id = 12 LIMIT 1
+Executing (default): UPDATE dm_opportunity_workflow_reviews
+         SET finance_status = 'approved',
+             finance_reviewed_by = 33,
+             finance_reviewed_at = NOW(),
+             workflow_status = 'pending_compliance',
+             updated_at = NOW()
+         WHERE opportunity_id = 13
+Executing (default): SELECT id, agreementNumber FROM dm_opportunity_agreements WHERE opportunityId = 13 LIMIT 1
+ PUT /api/admin/opportunity-payments/verify 200 in 609ms (compile: 10ms, render: 599ms)
+Executing (default): CREATE TABLE IF NOT EXISTS dm_opportunity_compliance_approvals (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      leadId INT NOT NULL,
+      opportunityId INT NULL,
+      signedAgreementUrl TEXT NOT NULL,
+      clientSignature VARCHAR(255) NULL,
+      signatureDate DATE NULL,
+      status VARCHAR(30) NOT NULL DEFAULT 'pending',
+      submittedBy INT NULL,
+      reviewedBy VARCHAR(255) NULL,
+      reviewerRole VARCHAR(80) NULL,
+      reviewNotes TEXT NULL,
+      submittedAt DATETIME NOT NULL,
+      reviewedAt DATETIME NULL,
+      createdAt DATETIME NOT NULL,
+      updatedAt DATETIME NOT NULL,
+      INDEX idx_compliance_lead (leadId),
+      INDEX idx_compliance_status (status)
+    )
+Executing (default): INSERT INTO dm_opportunity_compliance_approvals (
+        leadId, opportunityId, signedAgreementUrl, clientSignature, signatureDate,
+        status, submittedBy, submittedAt, createdAt, updatedAt
+      ) VALUES (117, 13, '/uploads/e2e-signed.pdf', 'E2E TestClient1005', '2026-07-06', 'pending', NULL, '2026-07-07 03:57:45', '2026-07-07 03:57:45', '2026-07-07 03:57:45')
+ POST /api/opportunity-compliance-approvals 201 in 204ms (compile: 6ms, render: 198ms)
+Executing (default): CREATE TABLE IF NOT EXISTS dm_opportunity_compliance_approvals (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      leadId INT NOT NULL,
+      opportunityId INT NULL,
+      signedAgreementUrl TEXT NOT NULL,
+      clientSignature VARCHAR(255) NULL,
+      signatureDate DATE NULL,
+      status VARCHAR(30) NOT NULL DEFAULT 'pending',
+      submittedBy INT NULL,
+      reviewedBy VARCHAR(255) NULL,
+      reviewerRole VARCHAR(80) NULL,
+      reviewNotes TEXT NULL,
+      submittedAt DATETIME NOT NULL,
+      reviewedAt DATETIME NULL,
+      createdAt DATETIME NOT NULL,
+      updatedAt DATETIME NOT NULL,
+      INDEX idx_compliance_lead (leadId),
+      INDEX idx_compliance_status (status)
+    )
+Executing (default): SELECT *
+      FROM dm_opportunity_compliance_approvals
+      WHERE leadId = '117'
+      ORDER BY createdAt DESC
+ GET /api/opportunity-compliance-approvals?leadId=117 200 in 296ms (compile: 4ms, render: 292ms)
+Executing (default): CREATE TABLE IF NOT EXISTS dm_opportunity_compliance_approvals (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      leadId INT NOT NULL,
+      opportunityId INT NULL,
+      signedAgreementUrl TEXT NOT NULL,
+      clientSignature VARCHAR(255) NULL,
+      signatureDate DATE NULL,
+      status VARCHAR(30) NOT NULL DEFAULT 'pending',
+      submittedBy INT NULL,
+      reviewedBy VARCHAR(255) NULL,
+      reviewerRole VARCHAR(80) NULL,
+      reviewNotes TEXT NULL,
+      submittedAt DATETIME NOT NULL,
+      reviewedAt DATETIME NULL,
+      createdAt DATETIME NOT NULL,
+      updatedAt DATETIME NOT NULL,
+      INDEX idx_compliance_lead (leadId),
+      INDEX idx_compliance_status (status)
+    )
+Executing (default): UPDATE dm_opportunity_compliance_approvals
+      SET status = 'approved', reviewedBy = 'E2E CEO', reviewerRole = 'compliance_officer', reviewNotes = 'E2E approved', reviewedAt = '2026-07-07 03:57:46', updatedAt = '2026-07-07 03:57:46'
+      WHERE id = '5'
+Executing (default): SELECT opportunityId FROM dm_opportunity_compliance_approvals WHERE id = '5'
+Executing (default): UPDATE dm_opportunity_workflow_reviews
+          SET compliance_status = 'approved',
+              compliance_reviewed_at = '2026-07-07 03:57:46',
+              workflow_status = 'client',
+              case_activated_at = '2026-07-07 03:57:46',
+              updated_at = '2026-07-07 03:57:46'
+          WHERE opportunity_id = 13
+ PUT /api/opportunity-compliance-approvals?id=5 200 in 714ms (compile: 5ms, render: 709ms)
+Executing (default): SELECT
+         w.id, w.lead_id AS leadId, w.case_activated_at,
+         l.fname, l.lname, l.email, l.dob, l.address, l.area, l.nationality, l.assignTo
+       FROM dm_opportunity_workflow_reviews w
+       INNER JOIN (
+         SELECT lead_id, MAX(id) AS maxId
+         FROM dm_opportunity_workflow_reviews
+         WHERE finance_status = 'approved' AND compliance_status = 'approved'
+         GROUP BY lead_id
+       ) latest ON latest.maxId = w.id
+       JOIN dmc_forum_leads l ON l.id = w.lead_id
+       WHERE w.finance_status = 'approved' AND w.compliance_status = 'approved' AND (l.fname LIKE '%TestClient%' OR l.lname LIKE '%TestClient%' OR l.email LIKE '%TestClient%')
+       ORDER BY w.case_activated_at DESC
+       LIMIT 200
+ GET /api/admin/clients?search=TestClient 200 in 112ms (compile: 8ms, render: 104ms)
+Executing (default): SELECT COUNT(*) AS total FROM dmc_forum_leads WHERE REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(phone,''), '+', ''), '-', ''), ' ', ''), '(', ''), ')', ''), '.', '') = '9715000007230' OR LOWER(COALESCE(email,'')) = 'e2e.1005.1783382317230@example.com'
+Executing (default): INSERT INTO dmc_forum_leads (
+        fname, mname, lname, email, phone, mobile, nationality, address, dob, gender,
+        id_number, id_expiry, id_issue_date, country_interest, sub_country_interest,
+        service_interest, market_source, sub_market_source, appointment, followup, folowuptime,
+        followupstat, sf, enquiry, convet, priority, regdate, regtime, last_updated, last_updtd_time,
+        stepComplete, payType, assignTo, case_officer, Counsilor, branch, region, payTotal,
+        discount, paidYet, payBalance, feeAgreeDate, demandAmt, dueDate, demdRemark, agreeDate,
+        renDate, renExpiryDate, renew_type, status, status_date, notf, type, password, novat,
+        i_p, escalation, transfer_date, transfer_time, transfered, transfered_by, otp_status,
+        otp, otp_date, otp_email, browser, hostname, digital_signature, lead_import_by,
+        lead_import, education, profession, exist, no_of_applicants, advanced, do_status,
+        arm_status, gm_status, discount_status, discount_remarks, discount_by, discount_date,
+        campaign, campaign_group, pa_fname, pa_lname, lead_remark, created, created_by, alert,
+        area, lead_quality, transferred_remark_update, untouch_transfer, lead_nq_reason,
+        tele_caller_alert, tele_caller_remark, tele_caller_remark_by, tele_date, lead_date,
+        duplicate, duplicate_count, ref_remark, na_record, old_assgined, nal_count, campaign_id,
+        old_branch
+      ) VALUES (
+        'Ethan', '', 'TestClient', 'e2e.1005.1783382317230@example.com', '9715000007230', '9715000007230', 'UAE', '', NULL, 'Male', '', '2025-12-31 04:00:00',
+        '2015-01-01 04:00:00', 'Canada', 0, 'Economic Immigration Program', 'Website', 0, NULL, '2026-07-07 03:58:37', '03:58:37', 0, 0, 'New lead enquiry',
+        'New', 'Medium', '2026-07-07 03:58:37', '2026-07-07 03:58:37', '7/7/2026', '03:58:37', 1, NULL, NULL, NULL, NULL, 1,
+        1, 0, 0, 0, 0, NULL, 0, NULL, '', NULL, NULL, NULL,
+        NULL, 'New', '2026-07-07 03:58:37', 0, 'lead', NULL, 0, '', 0, NULL, '03:58:37', 0,
+        1, 0, NULL, NULL, '', '', '', '', NULL, 0, '', '',
+        0, 1, 0, 0, 0, 0, 0, '', 1, '2026-07-07 03:58:37', '', '',
+        '', '', 'New lead created', '2026-07-07 03:58:37', 1, 0, 'Dubai', 'Warm', 0, 0, '', 0,
+        '', 1, '2026-07-07 03:58:37', '2026-07-07 03:58:37', 0, 0, '', 0, 0, 0, 0, 0
+      )
+Executing (default): SELECT 
+        l.*, e1.name as assigned_to_name, e2.name as counselor_name, b.name as branch_name
+      FROM dmc_forum_leads l
+      LEFT JOIN dm_employee e1 ON l.assignTo = e1.id
+      LEFT JOIN dm_employee e2 ON l.Counsilor = e2.id
+      LEFT JOIN dm_branch b ON l.branch = b.id
+      WHERE l.id = 118
+ POST /api/leads 201 in 810ms (compile: 19ms, render: 791ms)
+Executing (default): SELECT id FROM dm_service WHERE LOWER(name) = LOWER('Economic Immigration Program') LIMIT 1
+Executing (default): SELECT id FROM dm_country_proces WHERE LOWER(name) = LOWER('Canada') LIMIT 1
+Executing (default): SELECT
+        f.id, f.service, f.country, f.branch, f.currency,
+        f.upfront, f.prof_fee,
+        f.firstMonth, f.secondMonth, f.thirdMonth, f.prof_fee_month,
+        f.firstStage, f.secondStage, f.thirdStage, f.forthStage, f.fifthStage, f.prof_fee_stage,
+        c.currency_code AS currencyCode,
+        s.name          AS serviceName,
+        co.name         AS countryName,
+        b.name          AS branchName
+      FROM dm_fee f
+      LEFT JOIN dm_currency   c ON f.currency = c.id
+      LEFT JOIN dm_service    s ON f.service  = s.id
+      LEFT JOIN dm_country_proces co ON f.country = co.id
+      LEFT JOIN dm_branch     b ON f.branch   = b.id
+      WHERE f.status = 1 AND f.service = 23 AND f.branch = 1 AND f.country = 2
+      ORDER BY f.id DESC
+      LIMIT 1
+ GET /api/admin/fees/lookup?service=Economic%20Immigration%20Program&country=Canada&branch=1 200 in 299ms (compile: 11ms, render: 288ms)
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): START TRANSACTION;
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): SHOW COLUMNS FROM dmc_forum_leads
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): SELECT `DmcForumLeads`.`id`, `DmcForumLeads`.`fname`, `DmcForumLeads`.`lname`, `DmcForumLeads`.`email`, `DmcForumLeads`.`phone`, `DmcForumLeads`.`mobile`, `DmcForumLeads`.`nationality`, `DmcForumLeads`.`country_interest`, `DmcForumLeads`.`id_number`, `DmcForumLeads`.`address`, `DmcForumLeads`.`dob`, `DmcForumLeads`.`service_interest`, `DmcForumLeads`.`market_source`, `DmcForumLeads`.`priority`, `DmcForumLeads`.`assignTo`, `DmcForumLeads`.`case_officer`, `DmcForumLeads`.`Counsilor`, `DmcForumLeads`.`branch`, `DmcForumLeads`.`region`, `DmcForumLeads`.`payTotal`, `DmcForumLeads`.`discount`, `DmcForumLeads`.`paidYet`, `DmcForumLeads`.`payBalance`, `DmcForumLeads`.`followup`, `DmcForumLeads`.`folowuptime`, `DmcForumLeads`.`followupstat`, `DmcForumLeads`.`status`, `DmcForumLeads`.`area`, `DmcForumLeads`.`lead_remark`, `dmEmployeeByASSIGNTo`.`id` AS `dmEmployeeByASSIGNTo.id`, `dmEmployeeByASSIGNTo`.`name` AS `dmEmployeeByASSIGNTo.name`, `dmBranch`.`id` AS `dmBranch.id`, `dmBranch`.`name` AS `dmBranch.name` FROM `dmc_forum_leads` AS `DmcForumLeads` LEFT OUTER JOIN `dm_employee` AS `dmEmployeeByASSIGNTo` ON `DmcForumLeads`.`assignTo` = `dmEmployeeByASSIGNTo`.`id` LEFT OUTER JOIN `dm_branch` AS `dmBranch` ON `DmcForumLeads`.`branch` = `dmBranch`.`id` WHERE `DmcForumLeads`.`id` = 118;
+Executing (default): SELECT
+       b.id AS branchId,
+       b.name AS branchName,
+       b.address AS branchAddress,
+       c.currency_code AS currencyCode
+     FROM dm_branch b
+     INNER JOIN dm_currency c
+       ON c.status = 1
+      AND LOWER(TRIM(c.country)) IN (
+        LOWER(TRIM(b.branch)),
+        LOWER(TRIM(b.name)),
+        LOWER(TRIM(b.abbrv)),
+        CASE
+          WHEN LOWER(CONCAT_WS(' ', b.name, b.branch, b.abbrv, b.address)) REGEXP 'dubai|abu dhabi|sharjah|ajman|fujairah|ras al khaimah|umm al quwain'
+            THEN 'united arab emirates'
+          ELSE ''
+        END
+      )
+     WHERE b.id = 1 AND b.status = 1
+     ORDER BY CASE
+       WHEN LOWER(TRIM(c.country)) = LOWER(TRIM(b.branch)) THEN 1
+       WHEN LOWER(TRIM(c.country)) = LOWER(TRIM(b.name)) THEN 2
+       ELSE 3
+     END
+     LIMIT 1
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): INSERT INTO `dmc_opportunities` (`id`,`leadId`,`opportunityNumber`,`opportunityName`,`opportunityType`,`serviceType`,`estimatedValue`,`actualValue`,`currency`,`priority`,`status`,`stage`,`probability`,`expectedCloseDate`,`description`,`serviceRequired`,`source`,`leadSource`,`branchId`,`assignedTo`,`createdBy`,`createdAt`,`updatedAt`,`nextAction`,`tags`,`notes`,`conversionDate`,`retentionAmount`,`retentionStatus`,`agreementGenerated`,`agreementSent`,`agreementSigned`,`paymentReceived`,`documentsVerified`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): SELECT id FROM dmc_opportunities WHERE opportunityNumber = 'OPP-1783382319910-OF0YEIDP2' ORDER BY id DESC LIMIT 1
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): INSERT INTO dm_opportunity_handover_notes (lead_id, opportunity_id, counselor_id, conversation_summary, client_commitments, next_action, created_at)
+         VALUES (118, 14, 1, 'E2E automated test conversation summary for opportunity creation covering client needs and next steps.', NULL, NULL, '2026-07-07 03:58:39')
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): INSERT INTO dm_opportunity_workflow_reviews
+       (opportunity_id, lead_id, workflow_status, official_id_data, payment_data, finance_status, compliance_status, created_at, updated_at)
+       VALUES (14, 118, 'opportunity_created', '{\"passportNumber\":null,\"passportIssueDate\":null,\"passportExpiryDate\":null,\"emiratesIdNumber\":null,\"emiratesIdExpiryDate\":null,\"dateOfBirth\":null,\"gender\":null}', '{\"totalFee\":7000,\"discount\":0,\"discountApprovalReference\":null,\"netPayable\":7000,\"paymentMethod\":\"cash\",\"firstInstallment\":7000,\"receiptNumber\":\"RCP-E2E-1783382318479\",\"receiptDate\":\"2026-07-06T23:58:39.910Z\",\"paymentSchedule\":null,\"bankReference\":null,\"paymentProofUrl\":\"\"}', 'pending', 'pending', '2026-07-07 03:58:39', '2026-07-07 03:58:39')
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): INSERT INTO dm_opportunity_accounting_verifications (lead_id, opportunity_id, payment_proof_url, payment_received, documents_complete, status, submitted_at)
+       VALUES (118, 14, NULL, 1, 0, 'pending', '2026-07-07 03:58:39')
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): INSERT INTO `dm_opportunity_payments` (`id`,`opportunityId`,`paymentNumber`,`receiptNumber`,`paymentStructure`,`paymentType`,`totalAmount`,`amount`,`paidAmount`,`remainingBalance`,`balanceAmount`,`currency`,`paymentMethod`,`transactionId`,`paymentDate`,`status`,`dueDate`,`receiptUrl`,`description`,`clientName`,`clientEmail`,`clientPhone`,`clientAddress`,`serviceName`,`branchName`,`consultantName`,`taxAmount`,`discountAmount`,`notes`,`createdBy`,`createdAt`,`updatedAt`,`accountantStatus`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): SELECT id FROM dm_opportunity_payments WHERE paymentNumber = 'PAY-1783382320511-AKJ7Y7' ORDER BY id DESC LIMIT 1
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): INSERT INTO dm_pay_history
+           (leadId, amount, counselor_receipt, tabby, date, payMethod, payoption, paycardoption,
+            payNextDate, payBalance, tax, payCategory, payment_remarks, remark, status, proof_url,
+            thirdPartyAmt, dmAmt, dmTax, dmRefundAmt, curValue, refNumber,
+            created_by, stage, totaltillnow)
+         VALUES
+           (118, 7000, 'RCP-E2E-1783382318479', 0, '2026-07-07 03:58:39', 'cash', 'full', '',
+            '2026-08-06 03:58:40', 0, 0, 'payment', 'Initial payment recorded during opportunity conversion (PAY-1783382320511-AKJ7Y7)', NULL, 1, NULL,
+            0, 7000, 0, 0, 0, 'PAY-1783382320511-AKJ7Y7',
+            1, 'opportunity_conversion', 7000)
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): SELECT COALESCE(MAX(id), 0) + 1 AS nextId FROM dm_b2b_invoices
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): INSERT INTO dm_b2b_invoices
+        (id, region, receipt, branch, company, purpose, narration, vat, taxAmt, totPayAmt, payBalance, payment_mode, amount, discount, status, created, Counsilor, created_by)
+       VALUES (11, 1, 'INV-1783382320893-HE50D9', 1, 'Ethan TestClient', 'Economic Immigration Program', 'Invoice generated for opportunity OPP-1783382319910-OF0YEIDP2', 0, 0, 7000, 0, 'cash', 7000, 0, 1, '2026-07-07 03:58:39', 1, 1)
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): INSERT INTO `dm_opportunity_agreements` (`id`,`opportunityId`,`agreementNumber`,`agreementType`,`templateId`,`agreementTitle`,`title`,`description`,`duration`,`startDate`,`endDate`,`amount`,`totalAmount`,`currency`,`terms`,`termsAndConditions`,`specialConditions`,`content`,`status`,`generatedDate`,`signedDate`,`clientSignature`,`signatureDate`,`documentUrl`,`clientName`,`clientEmail`,`clientPhone`,`companyName`,`companyAddress`,`uploadedToCrm`,`uploadedBy`,`createdBy`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): SELECT id FROM dm_opportunity_agreements WHERE agreementNumber = 'AGR-1783382321092-PL80A4' ORDER BY id DESC LIMIT 1
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): INSERT INTO `dmc_forum_leads_contracts` (`id`,`leadId`,`contract`,`unsigned_contract`,`new_contract`,`ar_contract`,`garys`,`verify`,`remarks`,`verify_by`,`verify_date`,`batch_id`,`wp_batch_id`,`vendor_id`,`employer_id`,`old_crm_ag_id`,`payment_status`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): INSERT INTO dm_client_upload_portals (client_id, lead_id, opportunity_id, agreement_number, access_token, status, expires_at, created_at)
+       VALUES ('CMG-000118-000014', 118, 14, 'AGR-1783382321092-PL80A4', '2d7a4c971caa8c979be28c09987cd9494fdd7a78d281a26beed491c7a8bb3c14', 'active', '2026-10-05 03:58:41', '2026-07-07 03:58:39')
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): INSERT INTO dm_client_upload_checklist_items (portal_id, item_name, required, status)
+       SELECT id, 'Passport copy', 1, 'pending' FROM dm_client_upload_portals WHERE access_token = '2d7a4c971caa8c979be28c09987cd9494fdd7a78d281a26beed491c7a8bb3c14'
+       UNION ALL SELECT id, 'National / Emirates ID copy', 1, 'pending' FROM dm_client_upload_portals WHERE access_token = '2d7a4c971caa8c979be28c09987cd9494fdd7a78d281a26beed491c7a8bb3c14'
+       UNION ALL SELECT id, 'Signed agreement', 1, 'pending' FROM dm_client_upload_portals WHERE access_token = '2d7a4c971caa8c979be28c09987cd9494fdd7a78d281a26beed491c7a8bb3c14'
+       UNION ALL SELECT id, 'Proof of address', 1, 'pending' FROM dm_client_upload_portals WHERE access_token = '2d7a4c971caa8c979be28c09987cd9494fdd7a78d281a26beed491c7a8bb3c14'
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): UPDATE dmc_opportunities SET agreementId = 10, agreementGenerated = true, paymentReceived = true, updatedAt = '2026-07-07 03:58:39' WHERE id = 14
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): SELECT `id`, `leadId`, `first_name`, `last_name`, `email`, `image`, `dob`, `address`, `full_address`, `token`, `token_validity`, `verify`, `password`, `hash_password`, `status`, `accept`, `created`, `case_manager`, `backend_person`, `is_deleted`, `city`, `nationality` FROM `dm_clients` AS `DmClients` WHERE `DmClients`.`leadId` = 118 LIMIT 1;
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): SELECT COALESCE(MAX(id), 0) + 1 AS nextId FROM dm_clients
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): INSERT INTO dm_clients
+            (id, leadId, first_name, last_name, email, image, dob, address, full_address, token, token_validity, verify, password, hash_password, status, accept, created, case_manager, backend_person, is_deleted, city, nationality)
+           VALUES (4, 118, 'Ethan', 'TestClient', 'e2e.1005.1783382317230@example.com', '', '1970-01-01 04:00:00', '', '', 'KBVF2MVY1N', '2026-07-14 03:58:42', 0, '', '', 0, 0, '2026-07-07 03:58:39', 1, 1, 0, 'Dubai', 'UAE')
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): UPDATE `dmc_forum_leads` SET `status`=?,`convet`=?,`opportunity_status`=?,`conversion_date`=?,`last_updated`=?,`last_updtd_time`=?,`stepComplete`=?,`paidYet`=?,`payBalance`=?,`payTotal`=?,`followup`=?,`status_date`=?,`demandAmt`=? WHERE `id` = ?
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): UPDATE dmc_forum_leads SET opportunity_id = 14 WHERE id = 118
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): INSERT INTO `dmc_opportunity_activities` (`id`,`opportunityId`,`activityType`,`activityTitle`,`description`,`activityDate`,`duration`,`outcome`,`nextStep`,`assignedTo`,`priority`,`status`,`location`,`attendees`,`notes`,`createdBy`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+Executing (809ec1a1-dde0-4415-8710-34ef4129f64b): COMMIT;
+ POST /api/lead-to-opportunity 200 in 4.5s (compile: 6ms, render: 4.5s)
+Executing (default): SELECT
+       b.id AS branchId,
+       b.name AS branchName,
+       b.address AS branchAddress,
+       c.currency_code AS currencyCode
+     FROM dm_branch b
+     INNER JOIN dm_currency c
+       ON c.status = 1
+      AND LOWER(TRIM(c.country)) IN (
+        LOWER(TRIM(b.branch)),
+        LOWER(TRIM(b.name)),
+        LOWER(TRIM(b.abbrv)),
+        CASE
+          WHEN LOWER(CONCAT_WS(' ', b.name, b.branch, b.abbrv, b.address)) REGEXP 'dubai|abu dhabi|sharjah|ajman|fujairah|ras al khaimah|umm al quwain'
+            THEN 'united arab emirates'
+          ELSE ''
+        END
+      )
+     WHERE b.id = 1 AND b.status = 1
+     ORDER BY CASE
+       WHEN LOWER(TRIM(c.country)) = LOWER(TRIM(b.branch)) THEN 1
+       WHEN LOWER(TRIM(c.country)) = LOWER(TRIM(b.name)) THEN 2
+       ELSE 3
+     END
+     LIMIT 1
+Executing (default): INSERT INTO dm_discount_approvals (
+        leadId, opportunityId, discountType, discountAmount, originalAmount,
+        discountedAmount, currency, reason, requestedBy, status,
+        requestedDate, createdBy, createdAt, updatedAt
+      ) VALUES (118, 14, 'fixed', 500, 7000, 6500, 'AED', 'E2E test discount request', 1, 'pending', '2026-07-07 03:58:43', 1, '2026-07-07 03:58:43', '2026-07-07 03:58:43')
+Executing (default): SELECT id
+       FROM dm_discount_approvals
+       WHERE leadId = 118 AND (opportunityId <=> 14) AND requestedBy = 1 AND reason = 'E2E test discount request'
+       ORDER BY id DESC
+       LIMIT 1
+ POST /api/discount-approvals 201 in 821ms (compile: 12ms, render: 809ms)
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+Executing (default): SELECT id, leadId, opportunityId, discountedAmount, discountAmount FROM dm_discount_approvals WHERE id = '6'
+Executing (default): UPDATE dm_discount_approvals 
+      SET updatedAt = '2026-07-07 03:58:49', approvedBy = 31, approvedAt = '2026-07-07 03:58:49', status = 'approved'
+      WHERE id = '6'
+Executing (default): UPDATE dmc_forum_leads
+         SET discount = '500.00', payTotal = '6500.00', payBalance = GREATEST('6500.00' - COALESCE(paidYet, 0), 0)
+         WHERE id = 118
+Executing (default): UPDATE dmc_opportunities
+         SET estimatedValue = '6500.00', actualValue = COALESCE(actualValue, '6500.00'), updatedAt = '2026-07-07 03:58:49'
+         WHERE id = 14
+ PUT /api/discount-approvals/6 200 in 5.7s (compile: 5.2s, render: 451ms)
+Executing (default): SELECT `DmcOpportunityPayments`.`id`, `DmcOpportunityPayments`.`opportunityId`, `DmcOpportunityPayments`.`paymentNumber`, `DmcOpportunityPayments`.`receiptNumber`, `DmcOpportunityPayments`.`paymentStructure`, `DmcOpportunityPayments`.`paymentType`, `DmcOpportunityPayments`.`totalAmount`, `DmcOpportunityPayments`.`amount`, `DmcOpportunityPayments`.`paidAmount`, `DmcOpportunityPayments`.`remainingBalance`, `DmcOpportunityPayments`.`balanceAmount`, `DmcOpportunityPayments`.`currency`, `DmcOpportunityPayments`.`paymentMethod`, `DmcOpportunityPayments`.`transactionId`, `DmcOpportunityPayments`.`paymentDate`, `DmcOpportunityPayments`.`status`, `DmcOpportunityPayments`.`dueDate`, `DmcOpportunityPayments`.`installmentNumber`, `DmcOpportunityPayments`.`totalInstallments`, `DmcOpportunityPayments`.`milestoneName`, `DmcOpportunityPayments`.`gateway`, `DmcOpportunityPayments`.`gatewayTransactionId`, `DmcOpportunityPayments`.`receiptUrl`, `DmcOpportunityPayments`.`description`, `DmcOpportunityPayments`.`receiptType`, `DmcOpportunityPayments`.`clientName`, `DmcOpportunityPayments`.`clientEmail`, `DmcOpportunityPayments`.`clientPhone`, `DmcOpportunityPayments`.`clientAddress`, `DmcOpportunityPayments`.`serviceName`, `DmcOpportunityPayments`.`branchName`, `DmcOpportunityPayments`.`consultantName`, `DmcOpportunityPayments`.`taxAmount`, `DmcOpportunityPayments`.`discountAmount`, `DmcOpportunityPayments`.`notes`, `DmcOpportunityPayments`.`createdBy`, `DmcOpportunityPayments`.`createdAt`, `DmcOpportunityPayments`.`updatedAt`, `DmcOpportunityPayments`.`accountantStatus`, `DmcOpportunityPayments`.`accountantRemarks`, `DmcOpportunityPayments`.`accountantId`, `DmcOpportunityPayments`.`accountantVerifiedAt`, `dmcOpportunity`.`id` AS `dmcOpportunity.id`, `dmcOpportunity`.`opportunityName` AS `dmcOpportunity.opportunityName`, `dmcOpportunity`.`estimatedValue` AS `dmcOpportunity.estimatedValue`, `dmcOpportunity`.`currency` AS `dmcOpportunity.currency`, `dmcOpportunity`.`leadId` AS `dmcOpportunity.leadId`, `createdEmployee`.`id` AS `createdEmployee.id`, `createdEmployee`.`name` AS `createdEmployee.name` FROM `dm_opportunity_payments` AS `DmcOpportunityPayments` LEFT OUTER JOIN `dmc_opportunities` AS `dmcOpportunity` ON `DmcOpportunityPayments`.`opportunityId` = `dmcOpportunity`.`id` LEFT OUTER JOIN `dm_employee` AS `createdEmployee` ON `DmcOpportunityPayments`.`createdBy` = `createdEmployee`.`id` WHERE `DmcOpportunityPayments`.`opportunityId` = '14' ORDER BY `DmcOpportunityPayments`.`createdAt` DESC;
+Executing (default): SELECT a.opportunityId, a.agreementNumber
+         FROM dm_opportunity_agreements a
+         INNER JOIN (
+           SELECT opportunityId, MAX(id) AS latestId
+           FROM dm_opportunity_agreements
+           WHERE opportunityId IN (14)
+           GROUP BY opportunityId
+         ) latest ON latest.latestId = a.id
+ GET /api/opportunity-payments?opportunityId=14 200 in 269ms (compile: 9ms, render: 260ms)
+Executing (default): UPDATE dm_opportunity_payments
+       SET accountantStatus = 'verified',
+           accountantRemarks = 'E2E verified',
+           accountantId = 33,
+           accountantVerifiedAt = NOW(),
+           updatedAt = NOW()
+       WHERE id = 13
+Executing (default): SELECT p.opportunityId, o.leadId,
+              COALESCE(p.clientName, CONCAT(l.fname,' ',COALESCE(l.lname,''))) AS clientName,
+              COALESCE(p.totalAmount,0) AS totalAmount,
+              COALESCE(p.currency,'AED') AS currency
+       FROM dm_opportunity_payments p
+       LEFT JOIN dmc_opportunities o ON o.id = p.opportunityId
+       LEFT JOIN dmc_forum_leads  l ON l.id = o.leadId
+       WHERE p.id = 13 LIMIT 1
+Executing (default): UPDATE dm_opportunity_workflow_reviews
+         SET finance_status = 'approved',
+             finance_reviewed_by = 33,
+             finance_reviewed_at = NOW(),
+             workflow_status = 'pending_compliance',
+             updated_at = NOW()
+         WHERE opportunity_id = 14
+Executing (default): SELECT id, agreementNumber FROM dm_opportunity_agreements WHERE opportunityId = 14 LIMIT 1
+ PUT /api/admin/opportunity-payments/verify 200 in 433ms (compile: 17ms, render: 415ms)
+Executing (default): CREATE TABLE IF NOT EXISTS dm_opportunity_compliance_approvals (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      leadId INT NOT NULL,
+      opportunityId INT NULL,
+      signedAgreementUrl TEXT NOT NULL,
+      clientSignature VARCHAR(255) NULL,
+      signatureDate DATE NULL,
+      status VARCHAR(30) NOT NULL DEFAULT 'pending',
+      submittedBy INT NULL,
+      reviewedBy VARCHAR(255) NULL,
+      reviewerRole VARCHAR(80) NULL,
+      reviewNotes TEXT NULL,
+      submittedAt DATETIME NOT NULL,
+      reviewedAt DATETIME NULL,
+      createdAt DATETIME NOT NULL,
+      updatedAt DATETIME NOT NULL,
+      INDEX idx_compliance_lead (leadId),
+      INDEX idx_compliance_status (status)
+    )
+Executing (default): INSERT INTO dm_opportunity_compliance_approvals (
+        leadId, opportunityId, signedAgreementUrl, clientSignature, signatureDate,
+        status, submittedBy, submittedAt, createdAt, updatedAt
+      ) VALUES (118, 14, '/uploads/e2e-signed.pdf', 'E2E TestClient1005', '2026-07-06', 'pending', NULL, '2026-07-07 03:58:50', '2026-07-07 03:58:50', '2026-07-07 03:58:50')
+ POST /api/opportunity-compliance-approvals 201 in 215ms (compile: 8ms, render: 207ms)
+Executing (default): CREATE TABLE IF NOT EXISTS dm_opportunity_compliance_approvals (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      leadId INT NOT NULL,
+      opportunityId INT NULL,
+      signedAgreementUrl TEXT NOT NULL,
+      clientSignature VARCHAR(255) NULL,
+      signatureDate DATE NULL,
+      status VARCHAR(30) NOT NULL DEFAULT 'pending',
+      submittedBy INT NULL,
+      reviewedBy VARCHAR(255) NULL,
+      reviewerRole VARCHAR(80) NULL,
+      reviewNotes TEXT NULL,
+      submittedAt DATETIME NOT NULL,
+      reviewedAt DATETIME NULL,
+      createdAt DATETIME NOT NULL,
+      updatedAt DATETIME NOT NULL,
+      INDEX idx_compliance_lead (leadId),
+      INDEX idx_compliance_status (status)
+    )
+Executing (default): SELECT *
+      FROM dm_opportunity_compliance_approvals
+      WHERE leadId = '118'
+      ORDER BY createdAt DESC
+ GET /api/opportunity-compliance-approvals?leadId=118 200 in 204ms (compile: 4ms, render: 199ms)
+Executing (default): CREATE TABLE IF NOT EXISTS dm_opportunity_compliance_approvals (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      leadId INT NOT NULL,
+      opportunityId INT NULL,
+      signedAgreementUrl TEXT NOT NULL,
+      clientSignature VARCHAR(255) NULL,
+      signatureDate DATE NULL,
+      status VARCHAR(30) NOT NULL DEFAULT 'pending',
+      submittedBy INT NULL,
+      reviewedBy VARCHAR(255) NULL,
+      reviewerRole VARCHAR(80) NULL,
+      reviewNotes TEXT NULL,
+      submittedAt DATETIME NOT NULL,
+      reviewedAt DATETIME NULL,
+      createdAt DATETIME NOT NULL,
+      updatedAt DATETIME NOT NULL,
+      INDEX idx_compliance_lead (leadId),
+      INDEX idx_compliance_status (status)
+    )
+Executing (default): UPDATE dm_opportunity_compliance_approvals
+      SET status = 'approved', reviewedBy = 'E2E CEO', reviewerRole = 'compliance_officer', reviewNotes = 'E2E approved', reviewedAt = '2026-07-07 03:58:50', updatedAt = '2026-07-07 03:58:50'
+      WHERE id = '6'
+Executing (default): SELECT opportunityId FROM dm_opportunity_compliance_approvals WHERE id = '6'
+Executing (default): UPDATE dm_opportunity_workflow_reviews
+          SET compliance_status = 'approved',
+              compliance_reviewed_at = '2026-07-07 03:58:50',
+              workflow_status = 'client',
+              case_activated_at = '2026-07-07 03:58:50',
+              updated_at = '2026-07-07 03:58:50'
+          WHERE opportunity_id = 14
+ PUT /api/opportunity-compliance-approvals?id=6 200 in 404ms (compile: 7ms, render: 398ms)
+Executing (default): SELECT
+         w.id, w.lead_id AS leadId, w.case_activated_at,
+         l.fname, l.lname, l.email, l.dob, l.address, l.area, l.nationality, l.assignTo
+       FROM dm_opportunity_workflow_reviews w
+       INNER JOIN (
+         SELECT lead_id, MAX(id) AS maxId
+         FROM dm_opportunity_workflow_reviews
+         WHERE finance_status = 'approved' AND compliance_status = 'approved'
+         GROUP BY lead_id
+       ) latest ON latest.maxId = w.id
+       JOIN dmc_forum_leads l ON l.id = w.lead_id
+       WHERE w.finance_status = 'approved' AND w.compliance_status = 'approved' AND (l.fname LIKE '%TestClient%' OR l.lname LIKE '%TestClient%' OR l.email LIKE '%TestClient%')
+       ORDER BY w.case_activated_at DESC
+       LIMIT 200
+ GET /api/admin/clients?search=TestClient 200 in 108ms (compile: 5ms, render: 104ms)

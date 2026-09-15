@@ -1,0 +1,32 @@
+%PDF-1.4
+1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj
+3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >> endobj
+4 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj
+5 0 obj << /Length 1081 >> stream
+BT /F1 16 Tf 50 760 Td (DM CONSULTANTS - Payslip) Tj ET
+BT /F1 10 Tf 50 742 Td () Tj ET
+BT /F1 10 Tf 50 724 Td (DM Consultants, Dubai, UAE) Tj ET
+BT /F1 10 Tf 50 706 Td () Tj ET
+BT /F1 10 Tf 50 688 Td (Employee: HR User \(TBC\)) Tj ET
+BT /F1 10 Tf 50 670 Td (Employee ID: 801) Tj ET
+BT /F1 10 Tf 50 652 Td (Designation: Employee) Tj ET
+BT /F1 10 Tf 50 634 Td (Department: Unassigned) Tj ET
+BT /F1 10 Tf 50 616 Td (Pay Period: 2026-06) Tj ET
+BT /F1 10 Tf 50 598 Td () Tj ET
+BT /F1 10 Tf 50 580 Td (EARNINGS) Tj ET
+BT /F1 10 Tf 50 562 Td (Basic Salary: AED 5,000) Tj ET
+BT /F1 10 Tf 50 544 Td (Overtime: 0 hours - AED 0) Tj ET
+BT /F1 10 Tf 50 526 Td () Tj ET
+BT /F1 10 Tf 50 508 Td (DEDUCTIONS) Tj ET
+BT /F1 10 Tf 50 490 Td () Tj ET
+BT /F1 10 Tf 50 472 Td (Gross Salary: AED 5,000) Tj ET
+BT /F1 10 Tf 50 454 Td (Net Salary: AED 5,000) Tj ET
+BT /F1 10 Tf 50 436 Td (Bank: Not set) Tj ET
+BT /F1 10 Tf 50 418 Td (IBAN: Not set) Tj ET
+BT /F1 10 Tf 50 400 Td (YTD Earnings: AED 5,000) Tj ET
+BT /F1 10 Tf 50 382 Td () Tj ET
+BT /F1 10 Tf 50 364 Td (Authorised Signature: HR / Finance) Tj ET
+endstream endobj
+trailer << /Root 1 0 R >>
+%%EOF

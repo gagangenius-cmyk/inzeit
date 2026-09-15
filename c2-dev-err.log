@@ -1,0 +1,58 @@
+(sequelize) Warning: Model "DmcForumLeads" is declaring public class fields for attribute(s): "id", "fname", "mname", "lname", "email", "phone", "mobile", "nationality", "address", "dob", "gender", "id_number", "id_expiry", "id_issue_date", "country_interest", "sub_country_interest", "service_interest", "market_source", "sub_market_source", "appointment", "followup", "folowuptime", "followupstat", "enquiry", "convet", "priority", "regdate", "regtime", "last_updated", "last_updtd_time", "stepComplete", "payType", "assignTo", "case_officer", "Counsilor", "branch", "region", "payTotal", "discount", "paidYet", "payBalance", "feeAgreeDate", "demandAmt", "dueDate", "demdRemark", "agreeDate", "renDate", "renExpiryDate", "renew_type", "status", "status_date", "notf", "type", "password", "novat", "i_p", "escalation", "transfer_date", "transfer_time", "transfered", "transfered_by", "otp_status", "otp", "otp_date", "otp_email", "browser", "hostname", "digital_signature", "lead_import_by", "lead_import", "education", "profession", "exist", "no_of_applicants", "advanced", "do_status", "arm_status", "gm_status", "discount_status", "discount_remarks", "discount_by", "discount_date", "campaign", "campaign_group", "pa_fname", "pa_lname", "lead_remark", "created", "created_by", "alert", "area", "lead_quality", "transferred_remark_update", "untouch_transfer", "lead_nq_reason", "tele_caller_alert", "tele_caller_remark", "tele_caller_remark_by", "tele_date", "lead_date", "duplicate", "duplicate_count", "ref_remark", "na_record", "old_assgined", "nal_count", "campaign_id", "old_branch", "opportunity_status", "conversion_date", "conversion_reason", "lost_reason", "competitor", "qualification_score", "budget_range", "timeline", "decision_maker", "decision_maker_title", "decision_maker_contact", "next_followup_date", "opportunity_notes", "tags".
+These class fields are shadowing Sequelize's attribute getters & setters.
+See https://sequelize.org/main/manual/model-basics.html#caveat-with-public-class-fields
+(sequelize) Warning: Model "DmEmployee" is declaring public class fields for attribute(s): "id", "name", "email", "cemail", "mobile", "cmobile", "paddress", "address", "photo", "dob", "role", "vendor_id", "branch", "region", "username", "password", "status", "ppNo", "visaExp", "department", "EID", "doj", "nationality", "dol", "remark", "labexp", "bounce", "em_local_name", "em_home_name", "em_local_number", "em_home_number", "religion", "gender", "crea", "wfh", "work_location", "work_country", "work_city", "work_site", "employment_type".
+These class fields are shadowing Sequelize's attribute getters & setters.
+See https://sequelize.org/main/manual/model-basics.html#caveat-with-public-class-fields
+(sequelize) Warning: Model "DmBranch" is declaring public class fields for attribute(s): "id", "name", "ar_name", "branch", "region", "abbrv", "address", "ar_address", "email", "mobile", "status", "website".
+These class fields are shadowing Sequelize's attribute getters & setters.
+See https://sequelize.org/main/manual/model-basics.html#caveat-with-public-class-fields
+(sequelize) Warning: Model "DmcOpportunities" is declaring public class fields for attribute(s): "id", "leadId", "opportunityNumber", "opportunityName", "opportunityType", "serviceType", "estimatedValue", "actualValue", "currency", "priority", "status", "stage", "probability", "expectedCloseDate", "actualCloseDate", "description", "serviceRequired", "source", "campaign", "leadSource", "branchId", "assignedTo", "createdBy", "createdAt", "updatedAt", "lostReason", "competitor", "nextAction", "nextActionDate", "tags", "notes", "conversionDate", "retentionAmount", "retentionStatus", "retentionDate", "agreementGenerated", "agreementId", "agreementSent", "agreementSigned", "paymentReceived", "documentsVerified".
+These class fields are shadowing Sequelize's attribute getters & setters.
+See https://sequelize.org/main/manual/model-basics.html#caveat-with-public-class-fields
+(sequelize) Warning: Model "DmcOpportunityPayments" is declaring public class fields for attribute(s): "id", "opportunityId", "paymentNumber", "receiptNumber", "paymentStructure", "paymentType", "totalAmount", "amount", "paidAmount", "remainingBalance", "balanceAmount", "currency", "paymentMethod", "transactionId", "paymentDate", "status", "dueDate", "installmentNumber", "totalInstallments", "milestoneName", "gateway", "gatewayTransactionId", "receiptUrl", "description", "receiptType", "clientName", "clientEmail", "clientPhone", "clientAddress", "serviceName", "branchName", "consultantName", "taxAmount", "discountAmount", "notes", "createdBy", "createdAt", "updatedAt".
+These class fields are shadowing Sequelize's attribute getters & setters.
+See https://sequelize.org/main/manual/model-basics.html#caveat-with-public-class-fields
+(sequelize) Warning: Model "DmcOpportunityAgreements" is declaring public class fields for attribute(s): "id", "opportunityId", "agreementNumber", "agreementType", "templateId", "agreementTitle", "title", "description", "duration", "startDate", "endDate", "amount", "totalAmount", "currency", "terms", "termsAndConditions", "specialConditions", "content", "status", "generatedDate", "sentDate", "signedDate", "clientSignature", "signatureDate", "documentUrl", "clientName", "clientEmail", "clientPhone", "companyName", "companyAddress", "uploadedToCrm", "uploadedBy", "createdBy", "createdAt", "updatedAt".
+These class fields are shadowing Sequelize's attribute getters & setters.
+See https://sequelize.org/main/manual/model-basics.html#caveat-with-public-class-fields
+(sequelize) Warning: Model "DmcOpportunityActivities" is declaring public class fields for attribute(s): "id", "opportunityId", "activityType", "activityTitle", "description", "activityDate", "duration", "outcome", "nextStep", "assignedTo", "priority", "status", "location", "attendees", "notes", "createdBy", "createdAt", "updatedAt".
+These class fields are shadowing Sequelize's attribute getters & setters.
+See https://sequelize.org/main/manual/model-basics.html#caveat-with-public-class-fields
+(sequelize) Warning: Model "DmCountryProces" is declaring public class fields for attribute(s): "id", "name", "status", "sub_counteries".
+These class fields are shadowing Sequelize's attribute getters & setters.
+See https://sequelize.org/main/manual/model-basics.html#caveat-with-public-class-fields
+Error fetching notifications: Error [SequelizeConnectionError]: connect ETIMEDOUT
+    at ignore-listed frames {
+  parent: Error: connect ETIMEDOUT
+      at ignore-listed frames {
+    errorno: 'ETIMEDOUT',
+    code: 'ETIMEDOUT',
+    syscall: 'connect',
+    fatal: true
+  },
+  original: Error: connect ETIMEDOUT
+      at ignore-listed frames {
+    errorno: 'ETIMEDOUT',
+    code: 'ETIMEDOUT',
+    syscall: 'connect',
+    fatal: true
+  }
+}
+Error fetching notifications: Error [SequelizeConnectionError]: connect ETIMEDOUT
+    at ignore-listed frames {
+  parent: Error: connect ETIMEDOUT
+      at ignore-listed frames {
+    errorno: 'ETIMEDOUT',
+    code: 'ETIMEDOUT',
+    syscall: 'connect',
+    fatal: true
+  },
+  original: Error: connect ETIMEDOUT
+      at ignore-listed frames {
+    errorno: 'ETIMEDOUT',
+    code: 'ETIMEDOUT',
+    syscall: 'connect',
+    fatal: true
+  }
+}

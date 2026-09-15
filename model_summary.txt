@@ -1,0 +1,4530 @@
+﻿=== COMPREHENSIVE MODEL METADATA SUMMARY ===
+Total models extracted: 285
+Additional models from HrProModels.ts: 22 (11 HR + 11 Pro/Notification)
+
+appointment_counteries (AppointmentCounteries) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    country_name: DataTypes.STRING(255)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    status: DataTypes.INTEGER
+
+appointments (Appointments) - 13 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    date: DataTypes.STRING(50)
+    appointtime: DataTypes.TIME
+    counsilorid: DataTypes.INTEGER
+    booked: DataTypes.INTEGER
+    done: DataTypes.INTEGER
+    not_done: DataTypes.INTEGER
+    region: DataTypes.INTEGER
+    branch: DataTypes.INTEGER
+    screenshot: DataTypes.STRING(255)
+    second_done: DataTypes.INTEGER
+    second_meet_date: DataTypes.DATEONLY
+ [FKs: belongsTo -> DmcForumLeads; belongsTo -> DmEmployee; belongsTo -> DmBranch; belongsTo -> DmRegion]
+
+auditor_followups (AuditorFollowups) - 9 cols
+  Columns:
+    id: DataTypes.INTEGER
+    followup_date: DataTypes.DATE
+    followup_time: DataTypes.TIME
+    followup_remarks: DataTypes.TEXT
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    assign: DataTypes.INTEGER
+    na_record: DataTypes.INTEGER
+
+auditor_meetings (AuditorMeetings) - 11 cols
+  Columns:
+    id: DataTypes.INTEGER
+    meeting_date: DataTypes.DATE
+    meeting_time: DataTypes.TIME
+    meeting_remarks: DataTypes.TEXT
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    assign: DataTypes.INTEGER
+    na_record: DataTypes.INTEGER
+    followup_meet: DataTypes.INTEGER
+    mail_sent: DataTypes.INTEGER
+
+aus_eoi (AusEoi) - 10 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    dol: DataTypes.STRING(30)
+    doe: DataTypes.STRING(30)
+    points: DataTypes.INTEGER
+    eoi_status: DataTypes.STRING(30)
+    pof: DataTypes.STRING(30)
+    statcat: DataTypes.STRING(100)
+    state: DataTypes.STRING(30)
+    file: DataTypes.STRING(50)
+ [FKs: belongsTo -> DmcForumLeads]
+
+aus_eoi_old (AusEoiOld) - 10 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.STRING(50)
+    dol: DataTypes.STRING(30)
+    doe: DataTypes.STRING(30)
+    points: DataTypes.INTEGER
+    eoi_status: DataTypes.STRING(30)
+    pof: DataTypes.STRING(30)
+    statcat: DataTypes.STRING(100)
+    state: DataTypes.STRING(30)
+    file: DataTypes.STRING(50)
+
+aus_nom (AusNom) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    nomstate: DataTypes.STRING(30)
+    subdate: DataTypes.STRING(30)
+    nomexpdate: DataTypes.STRING(30)
+    file: DataTypes.STRING(50)
+    nomStatus: DataTypes.STRING(100)
+    created: DataTypes.DATE
+ [FKs: belongsTo -> DmcForumLeads]
+
+aus_nom_old (AusNomOld) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(50)
+    nomstate: DataTypes.STRING(30)
+    subdate: DataTypes.STRING(30)
+    nomexpdate: DataTypes.STRING(30)
+    file: DataTypes.STRING(50)
+    nomStatus: DataTypes.STRING(100)
+    created: DataTypes.DATE
+
+branch_target (BranchTarget) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    branch: DataTypes.INTEGER
+    month: DataTypes.INTEGER
+    year: DataTypes.INTEGER
+    appointment: DataTypes.INTEGER
+    sales: DataTypes.INTEGER
+    leads: DataTypes.INTEGER
+    target_date_id: DataTypes.INTEGER
+ [FKs: belongsTo -> DmBranch]
+
+business_ass_payment (BusinessAssPayment) - 11 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    paydate: DataTypes.STRING(50)
+    payMethod: DataTypes.STRING(55)
+    payTotal: DataTypes.DECIMAL(10,2)
+    discount: DataTypes.DECIMAL(10,2)
+    taxAmt: DataTypes.DECIMAL(10,2)
+    payBalance: DataTypes.DECIMAL(10,2)
+    payAmt: DataTypes.DECIMAL(10,2)
+    totPayAmt: DataTypes.DECIMAL(10,2)
+    demdRemark: DataTypes.TEXT
+
+canada_status (CanadaStatus) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    type: DataTypes.STRING(40)
+    status: DataTypes.STRING(50)
+    date: DataTypes.STRING(30)
+    emp: DataTypes.STRING(30)
+
+client_status (ClientStatus) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    type: DataTypes.STRING(30)
+    date: DataTypes.STRING(30)
+    status: DataTypes.STRING(255)
+    file: DataTypes.STRING(100)
+    counselorid: DataTypes.INTEGER
+
+client_status_old (ClientStatusOld) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(20)
+    type: DataTypes.STRING(30)
+    date: DataTypes.STRING(30)
+    status: DataTypes.STRING(255)
+    file: DataTypes.STRING(100)
+    counselorid: DataTypes.INTEGER
+
+dm_3party_payment (Dm3partyPayment) - 16 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    date: DataTypes.DATE
+    currency_id: DataTypes.INTEGER
+    amount: DataTypes.DECIMAL(10, 2)
+    Tax: DataTypes.DECIMAL(20, 2)
+    payMethod: DataTypes.STRING(55)
+    emp_id: DataTypes.INTEGER
+    receipt_date: DataTypes.DATE
+    cc_number: DataTypes.STRING(50)
+    receipt: DataTypes.STRING(255)
+    counselor_receipt: DataTypes.STRING(255)
+    trans_or_ref_number: DataTypes.STRING(255)
+    remarks: DataTypes.TEXT
+    payoption: DataTypes.STRING(100)
+    paycardoption: DataTypes.STRING(100)
+ [FKs: belongsTo -> DmcForumLeads; hasMany -> Dm3partyPaymentDet]
+
+dm_3party_payment_det (Dm3partyPaymentDet) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    payId: DataTypes.INTEGER
+    particular: DataTypes.STRING(255)
+    amount: DataTypes.DECIMAL(10,2)
+ [FKs: belongsTo -> Dm3partyPayment]
+
+dm_3party_payment_old (Dm3partyPaymentOld) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(111)
+    date: DataTypes.DATE
+    amount: DataTypes.DECIMAL(10,2)
+    Tax: DataTypes.DECIMAL(10,2)
+    payMethod: DataTypes.STRING(55)
+    particular: DataTypes.STRING(55)
+
+dm_accounts (DmAccounts) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    account_no: DataTypes.STRING(255)
+    bank_address: DataTypes.STRING(1024)
+    bank_beneficiary: DataTypes.STRING(255)
+    bank_name: DataTypes.STRING(255)
+    iban: DataTypes.STRING(255)
+    branch_id: DataTypes.STRING(255)
+
+dm_additional_documents (DmAdditionalDocuments) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    document: DataTypes.STRING(255)
+    purpose: DataTypes.STRING(255)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    remarks: DataTypes.TEXT
+
+dm_admin (DmAdmin) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    user: DataTypes.STRING(255)
+    pwd: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+
+dm_appointment_remarks (DmAppointmentRemarks) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    taskid: DataTypes.INTEGER
+    date: DataTypes.STRING(30)
+    remarks: DataTypes.TEXT
+    emp: DataTypes.STRING(20)
+    notf: DataTypes.INTEGER
+
+dm_appointments (DmAppointments) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    task: DataTypes.TEXT
+    asignBy: DataTypes.INTEGER
+    status: DataTypes.STRING(20)
+    created: DataTypes.DATE
+    doc: DataTypes.DATE
+    notf: DataTypes.INTEGER
+
+dm_auditor_counts (DmAuditorCounts) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    branch_id: DataTypes.INTEGER
+    emp_id: DataTypes.INTEGER
+    lead_count: DataTypes.INTEGER
+
+dm_auditor_reviews (DmAuditorReviews) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    status: DataTypes.STRING(255)
+    remarks: DataTypes.TEXT
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dm_b2b (DmB2b) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_b2b_invoices (DmB2bInvoices) - 18 cols
+  Columns:
+    id: DataTypes.INTEGER
+    region: DataTypes.INTEGER
+    receipt: DataTypes.STRING(255)
+    branch: DataTypes.INTEGER
+    company: DataTypes.TEXT
+    purpose: DataTypes.STRING(255)
+    narration: DataTypes.TEXT
+    vat: DataTypes.INTEGER
+    taxAmt: DataTypes.INTEGER
+    totPayAmt: DataTypes.INTEGER
+    payBalance: DataTypes.DECIMAL(10,2)
+    payment_mode: DataTypes.STRING(50)
+    amount: DataTypes.INTEGER
+    discount: DataTypes.INTEGER
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+    Counsilor: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+
+dm_batch (DmBatch) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    batch_name: DataTypes.STRING(255)
+    batch_number: DataTypes.STRING(255)
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+    vendor_id: DataTypes.INTEGER
+    status: DataTypes.INTEGER
+
+dm_branch (DmBranch) - 12 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(555)
+    ar_name: DataTypes.TEXT
+    branch: DataTypes.STRING(75)
+    region: DataTypes.INTEGER
+    abbrv: DataTypes.STRING(50)
+    address: DataTypes.TEXT
+    ar_address: DataTypes.TEXT
+    email: DataTypes.STRING(555)
+    mobile: DataTypes.STRING(555)
+    status: DataTypes.INTEGER
+    website: DataTypes.STRING(255)
+ [FKs: hasMany -> DmcForumLeads; hasMany -> DmFee; hasMany -> BranchTarget; hasMany -> DmOperationAllocations]
+
+dm_branch_allocations (DmBranchAllocations) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    emp_id: DataTypes.INTEGER
+    branches: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_business_fee (DmBusinessFee) - 9 cols
+  Columns:
+    id: DataTypes.INTEGER
+    service: DataTypes.INTEGER
+    country: DataTypes.INTEGER
+    branch: DataTypes.INTEGER
+    currency: DataTypes.INTEGER
+    stage_name: DataTypes.STRING(255)
+    stage: DataTypes.DECIMAL(10,2)
+    discount: DataTypes.DECIMAL(10,2)
+    status: DataTypes.INTEGER
+
+dm_business_payment_plan (DmBusinessPaymentPlan) - 16 cols
+  Columns:
+    leadId: DataTypes.INTEGER
+    legal_fees: DataTypes.DECIMAL(10,2)
+    total_fees: DataTypes.DECIMAL(10,2)
+    vat: DataTypes.DECIMAL(10,2)
+    first_payment: DataTypes.DECIMAL(10,2)
+    due_diligence_fees: DataTypes.DECIMAL(10,2)
+    government_application_fees: DataTypes.DECIMAL(10,2)
+    government_passport_fees: DataTypes.DECIMAL(10,2)
+    governement_cert_of_naturalization: DataTypes.DECIMAL(10,2)
+    second_payment: DataTypes.DECIMAL(10,2)
+    bank_charges: DataTypes.DECIMAL(10,2)
+    refund: DataTypes.DECIMAL(10,2)
+    balance_payment: DataTypes.DECIMAL(10,2)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    id: DataTypes.INTEGER
+
+dm_business_portugal_payment_plan (DmBusinessPortugalPaymentPlan) - 14 cols
+  Columns:
+    leadId: DataTypes.INTEGER
+    legal_fees: DataTypes.DECIMAL(10,2)
+    total_fees: DataTypes.DECIMAL(10,2)
+    vat: DataTypes.DECIMAL(10,2)
+    first_payment: DataTypes.DECIMAL(10,2)
+    due_diligence_fees: DataTypes.DECIMAL(10,2)
+    government_application_fees: DataTypes.DECIMAL(10,2)
+    government_passport_fees: DataTypes.DECIMAL(10,2)
+    governement_cert_of_naturalization: DataTypes.DECIMAL(10,2)
+    second_payment: DataTypes.DECIMAL(10,2)
+    bank_charges: DataTypes.DECIMAL(10,2)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    id: DataTypes.INTEGER
+
+dm_campaigns (DmCampaigns) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    campaign: DataTypes.STRING(50)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    status: DataTypes.INTEGER
+
+dm_cf7db_2916 (DmCf7db2916) - 11 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    your_name: DataTypes.TEXT
+    phonetext_512: DataTypes.TEXT
+    your_email: DataTypes.TEXT
+    menu_3065: DataTypes.TEXT
+    menu_359: DataTypes.TEXT
+    menu_35926: DataTypes.TEXT
+    menu_55692: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+dm_cf7db_3232 (DmCf7db3232) - 7 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    cyour_name: DataTypes.TEXT
+    phonetext_748: DataTypes.TEXT
+    your_email: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+dm_cf7db_3606 (DmCf7db3606) - 9 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    your_name: DataTypes.TEXT
+    your_email_52: DataTypes.TEXT
+    phonetext_535: DataTypes.TEXT
+    text_34684: DataTypes.TEXT
+    your_message_58: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+dm_cf7db_3848 (DmCf7db3848) - 11 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    your_name: DataTypes.TEXT
+    phonetext_737: DataTypes.TEXT
+    your_email: DataTypes.TEXT
+    menu_3065: DataTypes.TEXT
+    menu_359: DataTypes.TEXT
+    menu_35926: DataTypes.TEXT
+    menu_55692: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+dm_cf7db_3870 (DmCf7db3870) - 7 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    cyour_name: DataTypes.TEXT
+    phonetext_503: DataTypes.TEXT
+    your_email: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+dm_cf7db_4077 (DmCf7db4077) - 9 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    your_name_52: DataTypes.TEXT
+    your_email_592: DataTypes.TEXT
+    phonetext_646: DataTypes.TEXT
+    text_301504: DataTypes.TEXT
+    your_message_55986021: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+dm_cf7db_4088 (DmCf7db4088) - 9 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    your_name_car: DataTypes.TEXT
+    your_email_car: DataTypes.TEXT
+    tel_861_car: DataTypes.TEXT
+    your_message_car: DataTypes.TEXT
+    file_898_cf7dbp_file: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+dm_client_conversations (DmClientConversations) - 10 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    case_manager: DataTypes.INTEGER
+    chat_from_client: DataTypes.INTEGER
+    client_id: DataTypes.INTEGER
+    text: DataTypes.TEXT
+    file: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    read_msg: DataTypes.INTEGER
+    created: DataTypes.DATE
+ [FKs: belongsTo -> DmcForumLeads]
+
+dm_client_edu (DmClientEdu) - 34 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    date: DataTypes.STRING(25)
+    con_mark_sheet_m: DataTypes.STRING(100)
+    con_mark_sheet_m_a: DataTypes.STRING(20)
+    con_mark_sheet_b: DataTypes.STRING(100)
+    con_mark_sheet_b_a: DataTypes.STRING(20)
+    ind_mark_sheet_m: DataTypes.STRING(100)
+    ind_mark_sheet_m_a: DataTypes.STRING(20)
+    revised_eca_m: DataTypes.STRING(100)
+    revised_eca_m_a: DataTypes.STRING(20)
+    revised_eca_b: DataTypes.STRING(100)
+    revised_eca_b_a: DataTypes.STRING(20)
+    revised_wes_eca_m: DataTypes.STRING(100)
+    revised_wes_eca_m_a: DataTypes.STRING(20)
+    conv_cert_m: DataTypes.STRING(100)
+    conv_cert_m_a: DataTypes.STRING(20)
+    revised_wes_eca_b: DataTypes.STRING(100)
+    revised_wes_eca_b_a: DataTypes.STRING(20)
+    eca_m: DataTypes.STRING(100)
+    eca_m_a: DataTypes.STRING(20)
+    conv_cert_b: DataTypes.STRING(100)
+    conv_cert_b_a: DataTypes.STRING(20)
+    ind_mark_sheet_b: DataTypes.STRING(100)
+    ind_mark_sheet_b_a: DataTypes.STRING(20)
+    bach_seal_trans_unv: DataTypes.STRING(100)
+    bach_seal_trans_unv_a: DataTypes.STRING(20)
+    eca_b: DataTypes.STRING(100)
+    eca_b_a: DataTypes.STRING(20)
+    intermediate: DataTypes.STRING(100)
+    intermediate_a: DataTypes.STRING(20)
+    ssc: DataTypes.STRING(100)
+    ssc_a: DataTypes.STRING(20)
+    dipthi: DataTypes.INTEGER
+
+dm_client_logs (DmClientLogs) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    client_id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    title: DataTypes.STRING(255)
+    log: DataTypes.TEXT
+    created: DataTypes.DATE
+
+dm_client_personal (DmClientPersonal) - 34 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    date: DataTypes.STRING(25)
+    copr: DataTypes.STRING(100)
+    copr_a: DataTypes.STRING(20)
+    client_sheet: DataTypes.STRING(50)
+    client_sheet_a: DataTypes.INTEGER
+    vphoto: DataTypes.STRING(100)
+    vphoto_a: DataTypes.STRING(20)
+    final_visa_docfb: DataTypes.STRING(50)
+    final_visa_docfb_a: DataTypes.STRING(20)
+    final_visa_docfull: DataTypes.STRING(100)
+    final_visa_docfull_a: DataTypes.STRING(20)
+    mcert_re: DataTypes.STRING(100)
+    mcert_re_a: DataTypes.STRING(20)
+    bcert: DataTypes.STRING(100)
+    bcert_a: DataTypes.STRING(20)
+    niddoc: DataTypes.STRING(100)
+    niddoc_a: DataTypes.STRING(20)
+    marraige: DataTypes.STRING(100)
+    marraige_a: DataTypes.STRING(20)
+    ielts: DataTypes.STRING(100)
+    ielts_a: DataTypes.STRING(20)
+    passport: DataTypes.STRING(100)
+    passport_a: DataTypes.STRING(20)
+    passport_new: DataTypes.STRING(100)
+    passport_new_a: DataTypes.STRING(20)
+    pcc: DataTypes.STRING(100)
+    pcc_a: DataTypes.STRING(20)
+    photo: DataTypes.STRING(100)
+    photo_a: DataTypes.STRING(20)
+    resume: DataTypes.STRING(100)
+    resume_a: DataTypes.STRING(20)
+    dipthi: DataTypes.INTEGER
+
+dm_client_personal_old (DmClientPersonalOld) - 34 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(111)
+    copr: DataTypes.STRING(50)
+    copr_a: DataTypes.STRING(20)
+    vphoto: DataTypes.STRING(50)
+    vphoto_a: DataTypes.STRING(20)
+    final_visa_docfb: DataTypes.STRING(50)
+    final_visa_docfb_a: DataTypes.STRING(20)
+    final_visa_docfull: DataTypes.STRING(50)
+    final_visa_docfull_a: DataTypes.STRING(20)
+    mcert_re: DataTypes.STRING(50)
+    mcert_re_a: DataTypes.STRING(20)
+    bcert: DataTypes.STRING(50)
+    bcert_a: DataTypes.STRING(20)
+    niddoc: DataTypes.STRING(50)
+    niddoc_a: DataTypes.STRING(20)
+    marraige: DataTypes.STRING(50)
+    marraige_a: DataTypes.STRING(20)
+    ielts: DataTypes.STRING(50)
+    ielts_a: DataTypes.STRING(20)
+    passport: DataTypes.STRING(50)
+    passport_a: DataTypes.STRING(20)
+    passport_new: DataTypes.STRING(50)
+    passport_new_a: DataTypes.STRING(20)
+    pcc: DataTypes.STRING(50)
+    pcc_a: DataTypes.STRING(50)
+    photo: DataTypes.STRING(50)
+    photo_a: DataTypes.STRING(20)
+    resume: DataTypes.STRING(50)
+    resume_a: DataTypes.STRING(20)
+    date: DataTypes.DATE
+    dipthi: DataTypes.INTEGER
+    harish: DataTypes.INTEGER
+    terence: DataTypes.INTEGER
+
+dm_client_upload_checklist_items (DmClientUploadChecklistItem) - 10 cols
+  Columns:
+    id: DataTypes.INTEGER
+    portalId: DataTypes.INTEGER
+    itemName: DataTypes.STRING(255)
+    required: DataTypes.BOOLEAN
+    status: DataTypes.ENUM('pending', 'uploaded', 'verified', 'rejected')
+    fileUrl: DataTypes.STRING(500)
+    uploadedAt: DataTypes.DATE
+    verifiedBy: DataTypes.INTEGER
+    verifiedAt: DataTypes.DATE
+    notes: DataTypes.TEXT
+ [ENUMS: status: 'pending', 'uploaded', 'verified', 'rejected']
+ [FKs: belongsTo -> DmClientUploadPortal]
+
+dm_client_upload_portals (DmClientUploadPortal) - 9 cols
+  Columns:
+    id: DataTypes.INTEGER
+    clientId: DataTypes.STRING(40)
+    leadId: DataTypes.INTEGER
+    opportunityId: DataTypes.INTEGER
+    agreementNumber: DataTypes.STRING(100)
+    accessToken: DataTypes.CHAR(64)
+    status: DataTypes.ENUM('active', 'closed', 'expired')
+    expiresAt: DataTypes.DATE
+    createdAt: DataTypes.DATE
+ [ENUMS: status: 'active', 'closed', 'expired']
+ [FKs: belongsTo -> DmcForumLeads; belongsTo -> DmcOpportunities]
+ [UNIQUE: clientId, accessToken]
+
+dm_clients (DmClients) - 22 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    first_name: DataTypes.STRING(200)
+    last_name: DataTypes.STRING(200)
+    email: DataTypes.STRING(255)
+    image: DataTypes.STRING(255)
+    dob: DataTypes.DATE
+    address: DataTypes.TEXT
+    full_address: DataTypes.TEXT
+    token: DataTypes.STRING(50)
+    token_validity: DataTypes.DATE
+    verify: DataTypes.INTEGER
+    password: DataTypes.STRING(255)
+    hash_password: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    accept: DataTypes.INTEGER
+    created: DataTypes.DATE
+    case_manager: DataTypes.INTEGER
+    backend_person: DataTypes.INTEGER
+    is_deleted: DataTypes.INTEGER
+    city: DataTypes.STRING(50)
+    nationality: DataTypes.STRING(50)
+ [FKs: belongsTo -> DmcForumLeads]
+
+dm_commercial_invoices (DmCommercialInvoices) - 16 cols
+  Columns:
+    id: DataTypes.INTEGER
+    region: DataTypes.INTEGER
+    branch: DataTypes.INTEGER
+    company: DataTypes.TEXT
+    purpose: DataTypes.STRING(255)
+    narration: DataTypes.TEXT
+    vat: DataTypes.INTEGER
+    taxAmt: DataTypes.INTEGER
+    totPayAmt: DataTypes.INTEGER
+    payment_mode: DataTypes.STRING(50)
+    amount: DataTypes.INTEGER
+    discount: DataTypes.INTEGER
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+    Counsilor: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+
+dm_contract_file (DmContractFile) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    country: DataTypes.INTEGER
+    service: DataTypes.INTEGER
+    file: DataTypes.STRING(555)
+    status: DataTypes.INTEGER
+
+dm_counsilor_allocations (DmCounsilorAllocations) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    branch_id: DataTypes.INTEGER
+    counsilors: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_countries (DmCountries) - 2 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(100)
+
+dm_countries_type_program (DmCountriesTypeProgram) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    country: DataTypes.INTEGER
+    type: DataTypes.INTEGER
+    program: DataTypes.INTEGER
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+ [FKs: belongsTo -> DmCountryProces; belongsTo -> DmService; belongsTo -> DmProgramType]
+
+dm_country_proces (DmCountryProces) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    sub_counteries: DataTypes.INTEGER
+ [FKs: hasMany -> DmFee; hasMany -> DmCountriesTypeProgram]
+
+dm_currency (DmCurrency) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    country: DataTypes.STRING(255)
+    currency_code: DataTypes.STRING(50)
+    rate: DataTypes.DECIMAL(10,2)
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+ [FKs: hasMany -> DmFee]
+
+dm_department (DmDepartment) - 3 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+
+dm_discount_approvals (DmcDiscountApprovals) TS - 21 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    opportunityId: DataTypes.INTEGER
+    discountType: DataTypes.ENUM('percentage', 'fixed', 'special')
+    discountAmount: DataTypes.DECIMAL(15, 2)
+    originalAmount: DataTypes.DECIMAL(15, 2)
+    discountedAmount: DataTypes.DECIMAL(15, 2)
+    currency: DataTypes.STRING(10)
+    reason: DataTypes.TEXT
+    requestedBy: DataTypes.INTEGER
+    approvedBy: DataTypes.INTEGER
+    status: DataTypes.ENUM('pending', 'approved', 'rejected', 'expired')
+    requestedDate: DataTypes.DATE
+    approvedDate: DataTypes.DATE
+    rejectedDate: DataTypes.DATE
+    expiryDate: DataTypes.DATE
+    notes: DataTypes.TEXT
+    approvedAt: DataTypes.DATE
+    createdBy: DataTypes.INTEGER
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+ [ENUMS: discountType: 'percentage', 'fixed', 'special'; status: 'pending', 'approved', 'rejected', 'expired']
+ [FKs: belongsTo -> DmcForumLeads; belongsTo -> DmcOpportunities; belongsTo -> DmEmployee; belongsTo -> DmEmployee; belongsTo -> DmEmployee]
+
+dm_dup_live_chat_leads (DmDupLiveChatLeads) - 14 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(255)
+    branch: DataTypes.INTEGER
+    phone: DataTypes.STRING(255)
+    program: DataTypes.STRING(255)
+    businesstype: DataTypes.STRING(255)
+    location: DataTypes.STRING(255)
+    email: DataTypes.STRING(255)
+    ip_address: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+    emp_id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    lead_remark: DataTypes.TEXT
+
+dm_dup_lp_leads (DmDupLpLeads) - 14 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(255)
+    branch: DataTypes.INTEGER
+    phone: DataTypes.STRING(255)
+    program: DataTypes.STRING(255)
+    businesstype: DataTypes.STRING(255)
+    location: DataTypes.STRING(255)
+    email: DataTypes.STRING(255)
+    ip_address: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+    emp_id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    lead_remark: DataTypes.TEXT
+
+dm_eip_aipp (DmEipAipp) - 14 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.STRING(30)
+    tab: DataTypes.INTEGER
+    province: DataTypes.STRING(50)
+    noc: DataTypes.STRING(100)
+    registration_date: DataTypes.DATE
+    doc_rec_date: DataTypes.DATE
+    doc_status: DataTypes.STRING(20)
+    employer_name: DataTypes.STRING(100)
+    job_applied_date: DataTypes.DATE
+    job_status: DataTypes.STRING(50)
+    interview_received: DataTypes.STRING(20)
+    interview_date: DataTypes.DATE
+    interview_status: DataTypes.STRING(20)
+
+dm_eip_mcdii (DmEipMcdii) - 11 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.STRING(100)
+    tab: DataTypes.INTEGER
+    eligibility: DataTypes.STRING(50)
+    doc_received: DataTypes.STRING(20)
+    doc_rece_date: DataTypes.DATE
+    noc: DataTypes.STRING(200)
+    eoi_sub_date: DataTypes.DATE
+    eoi_status: DataTypes.STRING(20)
+    exploratory_visit_status: DataTypes.STRING(20)
+    exploratory_visit_date: DataTypes.DATE
+
+dm_eip_rnip (DmEipRnip) - 14 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.STRING(30)
+    tab: DataTypes.INTEGER
+    community: DataTypes.STRING(50)
+    noc: DataTypes.STRING(100)
+    registration_date: DataTypes.DATE
+    doc_rec_date: DataTypes.DATE
+    doc_status: DataTypes.STRING(20)
+    employer_name: DataTypes.STRING(100)
+    job_applied_date: DataTypes.DATE
+    job_status: DataTypes.STRING(50)
+    interview_received: DataTypes.STRING(20)
+    interview_date: DataTypes.DATE
+    interview_status: DataTypes.STRING(20)
+
+dm_email_attachments (DmEmailAttachments) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    email_template_id: DataTypes.INTEGER
+    attachments: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dm_email_templates (DmEmailTemplates) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    program: DataTypes.STRING(200)
+    template: DataTypes.TEXT
+    created: DataTypes.DATE
+    status: DataTypes.INTEGER
+    ops: DataTypes.INTEGER
+    sales: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+
+dm_emp_sims (DmEmpSims) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    branch: DataTypes.INTEGER
+    msisdn: DataTypes.INTEGER
+    sim_number: DataTypes.STRING(100)
+    company: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dm_emp_stocks (DmEmpStocks) - 16 cols
+  Columns:
+    id: DataTypes.INTEGER
+    branch: DataTypes.INTEGER
+    msisdn: DataTypes.STRING(255)
+    type: DataTypes.INTEGER
+    model: DataTypes.STRING(255)
+    model_number: DataTypes.STRING(255)
+    serial_number: DataTypes.TEXT
+    description: DataTypes.TEXT
+    charger: DataTypes.INTEGER
+    battery: DataTypes.INTEGER
+    mouse: DataTypes.INTEGER
+    keyboard: DataTypes.INTEGER
+    created: DataTypes.DATE
+    status: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+    dop: DataTypes.DATE
+
+dm_employee (DmEmployee) - 40 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(555)
+    email: DataTypes.STRING(255)
+    cemail: DataTypes.STRING(50)
+    mobile: DataTypes.STRING(255)
+    cmobile: DataTypes.STRING(255)
+    paddress: DataTypes.TEXT
+    address: DataTypes.STRING(555)
+    photo: DataTypes.STRING(555)
+    dob: DataTypes.DATE
+    role: DataTypes.INTEGER
+    vendor_id: DataTypes.INTEGER
+    branch: DataTypes.INTEGER
+    region: DataTypes.INTEGER
+    username: DataTypes.STRING(555)
+    password: DataTypes.STRING(555)
+    status: DataTypes.INTEGER
+    ppNo: DataTypes.STRING(255)
+    visaExp: DataTypes.DATE
+    department: DataTypes.INTEGER
+    EID: DataTypes.TEXT
+    doj: DataTypes.DATE
+    nationality: DataTypes.STRING(555)
+    dol: DataTypes.STRING(50)
+    remark: DataTypes.TEXT
+    labexp: DataTypes.STRING(50)
+    bounce: DataTypes.INTEGER
+    em_local_name: DataTypes.STRING(255)
+    em_home_name: DataTypes.STRING(255)
+    em_local_number: DataTypes.STRING(255)
+    em_home_number: DataTypes.STRING(255)
+    religion: DataTypes.STRING(200)
+    gender: DataTypes.STRING(200)
+    crea: DataTypes.INTEGER
+    wfh: DataTypes.INTEGER
+    work_location: DataTypes.ENUM('Onshore', 'Offshore', 'Remote-UAE', 'GCC-Branch')
+    work_country: DataTypes.STRING(255)
+    work_city: DataTypes.STRING(255)
+    work_site: DataTypes.STRING(255)
+    employment_type: DataTypes.ENUM('Full-time', 'Contract', 'Freelance', 'Part-time')
+ [ENUMS: work_location: 'Onshore', 'Offshore', 'Remote-UAE', 'GCC-Branch'; employment_type: 'Full-time', 'Contract', 'Freelance', 'Part-time']
+ [FKs: belongsTo -> DmRole; hasMany -> DmcForumLeads; hasMany -> DmcForumLeads; hasMany -> DmcForumLeads; hasMany -> StudentLeadsLogs; hasMany -> DmOperationAllocations]
+
+dm_employee_attendance (DmEmployeeAttendance) - 17 cols
+  Columns:
+    id: DataTypes.INTEGER
+    emp_id: DataTypes.INTEGER
+    ip_address: DataTypes.STRING(100)
+    device: DataTypes.STRING(255)
+    agent: DataTypes.TEXT
+    login_time: DataTypes.TIME
+    logout_time: DataTypes.TIME
+    total_hours: DataTypes.DECIMAL(10,2)
+    short_fall: DataTypes.DECIMAL(10,2)
+    remarks: DataTypes.TEXT
+    watch_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    checkin: DataTypes.INTEGER
+    checkout: DataTypes.INTEGER
+    logout_ip_address: DataTypes.STRING(255)
+    extra_hours: DataTypes.DECIMAL(10,2)
+
+dm_employee_logs (DmEmployeeLogs) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    employee_id: DataTypes.INTEGER
+    log: DataTypes.TEXT
+    created: DataTypes.DATE
+    ip: DataTypes.STRING(255)
+    browser: DataTypes.TEXT
+
+dm_employee_logs_old (DmEmployeeLogsOld) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.INTEGER
+    employee_id: DataTypes.INTEGER
+    log: DataTypes.TEXT
+    created: DataTypes.DATE
+
+dm_employer (DmEmployer) - 11 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(555)
+    email: DataTypes.STRING(255)
+    mobile: DataTypes.STRING(255)
+    paddress: DataTypes.TEXT
+    vendor_id: DataTypes.INTEGER
+    status: DataTypes.INTEGER
+    website: DataTypes.STRING(100)
+    company_name: DataTypes.STRING(200)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_enquiry (DmEnquiry) - 3 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+
+dm_europe_cases (DmEuropeCases) - 17 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    registration: DataTypes.INTEGER
+    jol: DataTypes.INTEGER
+    loc: DataTypes.INTEGER
+    wp: DataTypes.INTEGER
+    wp_hc: DataTypes.INTEGER
+    dl: DataTypes.INTEGER
+    payment_status_jol: DataTypes.INTEGER
+    payment_status_loc: DataTypes.INTEGER
+    payment_status_wp: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+    ops: DataTypes.INTEGER
+    sales: DataTypes.INTEGER
+    reject: DataTypes.INTEGER
+    approve: DataTypes.INTEGER
+ [FKs: belongsTo -> DmcForumLeads]
+
+dm_europe_cases_verification (DmEuropeCasesVerification) - 20 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    passports_for_eu: DataTypes.STRING(255)
+    os_for_eu: DataTypes.STRING(255)
+    email: DataTypes.STRING(255)
+    mobile: DataTypes.STRING(255)
+    remarks: DataTypes.TEXT
+    ops_status: DataTypes.INTEGER
+    ops_approval: DataTypes.INTEGER
+    ops_remarks: DataTypes.TEXT
+    ops: DataTypes.INTEGER
+    manager: DataTypes.INTEGER
+    manager_status: DataTypes.INTEGER
+    manager_approval: DataTypes.INTEGER
+    manager_remarks: DataTypes.TEXT
+    stage: DataTypes.STRING(100)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    approval_date: DataTypes.DATE
+    rejection_date: DataTypes.DATE
+
+dm_europe_payment_adjustments (DmEuropePaymentAdjustments) - 9 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    stage_1: DataTypes.DECIMAL(10,2)
+    stage_2: DataTypes.DECIMAL(10,2)
+    stage_3: DataTypes.DECIMAL(10,2)
+    stage_4: DataTypes.DECIMAL(10,2)
+    stage_5: DataTypes.DECIMAL(10,2)
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+ [FKs: belongsTo -> DmcForumLeads]
+
+dm_europe_payment_operations (DmEuropePaymentOperations) - 14 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    stage_1: DataTypes.INTEGER
+    stage_2: DataTypes.INTEGER
+    stage_3: DataTypes.INTEGER
+    stage_4: DataTypes.INTEGER
+    stage_5: DataTypes.INTEGER
+    stage_status_1: DataTypes.STRING(100)
+    stage_status_2: DataTypes.STRING(100)
+    stage_status_3: DataTypes.STRING(100)
+    stage_status_4: DataTypes.STRING(100)
+    stage_status_5: DataTypes.STRING(100)
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dm_europe_vendors_payments (DmEuropeVendorsPayments) - 11 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    vendor_id: DataTypes.INTEGER
+    batch_id: DataTypes.INTEGER
+    pay_amount: DataTypes.DECIMAL(10,2)
+    pay_status: DataTypes.INTEGER
+    pay_date: DataTypes.DATE
+    invoice_number: DataTypes.STRING(100)
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+    sent_email: DataTypes.INTEGER
+
+dm_evaluations (DmEvaluations) - 20 cols
+  Columns:
+    id: DataTypes.INTEGER
+    client_name: DataTypes.STRING(255)
+    dob: DataTypes.DATE
+    contact: DataTypes.STRING(50)
+    location: DataTypes.STRING(255)
+    marrital_status: DataTypes.STRING(255)
+    experience: DataTypes.STRING(255)
+    email_address: DataTypes.STRING(255)
+    occupation_code: DataTypes.STRING(255)
+    skill_type: DataTypes.STRING(255)
+    age_marks: DataTypes.INTEGER
+    qualification_marks: DataTypes.INTEGER
+    work_exp_marks: DataTypes.INTEGER
+    lang_ab_marks: DataTypes.INTEGER
+    french_marks: DataTypes.INTEGER
+    adap_marks: DataTypes.INTEGER
+    arranged_marks: DataTypes.INTEGER
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    deleted: DataTypes.INTEGER
+
+dm_evaluations_skills (DmEvaluationsSkills) - 24 cols
+  Columns:
+    id: DataTypes.INTEGER
+    client_id: DataTypes.INTEGER
+    skill_age_remarks: DataTypes.STRING(255)
+    skill_age_marks: DataTypes.INTEGER
+    level_of_edu_remarks: DataTypes.STRING(255)
+    level_of_edu_marks: DataTypes.INTEGER
+    first_level_prof_remarks: DataTypes.STRING(255)
+    first_level_prof_marks: DataTypes.INTEGER
+    second_level_prof_remarks: DataTypes.STRING(255)
+    second_level_prof_marks: DataTypes.INTEGER
+    canadian_work_exp_remarks: DataTypes.STRING(255)
+    canadian_work_exp_marks: DataTypes.INTEGER
+    level_of_edu_acc_remarks: DataTypes.STRING(255)
+    level_of_edu_acc_marks: DataTypes.INTEGER
+    canadian_work_exp_acc_remarks: DataTypes.STRING(255)
+    canadian_work_exp_acc_marks: DataTypes.INTEGER
+    offcial_lang_prof_remarks: DataTypes.STRING(255)
+    offcial_lang_prof_marks: DataTypes.INTEGER
+    level_of_edu_lang_abl_remarks: DataTypes.STRING(255)
+    level_of_edu_lang_abl_marks: DataTypes.INTEGER
+    foreign_work_exp_remarks: DataTypes.STRING(255)
+    foreign_work_exp_marks: DataTypes.INTEGER
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_expense (DmExpense) - 14 cols
+  Columns:
+    id: DataTypes.INTEGER
+    date: DataTypes.DATE
+    particular: DataTypes.STRING(555)
+    amount: DataTypes.DECIMAL(10,2)
+    vat: DataTypes.DECIMAL(10,2)
+    addBy: DataTypes.INTEGER
+    remark: DataTypes.TEXT
+    region: DataTypes.INTEGER
+    branch: DataTypes.INTEGER
+    receipt: DataTypes.STRING(255)
+    is_approval: DataTypes.INTEGER
+    mgmt_approval: DataTypes.INTEGER
+    expense_type: DataTypes.INTEGER
+    transaction_type: DataTypes.STRING(10)
+
+dm_expense_cash (DmExpenseCash) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    emp_id: DataTypes.INTEGER
+    cash: DataTypes.DECIMAL(10,2)
+    branch: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dm_expense_cash_record (DmExpenseCashRecord) - 9 cols
+  Columns:
+    id: DataTypes.INTEGER
+    expense_id: DataTypes.INTEGER
+    amount: DataTypes.DECIMAL(10,2)
+    amount_spend: DataTypes.DECIMAL(10,2)
+    balance: DataTypes.DECIMAL(10,2)
+    emp_id: DataTypes.INTEGER
+    branch: DataTypes.INTEGER
+    type: DataTypes.STRING(20)
+    created: DataTypes.DATE
+
+dm_fee (DmFee) - 18 cols
+  Columns:
+    id: DataTypes.INTEGER
+    service: DataTypes.INTEGER
+    country: DataTypes.INTEGER
+    branch: DataTypes.INTEGER
+    currency: DataTypes.INTEGER
+    upfront: DataTypes.DECIMAL(10,2)
+    prof_fee: DataTypes.DECIMAL(10,2)
+    firstMonth: DataTypes.DECIMAL(10,2)
+    secondMonth: DataTypes.DECIMAL(10,2)
+    thirdMonth: DataTypes.DECIMAL(10,2)
+    prof_fee_month: DataTypes.DECIMAL(10,2)
+    firstStage: DataTypes.DECIMAL(10,2)
+    secondStage: DataTypes.DECIMAL(10,2)
+    thirdStage: DataTypes.DECIMAL(10,2)
+    forthStage: DataTypes.DECIMAL(10,2)
+    fifthStage: DataTypes.DECIMAL(10,2)
+    prof_fee_stage: DataTypes.DECIMAL(10,2)
+    status: DataTypes.INTEGER
+ [FKs: belongsTo -> DmBranch; belongsTo -> DmCountryProces; belongsTo -> DmCurrency; belongsTo -> DmService]
+
+dm_finance_invoice (DmFinanceInvoice) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    vendor_id: DataTypes.INTEGER
+    batch_id: DataTypes.INTEGER
+    ag_no: DataTypes.TEXT
+    invoice: DataTypes.INTEGER
+    created: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+
+dm_form_4687 (DmForm4687) - 12 cols
+  Columns:
+    id: DataTypes.BIGINT
+    db4_status: DataTypes.STRING(30)
+    name: DataTypes.STRING(255)
+    phone: DataTypes.STRING(255)
+    email: DataTypes.STRING(255)
+    migrate: DataTypes.STRING(255)
+    age_range: DataTypes.STRING(255)
+    education: DataTypes.STRING(255)
+    immigration_type: DataTypes.STRING(255)
+    your_preferred_location: DataTypes.STRING(255)
+    form_date: DataTypes.DATE
+    done: DataTypes.INTEGER
+
+dm_form_4688 (DmForm4688) - 12 cols
+  Columns:
+    id: DataTypes.BIGINT
+    db4_status: DataTypes.STRING(30)
+    name: DataTypes.STRING(255)
+    phone: DataTypes.STRING(255)
+    email: DataTypes.STRING(255)
+    migrate: DataTypes.STRING(255)
+    age_range: DataTypes.STRING(255)
+    education: DataTypes.STRING(255)
+    immigration_type: DataTypes.STRING(255)
+    your_preferred_location: DataTypes.STRING(255)
+    form_date: DataTypes.DATE
+    done: DataTypes.INTEGER
+
+dm_form_4689 (DmForm4689) - 12 cols
+  Columns:
+    id: DataTypes.BIGINT
+    db4_status: DataTypes.STRING(30)
+    name: DataTypes.STRING(255)
+    phone: DataTypes.STRING(255)
+    email: DataTypes.STRING(255)
+    migrate: DataTypes.STRING(255)
+    age_range: DataTypes.STRING(255)
+    education: DataTypes.STRING(255)
+    immigration_type: DataTypes.STRING(255)
+    your_preferred_location: DataTypes.STRING(255)
+    form_date: DataTypes.DATE
+    done: DataTypes.INTEGER
+
+dm_form_4690 (DmForm4690) - 8 cols
+  Columns:
+    id: DataTypes.BIGINT
+    db4_status: DataTypes.STRING(30)
+    name: DataTypes.STRING(255)
+    email: DataTypes.STRING(255)
+    phone: DataTypes.STRING(255)
+    subject: DataTypes.STRING(255)
+    your_message: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+dm_form_4691 (DmForm4691) - 7 cols
+  Columns:
+    id: DataTypes.BIGINT
+    db4_status: DataTypes.STRING(30)
+    name: DataTypes.STRING(255)
+    email: DataTypes.STRING(255)
+    phone: DataTypes.STRING(255)
+    your_message: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+dm_form_4695 (DmForm4695) - 6 cols
+  Columns:
+    id: DataTypes.BIGINT
+    db4_status: DataTypes.STRING(30)
+    name: DataTypes.STRING(255)
+    email: DataTypes.STRING(255)
+    comment_or_message: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+dm_gary_contract (DmGaryContract) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    contract: DataTypes.STRING(150)
+    contract_signed: DataTypes.STRING(150)
+
+dm_groups (DmGroups) - 3 cols
+  Columns:
+    id: DataTypes.INTEGER
+    team_id: DataTypes.INTEGER
+    desgination_id: DataTypes.INTEGER
+
+dm_hourly_lead_counts (DmHourlyLeadCounts) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    branch_id: DataTypes.INTEGER
+    emp_id: DataTypes.INTEGER
+    lead_count: DataTypes.INTEGER
+
+dm_hr_attendance_records (HrAttendanceRecord) [PK=attendance_id] - 10 cols
+  Columns:
+    attendance_id: DataTypes.CHAR(36)
+    employee_id: DataTypes.CHAR(36)
+    date: DataTypes.DATEONLY
+    check_in: DataTypes.TIME
+    check_out: DataTypes.TIME
+    status: DataTypes.ENUM('Present', 'Absent', 'Late', 'Half-Day', 'Leave', 'Holiday')
+    overtime_hours: DataTypes.DECIMAL(5, 2)
+    source: DataTypes.ENUM('Manual', 'Biometric', 'Import')
+    notes: DataTypes.TEXT
+    approved_by: DataTypes.CHAR(36)
+ [ENUMS: status: 'Present', 'Absent', 'Late', 'Half-Day', 'Leave', 'Holiday'; source: 'Manual', 'Biometric', 'Import']
+
+dm_job_search_qualification (DmJobSearchQualification) - 10 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    qualifctn: DataTypes.STRING(30)
+    specilization: DataTypes.STRING(100)
+    university: DataTypes.STRING(100)
+    assesment_body: DataTypes.STRING(50)
+    type: DataTypes.STRING(20)
+    rating: DataTypes.STRING(100)
+    created_by: DataTypes.DATE
+    created: DataTypes.INTEGER
+
+dm_js_ops_company_interview (DmJsOpsCompanyInterview) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    request_letter_received: DataTypes.INTEGER
+    Passport_sent_to_embassy: DataTypes.INTEGER
+    passport_received_from_embassy: DataTypes.INTEGER
+    document_file: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+    created: DataTypes.INTEGER
+
+dm_js_ops_lang_prof (DmJsOpsLangProf) - 15 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    tab: DataTypes.INTEGER
+    langTest: DataTypes.STRING(255)
+    spLangTest: DataTypes.STRING(50)
+    testStatus: DataTypes.STRING(255)
+    expiryDate: DataTypes.STRING(55)
+    testDate: DataTypes.STRING(55)
+    testScore: DataTypes.STRING(255)
+    rating: DataTypes.STRING(10)
+    reading: DataTypes.STRING(10)
+    writing: DataTypes.STRING(10)
+    listening: DataTypes.STRING(10)
+    speaking: DataTypes.STRING(10)
+    meetingreq: DataTypes.STRING(50)
+
+dm_js_ops_monthly_status (DmJsOpsMonthlyStatus) - 12 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    invitation_received_date: DataTypes.INTEGER
+    last_date_of_submission: DataTypes.INTEGER
+    documents_received_from_client: DataTypes.INTEGER
+    documents_status: DataTypes.INTEGER
+    application_submission_date: DataTypes.INTEGER
+    application_status: DataTypes.INTEGER
+    additional_requirement_sent_to_client: DataTypes.INTEGER
+    document_file: DataTypes.INTEGER
+    created: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+
+dm_js_ops_nomination (DmJsOpsNomination) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    date_of_landing: DataTypes.INTEGER
+    service: DataTypes.INTEGER
+    document_file: DataTypes.INTEGER
+    created: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+    tab: DataTypes.INTEGER
+
+dm_js_ops_prescreening (DmJsOpsPrescreening) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    prescreening_date: DataTypes.DATE
+    prescreening_status: DataTypes.STRING(20)
+    interview_mode: DataTypes.STRING(20)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_js_resume_writing (DmJsResumeWriting) - 14 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    resume_date: DataTypes.DATE
+    resume_draft: DataTypes.STRING(255)
+    upload_passport: DataTypes.STRING(255)
+    education: DataTypes.STRING(255)
+    education_document: DataTypes.STRING(255)
+    national_id: DataTypes.STRING(255)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    level_one_remarks: DataTypes.TEXT
+    level_two_remarks: DataTypes.TEXT
+    final_copy_resume: DataTypes.STRING(100)
+    tab: DataTypes.INTEGER
+
+dm_lead_counts (DmLeadCounts) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    branch_id: DataTypes.INTEGER
+    emp_id: DataTypes.INTEGER
+    lead_count: DataTypes.INTEGER
+
+dm_lead_live_chat_counts (DmLeadLiveChatCounts) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    branch_id: DataTypes.INTEGER
+    emp_id: DataTypes.INTEGER
+    lead_count: DataTypes.INTEGER
+
+dm_lead_lp_counts (DmLeadLpCounts) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    branch_id: DataTypes.INTEGER
+    emp_id: DataTypes.INTEGER
+    lead_count: DataTypes.INTEGER
+
+dm_lead_reassignments (DmcLeadReassignments) TS - 16 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    fromEmployeeId: DataTypes.INTEGER
+    toEmployeeId: DataTypes.INTEGER
+    reassignmentType: DataTypes.ENUM('manual', 'automatic', 'escalation', 'transfer', 'reallocation')
+    reason: DataTypes.TEXT
+    previousStatus: DataTypes.STRING(50)
+    newStatus: DataTypes.STRING(50)
+    reassignmentDate: DataTypes.DATE
+    notes: DataTypes.TEXT
+    approvedBy: DataTypes.INTEGER
+    status: DataTypes.ENUM('pending', 'approved', 'rejected')
+    approvedAt: DataTypes.DATE
+    createdBy: DataTypes.INTEGER
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+ [ENUMS: reassignmentType: 'manual', 'automatic', 'escalation', 'transfer', 'reallocation'; status: 'pending', 'approved', 'rejected']
+ [FKs: belongsTo -> DmcForumLeads; belongsTo -> DmEmployee; belongsTo -> DmEmployee; belongsTo -> DmEmployee; belongsTo -> DmEmployee]
+
+dm_lead_round_robin_state (DmLeadRoundRobinState) TS [PK=branch_id] - 4 cols
+  Columns:
+    branch_id: DataTypes.INTEGER
+    last_employee_id: DataTypes.INTEGER
+    created_at: DataTypes.DATE
+    updated_at: DataTypes.DATE
+ [FKs: belongsTo -> DmBranch; belongsTo -> DmEmployee]
+
+dm_lead_shj_counts (DmLeadShjCounts) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    branch_id: DataTypes.INTEGER
+    emp_id: DataTypes.INTEGER
+    lead_count: DataTypes.INTEGER
+
+dm_leads_emailers (DmLeadsEmailers) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    email: DataTypes.STRING(255)
+    name: DataTypes.STRING(255)
+    branch: DataTypes.INTEGER
+    created: DataTypes.DATE
+    sent: DataTypes.INTEGER
+    month: DataTypes.STRING(20)
+
+dm_leave_history (DmLeaveHistory) - 18 cols
+  Columns:
+    id: DataTypes.INTEGER
+    custId: DataTypes.INTEGER
+    applyDate: DataTypes.DATE
+    fromDate: DataTypes.DATE
+    toDate: DataTypes.DATE
+    type: DataTypes.STRING(255)
+    approvBy: DataTypes.STRING(555)
+    requestedTo: DataTypes.STRING(255)
+    requested_time_from: DataTypes.TIME
+    requested_time_to: DataTypes.TIME
+    remark: DataTypes.TEXT
+    status: DataTypes.INTEGER
+    file: DataTypes.STRING(50)
+    reject: DataTypes.STRING(100)
+    reject_remarks: DataTypes.TEXT
+    notf: DataTypes.INTEGER
+    approved_date: DataTypes.DATE
+    reject_date: DataTypes.DATE
+
+dm_leave_type (DmLeaveType) - 3 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+
+dm_library (DmLibrary) - 10 cols
+  Columns:
+    id: DataTypes.INTEGER
+    groups: DataTypes.INTEGER
+    file_name: DataTypes.STRING(255)
+    files: DataTypes.STRING(255)
+    file_type: DataTypes.INTEGER
+    file_of_folder: DataTypes.INTEGER
+    folder_id: DataTypes.INTEGER
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_library_folders (DmLibraryFolders) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    folder_name: DataTypes.STRING(255)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_live_chat_leads (DmLiveChatLeads) - 14 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(255)
+    branch: DataTypes.INTEGER
+    phone: DataTypes.STRING(255)
+    program: DataTypes.STRING(255)
+    businesstype: DataTypes.STRING(255)
+    location: DataTypes.STRING(255)
+    email: DataTypes.STRING(255)
+    ip_address: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+    emp_id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    lead_remark: DataTypes.TEXT
+
+dm_lmia_brief (DmLmiaBrief) - 9 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    third_party_amt: DataTypes.DECIMAL(10,2)
+    dm_amt: DataTypes.DECIMAL(10,2)
+    tax_amt: DataTypes.DECIMAL(10,2)
+    refund_amt: DataTypes.DECIMAL(10,2)
+    status: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dm_lmia_payment_adjustments (DmLmiaPaymentAdjustments) - 9 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_Id: DataTypes.INTEGER
+    stage_1: DataTypes.DECIMAL(10,2)
+    stage_2: DataTypes.DECIMAL(10,2)
+    stage_3: DataTypes.DECIMAL(10,2)
+    stage_4: DataTypes.DECIMAL(10,2)
+    stage_5: DataTypes.DECIMAL(10,2)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_logs (DmLogs) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    date_time: DataTypes.DATE
+    action: DataTypes.STRING(255)
+    message: DataTypes.STRING(255)
+    source: DataTypes.STRING(255)
+    done_by: DataTypes.INTEGER
+ [MAPPED: date_time -> date/time; done_by -> done]
+
+dm_new_client (DmNewClient) - 3 cols
+  Columns:
+    id: DataTypes.INTEGER
+    email: DataTypes.STRING(255)
+    email_sent: DataTypes.INTEGER
+
+dm_observation_file (DmObservationFile) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    country: DataTypes.INTEGER
+    service: DataTypes.INTEGER
+    file: DataTypes.STRING(555)
+    status: DataTypes.INTEGER
+
+dm_official_emails (DmOfficialEmails) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    branch: DataTypes.INTEGER
+    frontend: DataTypes.STRING(255)
+    backend: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dm_old_data (DmOldData) - 26 cols
+  Columns:
+    id: DataTypes.INTEGER
+    col_0: DataTypes.STRING(255)
+    col_1: DataTypes.STRING(255)
+    col_2: DataTypes.STRING(255)
+    col_3: DataTypes.STRING(255)
+    col_4: DataTypes.STRING(255)
+    col_5: DataTypes.STRING(255)
+    col_6: DataTypes.STRING(255)
+    col_7: DataTypes.STRING(255)
+    col_8: DataTypes.STRING(255)
+    col_9: DataTypes.STRING(255)
+    col_10: DataTypes.STRING(255)
+    col_11: DataTypes.STRING(255)
+    col_12: DataTypes.STRING(255)
+    col_13: DataTypes.STRING(255)
+    col_14: DataTypes.STRING(255)
+    col_15: DataTypes.STRING(255)
+    col_16: DataTypes.STRING(255)
+    col_17: DataTypes.STRING(255)
+    col_18: DataTypes.STRING(255)
+    col_19: DataTypes.STRING(255)
+    col_20: DataTypes.STRING(255)
+    col_21: DataTypes.STRING(255)
+    col_22: DataTypes.STRING(255)
+    col_23: DataTypes.STRING(255)
+    col_24: DataTypes.STRING(255)
+
+dm_old_payment (DmOldPayment) - 16 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(111)
+    recieptno: DataTypes.INTEGER
+    paydate: DataTypes.STRING(50)
+    payCategory: DataTypes.STRING(55)
+    payMethod: DataTypes.STRING(55)
+    payTotal: DataTypes.DECIMAL(10,2)
+    discount: DataTypes.DECIMAL(10,2)
+    taxAmt: DataTypes.DECIMAL(10,2)
+    payBalance: DataTypes.DECIMAL(10,2)
+    payAmt: DataTypes.DECIMAL(10,2)
+    totPayAmt: DataTypes.DECIMAL(10,2)
+    totBalance: DataTypes.DECIMAL(10,2)
+    nextPayAmt: DataTypes.DECIMAL(10,2)
+    nextPayDate: DataTypes.STRING(50)
+    demdRemark: DataTypes.TEXT
+
+dm_op_team_allocations (DmOpTeamAllocations) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    emp_id: DataTypes.INTEGER
+    teams: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_operation_allocations (DmOperationAllocations) - 10 cols
+  Columns:
+    id: DataTypes.INTEGER
+    case_officer: DataTypes.INTEGER
+    branch: DataTypes.INTEGER
+    type: DataTypes.STRING(50)
+    start_date: DataTypes.DATE
+    end_date: DataTypes.DATE
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    status: DataTypes.INTEGER
+    is_deleted: DataTypes.INTEGER
+ [FKs: belongsTo -> DmEmployee; belongsTo -> DmBranch]
+
+dm_operation_stage_data (DmOperationStageData) TS - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    module: DataTypes.STRING(80)
+    leadId: DataTypes.INTEGER
+    opportunityId: DataTypes.INTEGER
+    stage: DataTypes.STRING(80)
+    stageData: DataTypes.TEXT('long')
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+ [FKs: belongsTo -> DmcForumLeads; belongsTo -> DmcOpportunities]
+
+dm_opportunity_accounting_verifications (DmOpportunityAccountingVerification) - 11 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    opportunityId: DataTypes.INTEGER
+    paymentProofUrl: DataTypes.STRING(500)
+    paymentReceived: DataTypes.BOOLEAN
+    documentsComplete: DataTypes.BOOLEAN
+    status: DataTypes.ENUM('pending', 'approved', 'rejected')
+    accountantId: DataTypes.INTEGER
+    notes: DataTypes.TEXT
+    submittedAt: DataTypes.DATE
+    reviewedAt: DataTypes.DATE
+ [ENUMS: status: 'pending', 'approved', 'rejected']
+ [MAPPED: leadId -> lead_id; opportunityId -> opportunity_id; paymentProofUrl -> payment_proof_url; paymentReceived -> payment_received; documentsComplete -> documents_complete; accountantId -> accoun
+ [FKs: belongsTo -> DmcForumLeads; belongsTo -> DmcOpportunities; belongsTo -> DmEmployee]
+
+dm_opportunity_agreements (DmcOpportunityAgreements) TS - 35 cols
+  Columns:
+    id: DataTypes.INTEGER
+    opportunityId: DataTypes.INTEGER
+    agreementNumber: DataTypes.STRING(50)
+    agreementType: DataTypes.STRING(100)
+    templateId: DataTypes.INTEGER
+    agreementTitle: DataTypes.STRING(255)
+    title: DataTypes.STRING(255)
+    description: DataTypes.TEXT
+    duration: DataTypes.STRING(50)
+    startDate: DataTypes.DATE
+    endDate: DataTypes.DATE
+    amount: DataTypes.DECIMAL(15, 2)
+    totalAmount: DataTypes.DECIMAL(15, 2)
+    currency: DataTypes.STRING(10)
+    terms: DataTypes.TEXT
+    termsAndConditions: DataTypes.TEXT
+    specialConditions: DataTypes.TEXT
+    content: DataTypes.TEXT('long')
+    status: DataTypes.ENUM('draft', 'generated', 'sent', 'signed', 'uploaded', 'expired')
+    generatedDate: DataTypes.DATE
+    sentDate: DataTypes.DATE
+    signedDate: DataTypes.DATE
+    clientSignature: DataTypes.TEXT
+    signatureDate: DataTypes.DATE
+    documentUrl: DataTypes.STRING(500)
+    clientName: DataTypes.STRING(255)
+    clientEmail: DataTypes.STRING(255)
+    clientPhone: DataTypes.STRING(80)
+    companyName: DataTypes.STRING(255)
+    companyAddress: DataTypes.TEXT
+    uploadedToCrm: DataTypes.BOOLEAN
+    uploadedBy: DataTypes.INTEGER
+    createdBy: DataTypes.INTEGER
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+ [ENUMS: status: 'draft', 'generated', 'sent', 'signed', 'uploaded', 'expired']
+ [FKs: belongsTo -> DmcOpportunities; belongsTo -> DmEmployee; belongsTo -> DmEmployee]
+ [UNIQUE: agreementNumber]
+
+dm_opportunity_compliance_approvals (DmOpportunityComplianceApprovals) TS - 15 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    opportunityId: DataTypes.INTEGER
+    signedAgreementUrl: DataTypes.TEXT
+    clientSignature: DataTypes.STRING(255)
+    signatureDate: DataTypes.DATEONLY
+    status: DataTypes.STRING(30)
+    submittedBy: DataTypes.INTEGER
+    reviewedBy: DataTypes.STRING(255)
+    reviewerRole: DataTypes.STRING(80)
+    reviewNotes: DataTypes.TEXT
+    submittedAt: DataTypes.DATE
+    reviewedAt: DataTypes.DATE
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+ [FKs: belongsTo -> DmcForumLeads; belongsTo -> DmcOpportunities; belongsTo -> DmEmployee]
+
+dm_opportunity_handover_notes (DmOpportunityHandoverNote) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    opportunityId: DataTypes.INTEGER
+    counselorId: DataTypes.INTEGER
+    conversationSummary: DataTypes.TEXT
+    clientCommitments: DataTypes.TEXT
+    nextAction: DataTypes.TEXT
+    createdAt: DataTypes.DATE
+ [MAPPED: leadId -> lead_id; opportunityId -> opportunity_id; counselorId -> counselor_id; conversationSummary -> conversation_summary; clientCommitments -> client_commitments; nextAction -> next_acti
+ [FKs: belongsTo -> DmcForumLeads; belongsTo -> DmcOpportunities; belongsTo -> DmEmployee]
+
+dm_opportunity_payment_schedules (DmOpportunityPaymentSchedule) - 13 cols
+  Columns:
+    id: DataTypes.INTEGER
+    opportunityId: DataTypes.INTEGER
+    installmentNumber: DataTypes.INTEGER
+    dueDate: DataTypes.DATEONLY
+    amount: DataTypes.DECIMAL(15, 2)
+    status: DataTypes.ENUM('pending', 'paid', 'overdue', 'cancelled')
+    paidDate: DataTypes.DATEONLY
+    receiptNumber: DataTypes.STRING(100)
+    receiptUrl: DataTypes.STRING(500)
+    notes: DataTypes.TEXT
+    createdBy: DataTypes.INTEGER
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+ [ENUMS: status: 'pending', 'paid', 'overdue', 'cancelled']
+ [MAPPED: opportunityId -> opportunity_id; installmentNumber -> installment_number; dueDate -> due_date; paidDate -> paid_date; receiptNumber -> receipt_number; receiptUrl -> receipt_url; createdBy ->
+ [FKs: belongsTo -> DmcOpportunities; belongsTo -> DmEmployee]
+
+dm_opportunity_payments (DmcOpportunityPayments) TS - 38 cols
+  Columns:
+    id: DataTypes.INTEGER
+    opportunityId: DataTypes.INTEGER
+    paymentNumber: DataTypes.STRING(50)
+    receiptNumber: DataTypes.STRING(50)
+    paymentStructure: DataTypes.ENUM('full', 'installment', 'milestone')
+    paymentType: DataTypes.STRING(100)
+    totalAmount: DataTypes.DECIMAL(15, 2)
+    amount: DataTypes.DECIMAL(15, 2)
+    paidAmount: DataTypes.DECIMAL(15, 2)
+    remainingBalance: DataTypes.DECIMAL(15, 2)
+    balanceAmount: DataTypes.DECIMAL(15, 2)
+    currency: DataTypes.STRING(10)
+    paymentMethod: DataTypes.STRING(50)
+    transactionId: DataTypes.STRING(255)
+    paymentDate: DataTypes.DATE
+    status: DataTypes.ENUM('pending', 'processing', 'completed', 'paid', 'failed', 'refunded')
+    dueDate: DataTypes.DATE
+    installmentNumber: DataTypes.INTEGER
+    totalInstallments: DataTypes.INTEGER
+    milestoneName: DataTypes.STRING(255)
+    gateway: DataTypes.STRING(50)
+    gatewayTransactionId: DataTypes.STRING(255)
+    receiptUrl: DataTypes.STRING(500)
+    description: DataTypes.TEXT
+    receiptType: DataTypes.STRING(50)
+    clientName: DataTypes.STRING(255)
+    clientEmail: DataTypes.STRING(255)
+    clientPhone: DataTypes.STRING(80)
+    clientAddress: DataTypes.TEXT
+    serviceName: DataTypes.STRING(255)
+    branchName: DataTypes.STRING(255)
+    consultantName: DataTypes.STRING(255)
+    taxAmount: DataTypes.DECIMAL(15, 2)
+    discountAmount: DataTypes.DECIMAL(15, 2)
+    notes: DataTypes.TEXT
+    createdBy: DataTypes.INTEGER
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+ [ENUMS: paymentStructure: 'full', 'installment', 'milestone'; status: 'pending', 'processing', 'completed', 'paid', 'failed', 'refunded']
+ [FKs: belongsTo -> DmcOpportunities; belongsTo -> DmEmployee]
+ [UNIQUE: paymentNumber, receiptNumber]
+
+dm_opportunity_workflow_audit_logs (DmOpportunityWorkflowAuditLog) - 9 cols
+  Columns:
+    id: DataTypes.INTEGER
+    opportunityId: DataTypes.INTEGER
+    action: DataTypes.STRING(80)
+    previousStatus: DataTypes.STRING(50)
+    newStatus: DataTypes.STRING(50)
+    actorId: DataTypes.INTEGER
+    actorRole: DataTypes.STRING(80)
+    notes: DataTypes.TEXT
+    createdAt: DataTypes.DATE
+ [MAPPED: opportunityId -> opportunity_id; previousStatus -> previous_status; newStatus -> new_status; actorId -> actor_id; actorRole -> actor_role; createdAt -> created_at]
+ [FKs: belongsTo -> DmcOpportunities; belongsTo -> DmEmployee]
+
+dm_opportunity_workflow_reviews (DmOpportunityWorkflowReview) - 20 cols
+  Columns:
+    id: DataTypes.INTEGER
+    opportunityId: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    workflowStatus: DataTypes.STRING(50)
+    officialIdData: DataTypes.JSON
+    paymentData: DataTypes.JSON
+    financeStatus: DataTypes.ENUM('pending', 'approved', 'rejected')
+    financeChecklist: DataTypes.JSON
+    financeReason: DataTypes.TEXT
+    financeReviewedBy: DataTypes.INTEGER
+    financeReviewedAt: DataTypes.DATE
+    complianceStatus: DataTypes.ENUM('pending', 'approved', 'rejected')
+    complianceChecklist: DataTypes.JSON
+    complianceReason: DataTypes.TEXT
+    complianceReviewedBy: DataTypes.INTEGER
+    complianceReviewedAt: DataTypes.DATE
+    formalClientId: DataTypes.STRING(40)
+    caseActivatedAt: DataTypes.DATE
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+ [ENUMS: financeStatus: 'pending', 'approved', 'rejected'; complianceStatus: 'pending', 'approved', 'rejected']
+ [MAPPED: opportunityId -> opportunity_id; leadId -> lead_id; workflowStatus -> workflow_status; officialIdData -> official_id_data; paymentData -> payment_data; financeStatus -> finance_status; finan
+ [FKs: belongsTo -> DmcOpportunities; belongsTo -> DmcForumLeads; belongsTo -> DmEmployee; belongsTo -> DmEmployee]
+ [UNIQUE: opportunityId, formalClientId]
+
+dm_ops_busines_canada (DmOpsBusinesCanada) - 92 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(255)
+    retnDate: DataTypes.STRING(55)
+    ecaReceDate: DataTypes.STRING(55)
+    ecaPackage: DataTypes.STRING(255)
+    ecaDocStatus: DataTypes.STRING(255)
+    ecaAssmBody: DataTypes.STRING(255)
+    ecaApplyDate: DataTypes.STRING(55)
+    ecaPayMode: DataTypes.STRING(255)
+    ecaTranSent: DataTypes.STRING(255)
+    ecaTranStatus: DataTypes.STRING(255)
+    ecaStatus: DataTypes.STRING(255)
+    compDate: DataTypes.STRING(55)
+    expVisit: DataTypes.STRING(255)
+    expAgent: DataTypes.STRING(255)
+    expCounty: DataTypes.STRING(255)
+    expSdate: DataTypes.STRING(55)
+    expEdate: DataTypes.STRING(55)
+    ndPA: DataTypes.STRING(55)
+    ndSpouse: DataTypes.STRING(55)
+    ndDepend: DataTypes.STRING(55)
+    pgPA: DataTypes.STRING(55)
+    pgSpouse: DataTypes.STRING(55)
+    pgDepend: DataTypes.STRING(55)
+    piPA: DataTypes.STRING(55)
+    piSpouse: DataTypes.STRING(55)
+    piDepend: DataTypes.STRING(55)
+    eiReceDate: DataTypes.STRING(55)
+    eiRewDate: DataTypes.STRING(55)
+    eiFinDate: DataTypes.STRING(55)
+    eiSentDate: DataTypes.STRING(55)
+    eiConfDate: DataTypes.STRING(55)
+    eiSubDate: DataTypes.STRING(55)
+    eiInvtDate: DataTypes.STRING(55)
+    eiValdDate: DataTypes.STRING(55)
+    visaPaySts: DataTypes.STRING(55)
+    visaPayDate: DataTypes.STRING(55)
+    docGivDate: DataTypes.STRING(55)
+    docRecDate: DataTypes.STRING(55)
+    docStatus: DataTypes.STRING(55)
+    docRewDate: DataTypes.STRING(55)
+    docFowDate: DataTypes.STRING(55)
+    docFeeDate: DataTypes.STRING(55)
+    docRepDate: DataTypes.STRING(55)
+    visaReqRecDate: DataTypes.STRING(55)
+    visaValdDate: DataTypes.STRING(55)
+    visaInfDate: DataTypes.STRING(55)
+    visaApptDate: DataTypes.STRING(55)
+    visaDocRecDate: DataTypes.STRING(55)
+    visaDocRewDate: DataTypes.STRING(55)
+    visaDocSubDate: DataTypes.STRING(55)
+    visaConSentDate: DataTypes.STRING(55)
+    intwRecDate: DataTypes.STRING(55)
+    intSchDate: DataTypes.STRING(55)
+    intInfmDate: DataTypes.STRING(55)
+    intFixdDate: DataTypes.STRING(55)
+    intBrfDate: DataTypes.STRING(55)
+    intDocDate: DataTypes.STRING(55)
+    intDocRecDate: DataTypes.STRING(55)
+    intPrep: DataTypes.STRING(55)
+    intResult: DataTypes.STRING(55)
+    paReceDate: DataTypes.STRING(55)
+    paAgreDate: DataTypes.STRING(55)
+    paSentDate: DataTypes.STRING(55)
+    paConfDate: DataTypes.STRING(55)
+    waRecDate: DataTypes.STRING(55)
+    waInfDate: DataTypes.STRING(55)
+    waFixDate: DataTypes.STRING(55)
+    waHandDate: DataTypes.STRING(55)
+    waDocRecDate: DataTypes.STRING(55)
+    waDocRewDate: DataTypes.STRING(55)
+    waDocSignDate: DataTypes.STRING(55)
+    waAppFinDate: DataTypes.STRING(55)
+    waAppSubDate: DataTypes.STRING(55)
+    waAppSentDate: DataTypes.STRING(55)
+    waFileRecDate: DataTypes.STRING(55)
+    waReqRecDate: DataTypes.STRING(55)
+    waMedRecDate: DataTypes.STRING(55)
+    waMedSubDate: DataTypes.STRING(55)
+    waPapRecDate: DataTypes.STRING(55)
+    remark: DataTypes.TEXT
+    tab1File: DataTypes.STRING(255)
+    tab2File: DataTypes.STRING(255)
+    tab3File: DataTypes.STRING(255)
+    tab4File: DataTypes.STRING(255)
+    tab5File: DataTypes.STRING(255)
+    tab6File: DataTypes.STRING(255)
+    tab7File: DataTypes.STRING(255)
+    tab8File: DataTypes.STRING(255)
+    tab9File: DataTypes.STRING(255)
+    tab10File: DataTypes.STRING(255)
+
+dm_ops_busines_poland (DmOpsBusinesPoland) - 101 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(255)
+    retnDate: DataTypes.STRING(55)
+    tvApplyDate: DataTypes.STRING(55)
+    tvResltDate: DataTypes.STRING(55)
+    tvApprDate: DataTypes.STRING(55)
+    tvStatus: DataTypes.STRING(55)
+    poVisitDate: DataTypes.STRING(55)
+    poRtrnDate: DataTypes.STRING(55)
+    poStatus: DataTypes.STRING(55)
+    crRegDate: DataTypes.STRING(55)
+    crStatus: DataTypes.STRING(55)
+    baOpenDate: DataTypes.STRING(55)
+    baStatus: DataTypes.STRING(55)
+    fundTranDate: DataTypes.STRING(55)
+    fundStatus: DataTypes.STRING(55)
+    afPA: DataTypes.STRING(55)
+    afSpouse: DataTypes.STRING(55)
+    afDepend: DataTypes.STRING(55)
+    visaReqRecDate: DataTypes.STRING(55)
+    visaValdDate: DataTypes.STRING(55)
+    visaInfDate: DataTypes.STRING(55)
+    visaApptDate: DataTypes.STRING(55)
+    visaDocRecDate: DataTypes.STRING(55)
+    visaDocRewDate: DataTypes.STRING(55)
+    visaDocSubDate: DataTypes.STRING(55)
+    visaConSentDate: DataTypes.STRING(55)
+    waHandDate: DataTypes.STRING(55)
+    waDocRecDate: DataTypes.STRING(55)
+    waDocRewDate: DataTypes.STRING(55)
+    waDocSignDate: DataTypes.STRING(55)
+    waAppFinDate: DataTypes.STRING(55)
+    waAppSubDate: DataTypes.STRING(55)
+    waFormRecDate: DataTypes.STRING(55)
+    passPA: DataTypes.STRING(55)
+    passSpouse: DataTypes.STRING(55)
+    passDepnd: DataTypes.STRING(55)
+    passStatus: DataTypes.STRING(55)
+    rvPA: DataTypes.STRING(55)
+    rvSpouse: DataTypes.STRING(55)
+    rvDepnd: DataTypes.STRING(55)
+    rvStatus: DataTypes.STRING(55)
+    idPA: DataTypes.STRING(55)
+    idSpouse: DataTypes.STRING(55)
+    idDepnd: DataTypes.STRING(55)
+    idStatus: DataTypes.STRING(55)
+    bioPA: DataTypes.STRING(55)
+    bioSpouse: DataTypes.STRING(55)
+    bioDepnd: DataTypes.STRING(55)
+    bioStatus: DataTypes.STRING(55)
+    schePA: DataTypes.STRING(55)
+    scheSpouse: DataTypes.STRING(55)
+    scheDepnd: DataTypes.STRING(55)
+    scheStatus: DataTypes.STRING(55)
+    insurPA: DataTypes.STRING(55)
+    insurSpouse: DataTypes.STRING(55)
+    insurDepnd: DataTypes.STRING(55)
+    insurStatus: DataTypes.STRING(55)
+    nocPA: DataTypes.STRING(55)
+    nocSpouse: DataTypes.STRING(55)
+    nocDepnd: DataTypes.STRING(55)
+    nocStatus: DataTypes.STRING(55)
+    itinPA: DataTypes.STRING(55)
+    itinSpouse: DataTypes.STRING(55)
+    itinDepnd: DataTypes.STRING(55)
+    itinStatus: DataTypes.STRING(55)
+    purPA: DataTypes.STRING(55)
+    purSpouse: DataTypes.STRING(55)
+    purDepnd: DataTypes.STRING(55)
+    purStatus: DataTypes.STRING(55)
+    pbsPA: DataTypes.STRING(55)
+    pbsSpouse: DataTypes.STRING(55)
+    pbsDepnd: DataTypes.STRING(55)
+    pbsStatus: DataTypes.STRING(55)
+    bbsPA: DataTypes.STRING(55)
+    bbsSpouse: DataTypes.STRING(55)
+    bbsDepnd: DataTypes.STRING(55)
+    bbsStatus: DataTypes.STRING(55)
+    licePA: DataTypes.STRING(55)
+    liceSpouse: DataTypes.STRING(55)
+    liceDepnd: DataTypes.STRING(55)
+    liceStatus: DataTypes.STRING(55)
+    estaPA: DataTypes.STRING(55)
+    estaSpouse: DataTypes.STRING(55)
+    estaDepnd: DataTypes.STRING(55)
+    estaStatus: DataTypes.STRING(55)
+    partPA: DataTypes.STRING(55)
+    partSpouse: DataTypes.STRING(55)
+    partDepnd: DataTypes.STRING(55)
+    partStatus: DataTypes.STRING(55)
+    nocOtherPA: DataTypes.STRING(55)
+    nocOtherSpouse: DataTypes.STRING(55)
+    nocOtherDepnd: DataTypes.STRING(55)
+    nocOtherStatus: DataTypes.STRING(55)
+    remark: DataTypes.TEXT
+    tab1File: DataTypes.STRING(255)
+    tab2File: DataTypes.STRING(255)
+    tab3File: DataTypes.STRING(255)
+    tab4File: DataTypes.STRING(255)
+    tab5File: DataTypes.STRING(255)
+
+dm_ops_busines_uk (DmOpsBusinesUk) - 67 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(255)
+    retnDate: DataTypes.STRING(55)
+    passPA: DataTypes.STRING(55)
+    passSpouse: DataTypes.STRING(55)
+    passDepnd: DataTypes.STRING(55)
+    idPA: DataTypes.STRING(55)
+    idSpouse: DataTypes.STRING(55)
+    idDepnd: DataTypes.STRING(55)
+    birthPA: DataTypes.STRING(55)
+    birthSpouse: DataTypes.STRING(55)
+    birthDepnd: DataTypes.STRING(55)
+    eduPA: DataTypes.STRING(55)
+    eduSpouse: DataTypes.STRING(55)
+    eduDepnd: DataTypes.STRING(55)
+    pbsPA: DataTypes.STRING(55)
+    pbsSpouse: DataTypes.STRING(55)
+    pbsDepnd: DataTypes.STRING(55)
+    pbcPA: DataTypes.STRING(55)
+    pbcSpouse: DataTypes.STRING(55)
+    pbcDepnd: DataTypes.STRING(55)
+    tplPA: DataTypes.STRING(55)
+    tplSpouse: DataTypes.STRING(55)
+    tplDepnd: DataTypes.STRING(55)
+    tpbPA: DataTypes.STRING(55)
+    tpbSpouse: DataTypes.STRING(55)
+    tpbDepnd: DataTypes.STRING(55)
+    tpsPA: DataTypes.STRING(55)
+    tpsSpouse: DataTypes.STRING(55)
+    tpsDepnd: DataTypes.STRING(55)
+    tpbsPA: DataTypes.STRING(55)
+    tpbsSpouse: DataTypes.STRING(55)
+    tpbsDepnd: DataTypes.STRING(55)
+    tpbcPA: DataTypes.STRING(55)
+    tpbcSpouse: DataTypes.STRING(55)
+    tpbcDepnd: DataTypes.STRING(55)
+    visaReqRecDate: DataTypes.STRING(55)
+    visaValdDate: DataTypes.STRING(55)
+    visaInfDate: DataTypes.STRING(55)
+    visaApptDate: DataTypes.STRING(55)
+    visaDocRecDate: DataTypes.STRING(55)
+    visaDocRewDate: DataTypes.STRING(55)
+    visaDocSubDate: DataTypes.STRING(55)
+    visaConSentDate: DataTypes.STRING(55)
+    intwRecDate: DataTypes.STRING(55)
+    intSchDate: DataTypes.STRING(55)
+    intInfmDate: DataTypes.STRING(55)
+    intFixdDate: DataTypes.STRING(55)
+    intBrfDate: DataTypes.STRING(55)
+    intDocDate: DataTypes.STRING(55)
+    intDocRecDate: DataTypes.STRING(55)
+    intPrep: DataTypes.STRING(55)
+    intResult: DataTypes.STRING(55)
+    waHandDate: DataTypes.STRING(55)
+    waDocRecDate: DataTypes.STRING(55)
+    waDocRewDate: DataTypes.STRING(55)
+    waDocSignDate: DataTypes.STRING(55)
+    waAppFinDate: DataTypes.STRING(55)
+    waAppSubDate: DataTypes.STRING(55)
+    waFormRecDate: DataTypes.STRING(55)
+    remark: DataTypes.TEXT
+    tab1File: DataTypes.STRING(255)
+    tab2File: DataTypes.STRING(255)
+    tab3File: DataTypes.STRING(255)
+    tab4File: DataTypes.STRING(255)
+    tab5File: DataTypes.STRING(255)
+
+dm_ops_busines_usa (DmOpsBusinesUsa) - 114 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(255)
+    retnDate: DataTypes.STRING(55)
+    escAgre: DataTypes.STRING(55)
+    escAgreDate: DataTypes.STRING(55)
+    passCopy: DataTypes.STRING(55)
+    passCopyDate: DataTypes.STRING(55)
+    escAgreCopy: DataTypes.STRING(55)
+    escAgreCopyDate: DataTypes.STRING(55)
+    acouDets: DataTypes.STRING(55)
+    acouDetsDate: DataTypes.STRING(55)
+    wireTrans: DataTypes.STRING(55)
+    wireTransDate: DataTypes.STRING(55)
+    profFund: DataTypes.STRING(55)
+    profFundDate: DataTypes.STRING(55)
+    subAgre: DataTypes.STRING(55)
+    subAgreDate: DataTypes.STRING(55)
+    g28: DataTypes.STRING(55)
+    g28Date: DataTypes.STRING(55)
+    i526: DataTypes.STRING(55)
+    i526Date: DataTypes.STRING(55)
+    w8Ben: DataTypes.STRING(55)
+    w8BenDate: DataTypes.STRING(55)
+    passPA: DataTypes.STRING(55)
+    passSpouse: DataTypes.STRING(55)
+    passDepnd: DataTypes.STRING(55)
+    idPA: DataTypes.STRING(55)
+    idSpouse: DataTypes.STRING(55)
+    idDepnd: DataTypes.STRING(55)
+    birthPA: DataTypes.STRING(55)
+    birthSpouse: DataTypes.STRING(55)
+    birthDepnd: DataTypes.STRING(55)
+    eduPA: DataTypes.STRING(55)
+    eduSpouse: DataTypes.STRING(55)
+    eduDepnd: DataTypes.STRING(55)
+    pbsPA: DataTypes.STRING(55)
+    resmPA: DataTypes.STRING(55)
+    nDocPA: DataTypes.STRING(55)
+    nDocSpouse: DataTypes.STRING(55)
+    nDocDepnd: DataTypes.STRING(55)
+    nwrPA: DataTypes.STRING(55)
+    nwrSpouse: DataTypes.STRING(55)
+    nwrDepnd: DataTypes.STRING(55)
+    pifPA: DataTypes.STRING(55)
+    pifSpouse: DataTypes.STRING(55)
+    pifDepnd: DataTypes.STRING(55)
+    i526FeePA: DataTypes.STRING(55)
+    nvcFeePA: DataTypes.STRING(55)
+    nvcFeeSpouse: DataTypes.STRING(55)
+    nvcFeeDepent: DataTypes.STRING(55)
+    ds260PA: DataTypes.STRING(55)
+    ds260Spouse: DataTypes.STRING(55)
+    ds260Depent: DataTypes.STRING(55)
+    ds260Sts: DataTypes.STRING(55)
+    passCopyPA: DataTypes.STRING(55)
+    passCopySpouse: DataTypes.STRING(55)
+    passCopyDepent: DataTypes.STRING(55)
+    passCopySts: DataTypes.STRING(55)
+    birthCertPA: DataTypes.STRING(55)
+    birthCertSpouse: DataTypes.STRING(55)
+    birthCertDepent: DataTypes.STRING(55)
+    birthCertSts: DataTypes.STRING(55)
+    marCertPA: DataTypes.STRING(55)
+    marCertSpouse: DataTypes.STRING(55)
+    marCertDepent: DataTypes.STRING(55)
+    marCertSts: DataTypes.STRING(55)
+    natIdPA: DataTypes.STRING(55)
+    natIdSpouse: DataTypes.STRING(55)
+    natIdDepent: DataTypes.STRING(55)
+    natIdSts: DataTypes.STRING(55)
+    resProfPA: DataTypes.STRING(55)
+    resProfSpouse: DataTypes.STRING(55)
+    resProfDepent: DataTypes.STRING(55)
+    resProfSts: DataTypes.STRING(55)
+    pasPhotoPA: DataTypes.STRING(55)
+    pasPhotoSpouse: DataTypes.STRING(55)
+    pasPhotoDepent: DataTypes.STRING(55)
+    pasPhotoSts: DataTypes.STRING(55)
+    polCertPA: DataTypes.STRING(55)
+    polCertSpouse: DataTypes.STRING(55)
+    polCertDepent: DataTypes.STRING(55)
+    polCertSts: DataTypes.STRING(55)
+    visaReqRecDate: DataTypes.STRING(55)
+    visaValdDate: DataTypes.STRING(55)
+    visaInfDate: DataTypes.STRING(55)
+    visaApptDate: DataTypes.STRING(55)
+    visaDocRecDate: DataTypes.STRING(55)
+    visaDocRewDate: DataTypes.STRING(55)
+    visaDocSubDate: DataTypes.STRING(55)
+    visaConSentDate: DataTypes.STRING(55)
+    intwRecDate: DataTypes.STRING(55)
+    intSchDate: DataTypes.STRING(55)
+    intInfmDate: DataTypes.STRING(55)
+    intFixdDate: DataTypes.STRING(55)
+    intBrfDate: DataTypes.STRING(55)
+    intDocDate: DataTypes.STRING(55)
+    intDocRecDate: DataTypes.STRING(55)
+    intPrep: DataTypes.STRING(55)
+    intResult: DataTypes.STRING(55)
+    waHandDate: DataTypes.STRING(55)
+    waDocRecDate: DataTypes.STRING(55)
+    waDocRewDate: DataTypes.STRING(55)
+    waDocSignDate: DataTypes.STRING(55)
+    waAppFinDate: DataTypes.STRING(55)
+    waAppSubDate: DataTypes.STRING(55)
+    waFormRecDate: DataTypes.STRING(55)
+    remark: DataTypes.TEXT
+    tab1File: DataTypes.STRING(255)
+    tab2File: DataTypes.STRING(255)
+    tab3File: DataTypes.STRING(255)
+    tab4File: DataTypes.STRING(255)
+    tab5File: DataTypes.STRING(255)
+    tab6File: DataTypes.STRING(255)
+
+dm_ops_business_documents (DmOpsBusinessDocuments) - 12 cols
+  Columns:
+    id: DataTypes.INTEGER
+    opsId: DataTypes.INTEGER
+    doc_type: DataTypes.STRING(100)
+    doc_uploaded_for: DataTypes.STRING(255)
+    leadId: DataTypes.INTEGER
+    tab: DataTypes.INTEGER
+    name: DataTypes.STRING(555)
+    file: DataTypes.STRING(555)
+    created: DataTypes.DATE
+    status: DataTypes.INTEGER
+    remarks: DataTypes.TEXT
+    download_file: DataTypes.INTEGER
+
+dm_ops_business_dos (DmOpsBusinessDos) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    LOSissuanceDate: DataTypes.DATE
+    LOSexpiryDate: DataTypes.DATE
+    designated_entity_name: DataTypes.STRING(255)
+    PRFilingDate: DataTypes.DATE
+    LOSFile: DataTypes.STRING(255)
+    comments: DataTypes.TEXT
+
+dm_ops_conversation (DmOpsConversation) - 13 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    date: DataTypes.STRING(30)
+    type: DataTypes.STRING(20)
+    conversation: DataTypes.TEXT
+    emp: DataTypes.INTEGER
+    automated: DataTypes.INTEGER
+    created: DataTypes.DATE
+    followup: DataTypes.DATE
+    status: DataTypes.INTEGER
+    followup_remarks: DataTypes.TEXT
+    conversation_status: DataTypes.STRING(50)
+    status_date: DataTypes.DATE
+
+dm_ops_conversation_old (DmOpsConversationOld) - 9 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(111)
+    date: DataTypes.DATE
+    type: DataTypes.STRING(20)
+    conversation: DataTypes.TEXT
+    emp: DataTypes.INTEGER
+    followup: DataTypes.DATE
+    status: DataTypes.INTEGER
+    status_date: DataTypes.DATE
+
+dm_ops_documents (DmOpsDocuments) - 13 cols
+  Columns:
+    id: DataTypes.INTEGER
+    opsId: DataTypes.INTEGER
+    doc_type: DataTypes.STRING(100)
+    doc_uploaded_for: DataTypes.STRING(255)
+    leadId: DataTypes.INTEGER
+    tab: DataTypes.INTEGER
+    name: DataTypes.STRING(555)
+    file: DataTypes.STRING(555)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    status: DataTypes.INTEGER
+    remarks: DataTypes.TEXT
+    download_file: DataTypes.INTEGER
+ [FKs: belongsTo -> DmcForumLeads]
+
+dm_ops_documents_old (DmOpsDocumentsOld) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    opsId: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(111)
+    tab: DataTypes.INTEGER
+    name: DataTypes.STRING(555)
+    file: DataTypes.STRING(555)
+    created: DataTypes.DATE
+
+dm_ops_lang_prof (DmOpsLangProf) - 15 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    tab: DataTypes.INTEGER
+    langTest: DataTypes.STRING(255)
+    spLangTest: DataTypes.STRING(50)
+    testStatus: DataTypes.STRING(255)
+    expiryDate: DataTypes.STRING(55)
+    testDate: DataTypes.STRING(55)
+    testScore: DataTypes.STRING(255)
+    rating: DataTypes.STRING(10)
+    reading: DataTypes.STRING(10)
+    writing: DataTypes.STRING(10)
+    listening: DataTypes.STRING(10)
+    speaking: DataTypes.STRING(10)
+    meetingreq: DataTypes.STRING(50)
+
+dm_ops_lang_prof_old (DmOpsLangProfOld) - 15 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.INTEGER
+    tab: DataTypes.INTEGER
+    langTest: DataTypes.STRING(255)
+    spLangTest: DataTypes.STRING(100)
+    testStatus: DataTypes.STRING(255)
+    expiryDate: DataTypes.STRING(55)
+    testDate: DataTypes.STRING(55)
+    testScore: DataTypes.STRING(255)
+    rating: DataTypes.STRING(10)
+    reading: DataTypes.STRING(10)
+    writing: DataTypes.STRING(10)
+    listening: DataTypes.STRING(10)
+    speaking: DataTypes.STRING(10)
+    meetingreq: DataTypes.TEXT
+
+dm_ops_lang_prof_spouse (DmOpsLangProfSpouse) - 14 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    tab: DataTypes.INTEGER
+    langTest: DataTypes.STRING(255)
+    testStatus: DataTypes.STRING(255)
+    expiryDate: DataTypes.STRING(55)
+    testDate: DataTypes.STRING(55)
+    testScore: DataTypes.STRING(255)
+    rating: DataTypes.STRING(10)
+    reading: DataTypes.STRING(10)
+    writing: DataTypes.STRING(10)
+    listening: DataTypes.STRING(10)
+    speaking: DataTypes.STRING(10)
+    meetingreq: DataTypes.STRING(50)
+
+dm_ops_lang_prof_spouse_old (DmOpsLangProfSpouseOld) - 14 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.INTEGER
+    tab: DataTypes.INTEGER
+    langTest: DataTypes.STRING(255)
+    testStatus: DataTypes.STRING(255)
+    expiryDate: DataTypes.STRING(55)
+    testDate: DataTypes.STRING(55)
+    testScore: DataTypes.STRING(255)
+    rating: DataTypes.STRING(10)
+    reading: DataTypes.STRING(10)
+    writing: DataTypes.STRING(10)
+    listening: DataTypes.STRING(10)
+    speaking: DataTypes.STRING(10)
+    meetingreq: DataTypes.STRING(50)
+
+dm_ops_lmia (DmOpsLmia) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    noc: DataTypes.DATE
+    lmia_submit_date: DataTypes.DATE
+    lmia_status: DataTypes.STRING(100)
+    date_of_approved: DataTypes.DATE
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_ops_medical_request (DmOpsMedicalRequest) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    MedicalRequestDate: DataTypes.DATE
+    CompletionDate: DataTypes.DATE
+    SubmissionDate: DataTypes.DATE
+    comments: DataTypes.TEXT
+
+dm_ops_poland_application (DmOpsPolandApplication) - 13 cols
+  Columns:
+    id: DataTypes.INTEGER
+    tab: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    docSubDate: DataTypes.DATE
+    status: DataTypes.STRING(255)
+    visaStatus: DataTypes.STRING(255)
+    agent: DataTypes.STRING(20)
+    amount_to_agent: DataTypes.DECIMAL(10,2)
+    appointment_status: DataTypes.STRING(20)
+    appointment_date: DataTypes.DATE
+    place: DataTypes.STRING(50)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_ops_poland_jol (DmOpsPolandJol) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    jol_received: DataTypes.STRING(10)
+    jol_received_date: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+    loc_pay: DataTypes.INTEGER
+
+dm_ops_poland_loc (DmOpsPolandLoc) - 12 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    loc_received: DataTypes.STRING(10)
+    loc_received_date: DataTypes.DATE
+    loc_designation: DataTypes.STRING(255)
+    loc_company_name: DataTypes.STRING(255)
+    loc_salary: DataTypes.STRING(100)
+    handover_status: DataTypes.STRING(10)
+    handover_date: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+    wp_pay: DataTypes.INTEGER
+
+dm_ops_skill_australia (DmOpsSkillAustralia) - 55 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    retnDate: DataTypes.STRING(55)
+    agreeNo: DataTypes.STRING(255)
+    langTest: DataTypes.STRING(255)
+    testStatus: DataTypes.STRING(255)
+    expiryDate: DataTypes.STRING(55)
+    testDate: DataTypes.STRING(55)
+    testScore: DataTypes.STRING(255)
+    reading: DataTypes.DECIMAL
+    writing: DataTypes.DECIMAL
+    listening: DataTypes.DECIMAL
+    speaking: DataTypes.DECIMAL
+    spLangTest: DataTypes.STRING(255)
+    anzCode: DataTypes.STRING(255)
+    chklistDate: DataTypes.STRING(55)
+    resultDate: DataTypes.STRING(30)
+    assmAuthority: DataTypes.STRING(255)
+    assmSubDate: DataTypes.STRING(55)
+    assmStatus: DataTypes.STRING(255)
+    spSkillAssm: DataTypes.STRING(255)
+    eoiLodgDate: DataTypes.STRING(55)
+    eoiExpDate: DataTypes.STRING(55)
+    eoiPoint: DataTypes.STRING(255)
+    eoiStatus: DataTypes.STRING(255)
+    eoiFund: DataTypes.STRING(255)
+    eoiState: DataTypes.STRING(555)
+    nomState: DataTypes.STRING(555)
+    nomSubDate: DataTypes.STRING(55)
+    nomExpDate: DataTypes.STRING(55)
+    itaDate: DataTypes.STRING(55)
+    itaExpDate: DataTypes.STRING(55)
+    visaSubDate: DataTypes.STRING(55)
+    medExam: DataTypes.STRING(255)
+    policeClear: DataTypes.STRING(255)
+    visaStatus: DataTypes.STRING(255)
+    landDate: DataTypes.STRING(55)
+    landService: DataTypes.STRING(555)
+    remark: DataTypes.TEXT
+    langFile: DataTypes.STRING(255)
+    skilFile: DataTypes.STRING(255)
+    eoiFile: DataTypes.STRING(255)
+    nomFile: DataTypes.STRING(255)
+    visaFile: DataTypes.STRING(255)
+    landFile: DataTypes.STRING(255)
+    langTests: DataTypes.STRING(30)
+    testStatuss: DataTypes.STRING(30)
+    expiryDates: DataTypes.STRING(30)
+    testDates: DataTypes.STRING(30)
+    testScores: DataTypes.STRING(30)
+    readings: DataTypes.DECIMAL
+    writings: DataTypes.DECIMAL
+    listenings: DataTypes.DECIMAL
+    speakings: DataTypes.DECIMAL
+    langFiles: DataTypes.STRING(100)
+
+dm_ops_skill_australia_assess (DmOpsSkillAustraliaAssess) - 9 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    anzCode: DataTypes.STRING(255)
+    chklistDate: DataTypes.STRING(55)
+    resultDate: DataTypes.STRING(30)
+    assmAuthority: DataTypes.STRING(255)
+    assmSubDate: DataTypes.STRING(55)
+    assmStatus: DataTypes.STRING(255)
+    spSkillAssm: DataTypes.STRING(255)
+
+dm_ops_skill_australia_assess_old (DmOpsSkillAustraliaAssessOld) - 11 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(255)
+    anzCode: DataTypes.STRING(255)
+    chklistDate: DataTypes.STRING(55)
+    resultDate: DataTypes.STRING(30)
+    assmAuthority: DataTypes.STRING(255)
+    assmSubDate: DataTypes.STRING(55)
+    assmStatus: DataTypes.STRING(255)
+    spSkillAssm: DataTypes.STRING(255)
+    remark: DataTypes.TEXT
+    skilFile: DataTypes.STRING(255)
+
+dm_ops_skill_australia_assess_spouse (DmOpsSkillAustraliaAssessSpouse) - 9 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    anzCode: DataTypes.STRING(255)
+    chklistDate: DataTypes.STRING(55)
+    resultDate: DataTypes.STRING(30)
+    assmAuthority: DataTypes.STRING(255)
+    assmSubDate: DataTypes.STRING(55)
+    assmStatus: DataTypes.STRING(255)
+    spSkillAssm: DataTypes.STRING(255)
+
+dm_ops_skill_australia_assess_spouse_old (DmOpsSkillAustraliaAssessSpouseOld) - 11 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(255)
+    anzCode: DataTypes.STRING(255)
+    chklistDate: DataTypes.STRING(55)
+    resultDate: DataTypes.STRING(30)
+    assmAuthority: DataTypes.STRING(255)
+    assmSubDate: DataTypes.STRING(55)
+    assmStatus: DataTypes.STRING(255)
+    spSkillAssm: DataTypes.STRING(255)
+    remark: DataTypes.TEXT
+    skilFile: DataTypes.STRING(255)
+
+dm_ops_skill_australia_old (DmOpsSkillAustraliaOld) - 54 cols
+  Columns:
+    id: DataTypes.INTEGER
+    retnDate: DataTypes.STRING(55)
+    agreeNo: DataTypes.STRING(255)
+    langTest: DataTypes.STRING(255)
+    testStatus: DataTypes.STRING(255)
+    expiryDate: DataTypes.STRING(55)
+    testDate: DataTypes.STRING(55)
+    testScore: DataTypes.STRING(255)
+    reading: DataTypes.DECIMAL
+    writing: DataTypes.DECIMAL
+    listening: DataTypes.DECIMAL
+    speaking: DataTypes.DECIMAL
+    spLangTest: DataTypes.STRING(255)
+    anzCode: DataTypes.STRING(255)
+    chklistDate: DataTypes.STRING(55)
+    resultDate: DataTypes.STRING(30)
+    assmAuthority: DataTypes.STRING(255)
+    assmSubDate: DataTypes.STRING(55)
+    assmStatus: DataTypes.STRING(255)
+    spSkillAssm: DataTypes.STRING(255)
+    eoiLodgDate: DataTypes.STRING(55)
+    eoiExpDate: DataTypes.STRING(55)
+    eoiPoint: DataTypes.STRING(255)
+    eoiStatus: DataTypes.STRING(255)
+    eoiFund: DataTypes.STRING(255)
+    eoiState: DataTypes.STRING(555)
+    nomState: DataTypes.STRING(555)
+    nomSubDate: DataTypes.STRING(55)
+    nomExpDate: DataTypes.STRING(55)
+    itaDate: DataTypes.STRING(55)
+    itaExpDate: DataTypes.STRING(55)
+    visaSubDate: DataTypes.STRING(55)
+    medExam: DataTypes.STRING(255)
+    policeClear: DataTypes.STRING(255)
+    visaStatus: DataTypes.STRING(255)
+    landDate: DataTypes.STRING(55)
+    landService: DataTypes.STRING(555)
+    remark: DataTypes.TEXT
+    langFile: DataTypes.STRING(255)
+    skilFile: DataTypes.STRING(255)
+    eoiFile: DataTypes.STRING(255)
+    nomFile: DataTypes.STRING(255)
+    visaFile: DataTypes.STRING(255)
+    landFile: DataTypes.STRING(255)
+    langTests: DataTypes.STRING(30)
+    testStatuss: DataTypes.STRING(30)
+    expiryDates: DataTypes.STRING(30)
+    testDates: DataTypes.STRING(30)
+    testScores: DataTypes.STRING(30)
+    readings: DataTypes.DECIMAL
+    writings: DataTypes.DECIMAL
+    listenings: DataTypes.DECIMAL
+    speakings: DataTypes.DECIMAL
+    langFiles: DataTypes.STRING(100)
+
+dm_ops_skill_canada_eca (DmOpsSkillCanadaEca) - 39 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    retnDate: DataTypes.STRING(55)
+    agreeNo: DataTypes.STRING(255)
+    ecaReceDate: DataTypes.STRING(55)
+    ecaPackage: DataTypes.STRING(255)
+    ecaDocStatus: DataTypes.STRING(255)
+    ecaAssmBody: DataTypes.STRING(255)
+    ecaApplyDate: DataTypes.STRING(55)
+    ecaPayMode: DataTypes.STRING(255)
+    ecaTranSent: DataTypes.STRING(255)
+    ecaTranStatus: DataTypes.STRING(255)
+    ecaStatus: DataTypes.STRING(255)
+    compDate: DataTypes.STRING(55)
+    ecaFile: DataTypes.STRING(555)
+    spQualify: DataTypes.STRING(255)
+    specaReceDate: DataTypes.STRING(55)
+    specaPackage: DataTypes.STRING(255)
+    specaDocStatus: DataTypes.STRING(255)
+    specaAssmBody: DataTypes.STRING(255)
+    specaApplyDate: DataTypes.STRING(55)
+    specaPayMode: DataTypes.STRING(255)
+    specaTranSent: DataTypes.STRING(255)
+    specaTranStatus: DataTypes.STRING(255)
+    specaStatus: DataTypes.STRING(255)
+    spcompDate: DataTypes.STRING(55)
+    spEcaFile: DataTypes.STRING(555)
+    visaReqDate: DataTypes.STRING(55)
+    passSentDate: DataTypes.STRING(55)
+    passReceDate: DataTypes.STRING(55)
+    visaFile: DataTypes.STRING(255)
+    landDate: DataTypes.STRING(55)
+    landService: DataTypes.STRING(555)
+    landFile: DataTypes.STRING(255)
+    remark: DataTypes.TEXT
+    qualification: DataTypes.STRING(50)
+    specialization: DataTypes.STRING(50)
+    university: DataTypes.STRING(50)
+    comments: DataTypes.STRING(255)
+
+dm_ops_skill_canada_ee (DmOpsSkillCanadaEe) - 19 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    retnDate: DataTypes.STRING(55)
+    agreeNo: DataTypes.STRING(255)
+    eeDocReceDate: DataTypes.STRING(55)
+    eeDocSts: DataTypes.STRING(255)
+    eePoint: DataTypes.STRING(255)
+    eeNoc: DataTypes.STRING(255)
+    eeSecNoc: DataTypes.STRING(255)
+    eeProfLauDate: DataTypes.STRING(55)
+    eeProfExpDate: DataTypes.STRING(55)
+    eeScore: DataTypes.STRING(255)
+    eestatus: DataTypes.STRING(30)
+    eeFile: DataTypes.STRING(255)
+    pnpLaun: DataTypes.STRING(255)
+    pnpSubDate: DataTypes.STRING(55)
+    pnpExpDate: DataTypes.STRING(55)
+    pnpStatus: DataTypes.STRING(255)
+    pnpFile: DataTypes.STRING(255)
+
+dm_ops_skill_canada_ita (DmOpsSkillCanadaIta) - 23 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    itaReceDate: DataTypes.STRING(55)
+    itaSubLastDate: DataTypes.STRING(55)
+    itaDocReceDate: DataTypes.STRING(55)
+    itaDocSts: DataTypes.STRING(255)
+    itaSubDate: DataTypes.STRING(55)
+    itaSts: DataTypes.STRING(255)
+    itaAddiReqDate: DataTypes.STRING(55)
+    itaexpdate: DataTypes.STRING(50)
+    itaFile: DataTypes.STRING(255)
+    visaReqDate: DataTypes.STRING(55)
+    passSentDate: DataTypes.STRING(55)
+    passReceDate: DataTypes.STRING(55)
+    visaFile: DataTypes.STRING(255)
+    landDate: DataTypes.STRING(55)
+    landService: DataTypes.STRING(555)
+    landFile: DataTypes.STRING(255)
+    remark: DataTypes.TEXT
+    qualification: DataTypes.STRING(50)
+    specialization: DataTypes.STRING(50)
+    university: DataTypes.STRING(50)
+    comments: DataTypes.STRING(255)
+
+dm_ops_skill_canada_old (DmOpsSkillCanadaOld) - 84 cols
+  Columns:
+    id: DataTypes.INTEGER
+    retnDate: DataTypes.STRING(55)
+    agreeNo: DataTypes.STRING(255)
+    ecaReceDate: DataTypes.STRING(55)
+    ecaPackage: DataTypes.STRING(255)
+    ecaDocStatus: DataTypes.STRING(255)
+    ecaAssmBody: DataTypes.STRING(255)
+    ecaApplyDate: DataTypes.STRING(55)
+    ecaPayMode: DataTypes.STRING(255)
+    ecaTranSent: DataTypes.STRING(255)
+    ecaTranStatus: DataTypes.STRING(255)
+    ecaStatus: DataTypes.STRING(255)
+    compDate: DataTypes.STRING(55)
+    ecaFile: DataTypes.STRING(555)
+    spQualify: DataTypes.STRING(255)
+    specaReceDate: DataTypes.STRING(55)
+    specaPackage: DataTypes.STRING(255)
+    specaDocStatus: DataTypes.STRING(255)
+    specaAssmBody: DataTypes.STRING(255)
+    specaApplyDate: DataTypes.STRING(55)
+    specaPayMode: DataTypes.STRING(255)
+    specaTranSent: DataTypes.STRING(255)
+    specaTranStatus: DataTypes.STRING(255)
+    specaStatus: DataTypes.STRING(255)
+    spcompDate: DataTypes.STRING(55)
+    spEcaFile: DataTypes.STRING(100)
+    langTest: DataTypes.STRING(100)
+    testStatus: DataTypes.STRING(50)
+    expiryDate: DataTypes.STRING(55)
+    testDate: DataTypes.STRING(55)
+    testScore: DataTypes.STRING(100)
+    spLangTest: DataTypes.STRING(100)
+    langFile: DataTypes.STRING(255)
+    eeDocReceDate: DataTypes.STRING(55)
+    eeDocSts: DataTypes.STRING(255)
+    eePoint: DataTypes.STRING(100)
+    eeNoc: DataTypes.STRING(100)
+    eeSecNoc: DataTypes.STRING(100)
+    eeProfLauDate: DataTypes.STRING(55)
+    eeProfExpDate: DataTypes.STRING(55)
+    eeScore: DataTypes.STRING(255)
+    eestatus: DataTypes.STRING(30)
+    eeFile: DataTypes.STRING(255)
+    pnpLaun: DataTypes.STRING(100)
+    pnpSubDate: DataTypes.STRING(55)
+    pnpExpDate: DataTypes.STRING(55)
+    pnpStatus: DataTypes.STRING(255)
+    pnpFile: DataTypes.STRING(100)
+    itaReceDate: DataTypes.STRING(55)
+    itaSubLastDate: DataTypes.STRING(55)
+    itaDocReceDate: DataTypes.STRING(55)
+    itaDocSts: DataTypes.STRING(100)
+    itaSubDate: DataTypes.STRING(55)
+    itaSts: DataTypes.STRING(100)
+    itaAddiReqDate: DataTypes.STRING(55)
+    itaFile: DataTypes.STRING(255)
+    visaReqDate: DataTypes.STRING(55)
+    passSentDate: DataTypes.STRING(55)
+    passReceDate: DataTypes.STRING(55)
+    visaFile: DataTypes.STRING(255)
+    landDate: DataTypes.STRING(55)
+    landService: DataTypes.STRING(100)
+    landFile: DataTypes.STRING(100)
+    remark: DataTypes.TEXT
+    qualification: DataTypes.STRING(50)
+    specialization: DataTypes.STRING(50)
+    university: DataTypes.STRING(50)
+    rating: DataTypes.STRING(10)
+    reading: DataTypes.STRING(10)
+    writing: DataTypes.STRING(10)
+    listening: DataTypes.STRING(10)
+    speaking: DataTypes.STRING(10)
+    statusS: DataTypes.STRING(20)
+    expirydateS: DataTypes.STRING(20)
+    readingS: DataTypes.STRING(10)
+    writingS: DataTypes.STRING(10)
+    listeningS: DataTypes.STRING(10)
+    speakingS: DataTypes.STRING(10)
+    testdateS: DataTypes.STRING(20)
+    testscoreS: DataTypes.STRING(10)
+    meetingreq: DataTypes.STRING(10)
+    meetingreqS: DataTypes.STRING(10)
+    comments: DataTypes.STRING(255)
+    exp_status: DataTypes.STRING(20)
+
+dm_ops_student_visa (DmOpsStudentVisa) - 15 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    retnDate: DataTypes.STRING(55)
+    agreeNo: DataTypes.STRING(255)
+    docSubDate: DataTypes.STRING(55)
+    planTravDate: DataTypes.STRING(55)
+    descountry: DataTypes.STRING(55)
+    university: DataTypes.STRING(555)
+    docReceDate: DataTypes.STRING(55)
+    appSub: DataTypes.STRING(555)
+    appStatus: DataTypes.STRING(55)
+    remark1: DataTypes.TEXT
+    docFile: DataTypes.STRING(255)
+    appFile: DataTypes.STRING(255)
+    remark2: DataTypes.STRING(255)
+
+dm_ops_updated_by (DmOpsUpdatedBy) [PK=] - 3 cols
+  Columns:
+    lead_id: DataTypes.INTEGER
+    counselor_id: DataTypes.INTEGER
+    date_time: DataTypes.DATE
+
+dm_ops_visit_visa (DmOpsVisitVisa) - 16 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    retnDate: DataTypes.STRING(55)
+    agreeNo: DataTypes.STRING(255)
+    docSubDate: DataTypes.STRING(55)
+    planTravDate: DataTypes.STRING(55)
+    descountry: DataTypes.STRING(55)
+    university: DataTypes.STRING(555)
+    docReceDate: DataTypes.STRING(55)
+    appSub: DataTypes.STRING(555)
+    appStatus: DataTypes.STRING(55)
+    remark1: DataTypes.TEXT
+    docFile: DataTypes.STRING(255)
+    appFile: DataTypes.STRING(255)
+    remark2: DataTypes.STRING(255)
+    remark_by: DataTypes.INTEGER
+
+dm_ops_visit_visa_application (DmOpsVisitVisaApplication) - 11 cols
+  Columns:
+    id: DataTypes.INTEGER
+    tab: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    docReceDate: DataTypes.DATE
+    appSubDate: DataTypes.DATE
+    appSub: DataTypes.STRING(255)
+    appStatus: DataTypes.STRING(255)
+    country: DataTypes.STRING(100)
+    num_of_applicants: DataTypes.STRING(100)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_pay_history (DmPayHistory) - 26 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    amount: DataTypes.DECIMAL(10,2)
+    counselor_receipt: DataTypes.STRING(255)
+    tabby: DataTypes.DECIMAL(10,2)
+    date: DataTypes.DATE
+    payMethod: DataTypes.STRING(555)
+    payoption: DataTypes.STRING(25)
+    paycardoption: DataTypes.STRING(100)
+    payNextDate: DataTypes.DATE
+    payBalance: DataTypes.DECIMAL(10,2)
+    tax: DataTypes.DECIMAL(10,2)
+    payCategory: DataTypes.STRING(255)
+    payment_remarks: DataTypes.TEXT
+    status: DataTypes.INTEGER
+    remark: DataTypes.TEXT
+    canDate: DataTypes.DATE
+    thirdPartyAmt: DataTypes.DECIMAL(10,2)
+    dmAmt: DataTypes.DECIMAL(10,2)
+    dmTax: DataTypes.DECIMAL(10,2)
+    dmRefundAmt: DataTypes.DECIMAL(10,2)
+    curValue: DataTypes.INTEGER
+    refNumber: DataTypes.STRING(255)
+    created_by: DataTypes.INTEGER
+    stage: DataTypes.STRING(100)
+    totaltillnow: DataTypes.DECIMAL(10,2)
+ [FKs: belongsTo -> DmcForumLeads]
+
+dm_pay_history_cross_branch (DmPayHistoryCrossBranch) - 21 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    amount: DataTypes.DECIMAL(10,2)
+    counselor_receipt: DataTypes.STRING(255)
+    date: DataTypes.DATE
+    payMethod: DataTypes.STRING(555)
+    payBalance: DataTypes.DECIMAL(10,2)
+    tax: DataTypes.DECIMAL(10,2)
+    payCategory: DataTypes.STRING(255)
+    payment_remarks: DataTypes.TEXT
+    status: DataTypes.INTEGER
+    remark: DataTypes.TEXT
+    canDate: DataTypes.DATE
+    thirdPartyAmt: DataTypes.DECIMAL(10,2)
+    dmAmt: DataTypes.DECIMAL(10,2)
+    dmTax: DataTypes.DECIMAL(10,2)
+    dmRefundAmt: DataTypes.DECIMAL(10,2)
+    curValue: DataTypes.INTEGER
+    refNumber: DataTypes.STRING(255)
+    created_by: DataTypes.INTEGER
+    stage: DataTypes.STRING(100)
+
+dm_permissions (DmPermission) - 9 cols
+  Columns:
+    id: DataTypes.INTEGER
+    permission_key: DataTypes.STRING(120)
+    module: DataTypes.STRING(80)
+    action: DataTypes.STRING(40)
+    label: DataTypes.STRING(160)
+    description: DataTypes.TEXT
+    status: DataTypes.INTEGER
+    created_at: DataTypes.DATE
+    updated_at: DataTypes.DATE
+ [FKs: hasMany -> DmRolePermission; belongsToMany -> DmRole]
+ [UNIQUE: permission_key]
+
+dm_pnp (DmPnp) - 13 cols
+  Columns:
+    id: DataTypes.INTEGER
+    opsid: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    pnp: DataTypes.STRING(50)
+    pts: DataTypes.INTEGER
+    eoisubdate: DataTypes.STRING(50)
+    eoiexpdate: DataTypes.STRING(50)
+    noiexpdate: DataTypes.STRING(50)
+    noisubdate: DataTypes.STRING(50)
+    noirecdate: DataTypes.STRING(50)
+    nomawdate: DataTypes.STRING(30)
+    nomexpdate: DataTypes.STRING(30)
+    status: DataTypes.STRING(50)
+ [FKs: belongsTo -> DmcForumLeads]
+
+dm_pnp_old (DmPnpOld) - 15 cols
+  Columns:
+    id: DataTypes.INTEGER
+    opsid: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(111)
+    pnp: DataTypes.STRING(50)
+    subdate: DataTypes.STRING(50)
+    expdate: DataTypes.STRING(50)
+    status: DataTypes.STRING(50)
+    pts: DataTypes.STRING(50)
+    eoisubdate: DataTypes.STRING(50)
+    noiexpdate: DataTypes.STRING(50)
+    noisubdate: DataTypes.STRING(50)
+    eoiexpdate: DataTypes.STRING(50)
+    noirecdate: DataTypes.STRING(50)
+    nomawdate: DataTypes.STRING(50)
+    nomexpdate: DataTypes.STRING(50)
+
+dm_pol_biometrics (DmPolBiometrics) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    country: DataTypes.INTEGER
+    bio_status: DataTypes.STRING(100)
+    biometrics_appointment_date: DataTypes.DATE
+    status: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dm_poland_work_permit (DmPolandWorkPermit) - 18 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    docs_received: DataTypes.DATE
+    designation: DataTypes.STRING(255)
+    company_name: DataTypes.STRING(255)
+    wp_renewal: DataTypes.STRING(20)
+    wp_payment: DataTypes.DECIMAL(10,2)
+    job_applied_date: DataTypes.DATE
+    job_offer_rec_date: DataTypes.DATE
+    job_status: DataTypes.STRING(255)
+    job_hard_status: DataTypes.STRING(255)
+    work_permit_rec_date: DataTypes.DATE
+    work_permit_hard_rec_date: DataTypes.DATE
+    app_country_name: DataTypes.INTEGER
+    salary: DataTypes.STRING(255)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    final_pay: DataTypes.INTEGER
+
+dm_program_type (DmProgramType) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    type: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+ [FKs: hasMany -> DmCountriesTypeProgram]
+
+dm_prospect_documents (DmProspectDocuments) TS - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    prospectId: DataTypes.INTEGER
+    name: DataTypes.STRING(255)
+    uploadDate: DataTypes.DATEONLY
+    url: DataTypes.STRING(500)
+    type: DataTypes.STRING(80)
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+ [FKs: belongsTo -> DmProspects]
+
+dm_prospect_remarks (DmProspectRemarks) TS - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    prospectId: DataTypes.INTEGER
+    date: DataTypes.DATEONLY
+    remark: DataTypes.TEXT
+    employeeId: DataTypes.INTEGER
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+ [FKs: belongsTo -> DmProspects; belongsTo -> DmEmployee]
+
+dm_prospects (DmProspects) TS - 9 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreementNumber: DataTypes.STRING(100)
+    date: DataTypes.DATEONLY
+    oldNew: DataTypes.STRING(20)
+    noc: DataTypes.STRING(255)
+    counselorId: DataTypes.INTEGER
+    status: DataTypes.STRING(50)
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+ [FKs: belongsTo -> DmEmployee; hasMany -> DmProspectDocuments; hasMany -> DmProspectRemarks]
+
+dm_refunds (DmRefunds) - 14 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    refund_amount: DataTypes.DECIMAL(10,2)
+    refund_file: DataTypes.STRING(255)
+    refund_approved_by: DataTypes.INTEGER
+    refund_date: DataTypes.DATE
+    refund_department: DataTypes.INTEGER
+    revenue_adjust: DataTypes.INTEGER
+    revenue_deduct: DataTypes.INTEGER
+    refund_approved_date: DataTypes.DATE
+    refund_remarks: DataTypes.TEXT
+    refund_type: DataTypes.STRING(100)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_region (DmRegion) - 3 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+
+dm_role (DmRole) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(555)
+    hierarchy: DataTypes.INTEGER
+    status: DataTypes.INTEGER
+    type: DataTypes.STRING(55)
+    department_id: DataTypes.INTEGER
+ [FKs: hasMany -> DmEmployee; hasMany -> DmRolePermission; belongsToMany -> DmPermission]
+
+dm_role_permissions (DmRolePermission) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    role_id: DataTypes.INTEGER
+    permission_id: DataTypes.INTEGER
+    status: DataTypes.INTEGER
+    created_at: DataTypes.DATE
+    updated_at: DataTypes.DATE
+ [FKs: belongsTo -> DmRole; belongsTo -> DmPermission]
+
+dm_service (DmService) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(555)
+    status: DataTypes.INTEGER
+    flag: DataTypes.STRING(100)
+    slogan_logo: DataTypes.STRING(100)
+ [FKs: hasMany -> DmFee; hasMany -> DmCountriesTypeProgram]
+
+dm_source (DmSource) - 3 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(555)
+    status: DataTypes.INTEGER
+ [UNIQUE: name]
+
+dm_stages (DmStages) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    stage: DataTypes.STRING(100)
+    duration: DataTypes.INTEGER
+    duration_type: DataTypes.STRING(10)
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+    is_deleted: DataTypes.INTEGER
+
+dm_success_stories (DmSuccessStories) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    folder_id: DataTypes.INTEGER
+    files: DataTypes.STRING(255)
+    sub_folder_id: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+    is_deleted: DataTypes.INTEGER
+
+dm_success_stories_folder (DmSuccessStoriesFolder) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    parent_id: DataTypes.INTEGER
+    folder: DataTypes.STRING(255)
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+    is_deleted: DataTypes.INTEGER
+
+dm_sv_admissions (DmSvAdmissions) - 13 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    tab: DataTypes.INTEGER
+    doc_rec_date: DataTypes.DATE
+    doc_status: DataTypes.STRING(50)
+    docs_sent_through: DataTypes.DATE
+    mode: DataTypes.STRING(50)
+    university_name: DataTypes.TEXT
+    program_applied: DataTypes.STRING(100)
+    admission_status: DataTypes.STRING(100)
+    adminssion_intake: DataTypes.DATE
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_sv_cic (DmSvCic) - 10 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    tab: DataTypes.INTEGER
+    doc_rec_date: DataTypes.DATE
+    docs_status: DataTypes.STRING(50)
+    nationality: DataTypes.STRING(50)
+    application_sub_date: DataTypes.DATE
+    status: DataTypes.STRING(50)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_sv_credentials (DmSvCredentials) - 14 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    eeuid: DataTypes.STRING(50)
+    eeusrpsswrd: DataTypes.STRING(50)
+    eeregemail: DataTypes.STRING(50)
+    eeregpsswrd: DataTypes.STRING(50)
+    eesecq1: DataTypes.STRING(200)
+    ee1: DataTypes.STRING(200)
+    eesecq2: DataTypes.STRING(200)
+    ee2: DataTypes.STRING(200)
+    eesecq3: DataTypes.STRING(200)
+    ee3: DataTypes.STRING(200)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_target_dates (DmTargetDates) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    month: DataTypes.STRING(100)
+    start_date: DataTypes.DATE
+    end_date: DataTypes.DATE
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dm_task (DmTask) - 11 cols
+  Columns:
+    id: DataTypes.INTEGER
+    task: DataTypes.STRING(555)
+    dob: DataTypes.DATE
+    date_created: DataTypes.STRING(30)
+    stage: DataTypes.INTEGER
+    asignTo: DataTypes.INTEGER
+    asignBy: DataTypes.INTEGER
+    status: DataTypes.STRING(20)
+    doc: DataTypes.STRING(30)
+    notf: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dm_teams (DmTeams) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    team: DataTypes.STRING(100)
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_third_party_payments (DmThirdPartyPayments) - 12 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    payment: DataTypes.DECIMAL(10,2)
+    payment_proof: DataTypes.STRING(255)
+    tax: DataTypes.DECIMAL(10,2)
+    balance: DataTypes.DECIMAL(10,2)
+    approved: DataTypes.INTEGER
+    approved_by: DataTypes.INTEGER
+    approved_date: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+    reject_remarks: DataTypes.TEXT
+
+dm_training_updates (DmTrainingUpdates) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    userid: DataTypes.INTEGER
+    file: DataTypes.STRING(150)
+    date: DataTypes.DATE
+    status: DataTypes.INTEGER
+
+dm_user_branches (DmUserBranches) - 3 cols
+  Columns:
+    id: DataTypes.INTEGER
+    user_id: DataTypes.INTEGER
+    branch_id: DataTypes.INTEGER
+
+dm_user_teams (DmUserTeams) - 3 cols
+  Columns:
+    id: DataTypes.INTEGER
+    user_id: DataTypes.INTEGER
+    team_id: DataTypes.INTEGER
+
+dm_vendor_documents (DmVendorDocuments) - 13 cols
+  Columns:
+    id: DataTypes.INTEGER
+    batch_id: DataTypes.INTEGER
+    doc_type: DataTypes.STRING(100)
+    doc_uploaded_for: DataTypes.STRING(255)
+    leadId: DataTypes.INTEGER
+    tab: DataTypes.INTEGER
+    name: DataTypes.STRING(555)
+    file: DataTypes.STRING(555)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    status: DataTypes.INTEGER
+    remarks: DataTypes.TEXT
+    download_file: DataTypes.INTEGER
+
+dm_vendor_invoice (DmVendorInvoice) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    vendor_id: DataTypes.INTEGER
+    batch_id: DataTypes.INTEGER
+    ag_no: DataTypes.TEXT
+    invoice: DataTypes.INTEGER
+    created: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+
+dm_vendors (DmVendors) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dm_vv_applicant_fees (DmVvApplicantFees) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    number_of_applicants: DataTypes.INTEGER
+    amount: DataTypes.DECIMAL(10, 2)
+    tax: DataTypes.DECIMAL(10, 2)
+    total: DataTypes.INTEGER
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_vv_biometrics (DmVvBiometrics) - 12 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    bio_name: DataTypes.STRING(255)
+    bio_age: DataTypes.STRING(50)
+    biometrics_submission: DataTypes.STRING(100)
+    country: DataTypes.INTEGER
+    no_of_applicant: DataTypes.INTEGER
+    bio_status: DataTypes.STRING(100)
+    biometrics_appointment_date: DataTypes.DATE
+    status: DataTypes.INTEGER
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dm_vv_credentials (DmVvCredentials) - 14 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    eeuid: DataTypes.STRING(50)
+    eeusrpsswrd: DataTypes.STRING(50)
+    eeregemail: DataTypes.STRING(50)
+    eeregpsswrd: DataTypes.STRING(50)
+    eesecq1: DataTypes.STRING(200)
+    ee1: DataTypes.STRING(200)
+    eesecq2: DataTypes.STRING(200)
+    ee2: DataTypes.STRING(200)
+    eesecq3: DataTypes.STRING(200)
+    ee3: DataTypes.STRING(200)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+dm_welcome_email (DmWelcomeEmail) - 11 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    remarks: DataTypes.TEXT
+    teer_code: DataTypes.STRING(100)
+    subject: DataTypes.TEXT
+    email_from: DataTypes.STRING(255)
+    to: DataTypes.TEXT
+    cc: DataTypes.TEXT
+    bcc: DataTypes.TEXT
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dm_welcome_email_docs (DmWelcomeEmailDocs) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    docs: DataTypes.STRING(255)
+    docs_for: DataTypes.STRING(255)
+    created_by: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dm_wp_cases (DmWpCases) - 24 cols
+  Columns:
+    id: DataTypes.INTEGER
+    vendor_id: DataTypes.INTEGER
+    approve: DataTypes.INTEGER
+    stage_2_approve: DataTypes.INTEGER
+    stage_3_approve: DataTypes.INTEGER
+    stage_2_denied: DataTypes.INTEGER
+    stage_3_denied: DataTypes.INTEGER
+    declined: DataTypes.INTEGER
+    ag_no: DataTypes.INTEGER
+    amount: DataTypes.DECIMAL(10,2)
+    amount_stage_2: DataTypes.DECIMAL(10,2)
+    amount_stage_3: DataTypes.DECIMAL(10,2)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    batch_id: DataTypes.INTEGER
+    account_approve: DataTypes.INTEGER
+    account_approve_two: DataTypes.INTEGER
+    account_approve_three: DataTypes.INTEGER
+    ops_approve: DataTypes.INTEGER
+    ops_approve_two: DataTypes.INTEGER
+    ops_approve_three: DataTypes.INTEGER
+    stage_2_file: DataTypes.STRING(200)
+    stage_3_file: DataTypes.STRING(200)
+    rejection: DataTypes.TEXT
+
+dm_wp_fee (DmWpFee) - 11 cols
+  Columns:
+    id: DataTypes.INTEGER
+    service: DataTypes.INTEGER
+    country: DataTypes.INTEGER
+    branch: DataTypes.INTEGER
+    currency: DataTypes.INTEGER
+    firstStage: DataTypes.DECIMAL(10,2)
+    secondStage: DataTypes.DECIMAL(10,2)
+    thirdStage: DataTypes.DECIMAL(10,2)
+    forthStage: DataTypes.DECIMAL(10,2)
+    fifthStage: DataTypes.DECIMAL(10,2)
+    status: DataTypes.INTEGER
+
+dmc_auh_email_leads (DmcAuhEmailLeads) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    email: DataTypes.STRING(555)
+    email_sent: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dmc_auto_reassignment_rules (DmcAutoReassignmentRules) TS - 12 cols
+  Columns:
+    id: DataTypes.INTEGER
+    rule_name: DataTypes.STRING(255)
+    description: DataTypes.TEXT
+    inactive_hours_threshold: DataTypes.INTEGER
+    auto_reassign: DataTypes.BOOLEAN
+    reassign_to_role: DataTypes.STRING(50)
+    reassign_to_branch: DataTypes.INTEGER
+    priority_filter: DataTypes.STRING(50)
+    lead_quality_filter: DataTypes.STRING(100)
+    is_active: DataTypes.BOOLEAN
+    created_at: DataTypes.DATE
+    updated_at: DataTypes.DATE
+
+dmc_auto_reassignment_runs (DmcAutoReassignmentRuns) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    processed: DataTypes.INTEGER
+    reassigned: DataTypes.INTEGER
+    created_at: DataTypes.DATE
+
+dmc_follow_up_reminders (DmcFollowUpReminders) - 10 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    user_id: DataTypes.INTEGER
+    reminder_date: DataTypes.DATE
+    message: DataTypes.TEXT
+    status: DataTypes.STRING(20)
+    priority: DataTypes.STRING(20)
+    completed_at: DataTypes.DATE
+    created_at: DataTypes.DATE
+    updated_at: DataTypes.DATE
+ [FKs: belongsTo -> DmcForumLeads; belongsTo -> DmEmployee]
+
+dmc_forum_email_leads (DmcForumEmailLeads) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    email: DataTypes.STRING(555)
+    paidYet: DataTypes.DECIMAL(10,2)
+    email_sent: DataTypes.INTEGER
+    created: DataTypes.DATE
+
+dmc_forum_leads (DmcForumLeads) - 121 cols
+  Columns:
+    id: DataTypes.INTEGER
+    fname: DataTypes.STRING(555)
+    mname: DataTypes.STRING(555)
+    lname: DataTypes.STRING(555)
+    email: DataTypes.STRING(555)
+    phone: DataTypes.STRING(555)
+    mobile: DataTypes.STRING(555)
+    nationality: DataTypes.STRING(555)
+    address: DataTypes.TEXT
+    dob: DataTypes.DATE
+    gender: DataTypes.STRING(55)
+    id_number: DataTypes.STRING(255)
+    id_expiry: DataTypes.DATE
+    id_issue_date: DataTypes.DATE
+    country_interest: DataTypes.STRING(555)
+    sub_country_interest: DataTypes.INTEGER
+    service_interest: DataTypes.STRING(555)
+    market_source: DataTypes.STRING(555)
+    sub_market_source: DataTypes.INTEGER
+    appointment: DataTypes.DATE
+    followup: DataTypes.DATE
+    folowuptime: DataTypes.TIME
+    followupstat: DataTypes.INTEGER
+    enquiry: DataTypes.STRING(555)
+    convet: DataTypes.STRING(555)
+    priority: DataTypes.STRING(10)
+    regdate: DataTypes.DATE
+    regtime: DataTypes.TIME
+    last_updated: DataTypes.STRING(30)
+    last_updtd_time: DataTypes.STRING(50)
+    stepComplete: DataTypes.INTEGER
+    payType: DataTypes.STRING(55)
+    assignTo: DataTypes.INTEGER
+    case_officer: DataTypes.INTEGER
+    Counsilor: DataTypes.INTEGER
+    branch: DataTypes.INTEGER
+    region: DataTypes.INTEGER
+    payTotal: DataTypes.DECIMAL(10, 2)
+    discount: DataTypes.DECIMAL(10, 2)
+    paidYet: DataTypes.DECIMAL(10, 2)
+    payBalance: DataTypes.DECIMAL(10, 2)
+    feeAgreeDate: DataTypes.DATE
+    demandAmt: DataTypes.DECIMAL(10, 2)
+    dueDate: DataTypes.DATE
+    demdRemark: DataTypes.TEXT
+    agreeDate: DataTypes.DATE
+    renDate: DataTypes.DATE
+    renExpiryDate: DataTypes.DATE
+    renew_type: DataTypes.STRING(50)
+    status: DataTypes.STRING(55)
+    status_date: DataTypes.DATE
+    notf: DataTypes.INTEGER
+    type: DataTypes.TEXT
+    password: DataTypes.STRING(30)
+    novat: DataTypes.INTEGER
+    i_p: DataTypes.STRING(50)
+    escalation: DataTypes.STRING(20)
+    transfer_date: DataTypes.DATE
+    transfer_time: DataTypes.STRING(20)
+    transfered: DataTypes.INTEGER
+    transfered_by: DataTypes.INTEGER
+    otp_status: DataTypes.INTEGER
+    otp: DataTypes.INTEGER
+    otp_date: DataTypes.DATE
+    otp_email: DataTypes.STRING(255)
+    browser: DataTypes.TEXT
+    hostname: DataTypes.TEXT
+    digital_signature: DataTypes.TEXT
+    lead_import_by: DataTypes.INTEGER
+    lead_import: DataTypes.INTEGER
+    education: DataTypes.STRING(255)
+    profession: DataTypes.STRING(255)
+    exist: DataTypes.INTEGER
+    no_of_applicants: DataTypes.INTEGER
+    advanced: DataTypes.INTEGER
+    do_status: DataTypes.INTEGER
+    arm_status: DataTypes.INTEGER
+    gm_status: DataTypes.INTEGER
+    discount_status: DataTypes.INTEGER
+    discount_remarks: DataTypes.TEXT
+    discount_by: DataTypes.INTEGER
+    discount_date: DataTypes.DATE
+    campaign: DataTypes.STRING(200)
+    campaign_group: DataTypes.STRING(50)
+    pa_fname: DataTypes.STRING(255)
+    pa_lname: DataTypes.STRING(255)
+    lead_remark: DataTypes.TEXT
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+    alert: DataTypes.INTEGER
+    area: DataTypes.STRING(100)
+    lead_quality: DataTypes.STRING(100)
+    transferred_remark_update: DataTypes.INTEGER
+    untouch_transfer: DataTypes.INTEGER
+    lead_nq_reason: DataTypes.STRING(100)
+    tele_caller_alert: DataTypes.INTEGER
+    tele_caller_remark: DataTypes.TEXT
+    tele_caller_remark_by: DataTypes.INTEGER
+    tele_date: DataTypes.DATE
+    lead_date: DataTypes.DATE
+    duplicate: DataTypes.INTEGER
+    duplicate_count: DataTypes.INTEGER
+    ref_remark: DataTypes.TEXT
+    na_record: DataTypes.INTEGER
+    old_assgined: DataTypes.INTEGER
+    nal_count: DataTypes.INTEGER
+    campaign_id: DataTypes.INTEGER
+    old_branch: DataTypes.INTEGER
+    conversion_date: DataTypes.DATE
+    conversion_reason: DataTypes.TEXT
+    lost_reason: DataTypes.TEXT
+    competitor: DataTypes.STRING(255)
+    qualification_score: DataTypes.INTEGER
+    budget_range: DataTypes.STRING(100)
+    timeline: DataTypes.STRING(100)
+    decision_maker: DataTypes.STRING(255)
+    decision_maker_title: DataTypes.STRING(255)
+    decision_maker_contact: DataTypes.STRING(255)
+    next_followup_date: DataTypes.DATE
+    opportunity_notes: DataTypes.TEXT
+    tags: DataTypes.STRING(500)
+ [FKs: belongsTo -> DmEmployee; belongsTo -> DmBranch; hasMany -> DmcOpportunities; hasMany -> DmOperationStageData; hasMany -> DmOpsDocuments; belongsTo -> DmRegion; belongsTo -> DmEmployee; belongsT
+
+dmc_forum_leads_assesment_desgn (DmcForumLeadsAssesmentDesgn) - 10 cols
+  Columns:
+    id: DataTypes.INTEGER
+    skillId: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    fromEmpRecMonth: DataTypes.STRING(555)
+    fromEmpRecYear: DataTypes.STRING(555)
+    toEmpRecMonth: DataTypes.STRING(555)
+    toEmpRecYear: DataTypes.STRING(555)
+    empRecName: DataTypes.STRING(555)
+    empRecDesign: DataTypes.STRING(555)
+    empRecType: DataTypes.STRING(555)
+ [FKs: belongsTo -> DmcForumLeadsAssesments; belongsTo -> DmcForumLeads]
+
+dmc_forum_leads_assesment_edu (DmcForumLeadsAssesmentEdu) - 11 cols
+  Columns:
+    id: DataTypes.INTEGER
+    skillId: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    fromMonth: DataTypes.STRING(555)
+    fromYear: DataTypes.STRING(555)
+    toMonth: DataTypes.STRING(555)
+    toYear: DataTypes.STRING(555)
+    pSEduName: DataTypes.STRING(555)
+    pSEduCourse: DataTypes.STRING(555)
+    pSEduDegree: DataTypes.STRING(555)
+    pSEduType: DataTypes.STRING(555)
+ [FKs: belongsTo -> DmcForumLeadsAssesments; belongsTo -> DmcForumLeads]
+
+dmc_forum_leads_assesments (DmcForumLeadsAssesments) [PK=] - 31 cols
+  Columns:
+    Id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    Type: DataTypes.STRING(55)
+    cob: DataTypes.STRING(555)
+    phOffice: DataTypes.STRING(555)
+    marStatus: DataTypes.STRING(555)
+    haveChild: DataTypes.STRING(555)
+    noOfChild: DataTypes.STRING(555)
+    spfname: DataTypes.STRING(255)
+    spmname: DataTypes.STRING(255)
+    splname: DataTypes.STRING(255)
+    spgender: DataTypes.STRING(255)
+    spdob: DataTypes.DATE
+    spcob: DataTypes.STRING(255)
+    spcitizenof: DataTypes.STRING(255)
+    spaddress: DataTypes.TEXT
+    spmobile: DataTypes.STRING(255)
+    spphHome: DataTypes.STRING(255)
+    spphOffice: DataTypes.STRING(255)
+    spemail: DataTypes.STRING(255)
+    relName: DataTypes.STRING(555)
+    reRelation: DataTypes.STRING(555)
+    reCountry: DataTypes.STRING(555)
+    reAddress: DataTypes.STRING(555)
+    reStatus: DataTypes.STRING(555)
+    moveAsset: DataTypes.STRING(555)
+    inmoveAsset: DataTypes.STRING(555)
+    interestIn: DataTypes.STRING(555)
+    ownership: DataTypes.STRING(555)
+    document: DataTypes.STRING(255)
+    assesment: DataTypes.STRING(10)
+ [FKs: belongsTo -> DmcForumLeads; hasMany -> DmcForumLeadsAssesmentDesgn; hasMany -> DmcForumLeadsAssesmentEdu]
+
+dmc_forum_leads_contracts (DmcForumLeadsContracts) - 17 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    contract: DataTypes.STRING(555)
+    unsigned_contract: DataTypes.STRING(255)
+    new_contract: DataTypes.STRING(555)
+    ar_contract: DataTypes.STRING(255)
+    garys: DataTypes.STRING(10)
+    verify: DataTypes.INTEGER
+    remarks: DataTypes.TEXT
+    verify_by: DataTypes.INTEGER
+    verify_date: DataTypes.DATE
+    batch_id: DataTypes.INTEGER
+    wp_batch_id: DataTypes.INTEGER
+    vendor_id: DataTypes.INTEGER
+    employer_id: DataTypes.INTEGER
+    old_crm_ag_id: DataTypes.INTEGER
+    payment_status: DataTypes.INTEGER
+ [FKs: belongsTo -> DmcForumLeads; hasMany -> GaryWorkDocs]
+
+dmc_forum_leads_fee (DmcForumLeadsFee) - 9 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead: DataTypes.INTEGER
+    amount: DataTypes.DECIMAL(10, 2)
+    taxAmt: DataTypes.DECIMAL(10, 2)
+    payDate: DataTypes.DATE
+    paidAmt: DataTypes.DECIMAL(10, 2)
+    paidDate: DataTypes.DATE
+    profAmt: DataTypes.DECIMAL(10, 2)
+    status: DataTypes.INTEGER
+ [FKs: belongsTo -> DmcForumLeads]
+
+dmc_forum_leads_observation_old (DmcForumLeadsObservationOld) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(111)
+    obs_sheet: DataTypes.STRING(555)
+    agreement_sheet: DataTypes.STRING(500)
+
+dmc_forum_leads_observations (DmcForumLeadsObservations) - 10 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    sheet: DataTypes.STRING(555)
+    emirateId: DataTypes.STRING(255)
+    document: DataTypes.STRING(255)
+    remark: DataTypes.TEXT
+    os_visit_sheet: DataTypes.STRING(255)
+    visit_obs_type: DataTypes.STRING(100)
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+ [FKs: belongsTo -> DmcForumLeads]
+
+dmc_forum_leads_remark_g (DmcForumLeadsRemarkG) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead: DataTypes.INTEGER
+    date: DataTypes.DATE
+    remark: DataTypes.TEXT
+
+dmc_forum_leads_remark_olds (DmcForumLeadsRemarkOlds) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.STRING(100)
+    date: DataTypes.DATE
+    remark: DataTypes.TEXT
+    emp: DataTypes.STRING(30)
+
+dmc_forum_leads_remarks (DmcForumLeadsRemarks) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead: DataTypes.INTEGER
+    date: DataTypes.DATE
+    remark: DataTypes.TEXT
+    emp: DataTypes.INTEGER
+    created: DataTypes.TIME
+    status: DataTypes.INTEGER
+ [FKs: belongsTo -> DmcForumLeads]
+
+dmc_meeting_schedules (DmcMeetingSchedules) - 13 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    user_id: DataTypes.INTEGER
+    meeting_date: DataTypes.DATE
+    meeting_type: DataTypes.STRING(50)
+    location: DataTypes.STRING(255)
+    agenda: DataTypes.TEXT
+    status: DataTypes.STRING(20)
+    priority: DataTypes.STRING(20)
+    notes: DataTypes.TEXT
+    completed_at: DataTypes.DATE
+    created_at: DataTypes.DATE
+    updated_at: DataTypes.DATE
+ [FKs: belongsTo -> DmcForumLeads; belongsTo -> DmEmployee]
+
+dmc_new_add_leads (DmcNewAddLeads) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    email: DataTypes.STRING(255)
+    sent: DataTypes.INTEGER
+    date: DataTypes.DATE
+    fname: DataTypes.STRING(200)
+
+dmc_new_add_po_leads (DmcNewAddPoLeads) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    email: DataTypes.STRING(255)
+    sent: DataTypes.INTEGER
+    date: DataTypes.DATE
+    name: DataTypes.STRING(255)
+
+dmc_notifications (DmcNotifications) - 9 cols
+  Columns:
+    id: DataTypes.INTEGER
+    user_id: DataTypes.INTEGER
+    type: DataTypes.STRING(50)
+    title: DataTypes.STRING(255)
+    message: DataTypes.TEXT
+    is_read: DataTypes.BOOLEAN
+    priority: DataTypes.STRING(20)
+    created_at: DataTypes.DATE
+    updated_at: DataTypes.DATE
+ [FKs: belongsTo -> DmEmployee]
+
+dmc_opportunities (DmcOpportunities) TS - 41 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    opportunityNumber: DataTypes.STRING(50)
+    opportunityName: DataTypes.STRING(255)
+    opportunityType: DataTypes.STRING(100)
+    serviceType: DataTypes.STRING(255)
+    estimatedValue: DataTypes.DECIMAL(15, 2)
+    actualValue: DataTypes.DECIMAL(15, 2)
+    currency: DataTypes.STRING(10)
+    priority: DataTypes.ENUM('low', 'medium', 'high', 'urgent')
+    status: DataTypes.ENUM('prospect', 'qualified', 'quotation_sent', 'negotiation', 'won', 'lost', 'closed')
+    stage: DataTypes.STRING(100)
+    probability: DataTypes.INTEGER
+    expectedCloseDate: DataTypes.DATE
+    actualCloseDate: DataTypes.DATE
+    description: DataTypes.TEXT
+    serviceRequired: DataTypes.STRING(255)
+    source: DataTypes.STRING(100)
+    campaign: DataTypes.STRING(100)
+    leadSource: DataTypes.STRING(255)
+    branchId: DataTypes.INTEGER
+    assignedTo: DataTypes.INTEGER
+    createdBy: DataTypes.INTEGER
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+    lostReason: DataTypes.TEXT
+    competitor: DataTypes.STRING(255)
+    nextAction: DataTypes.STRING(255)
+    nextActionDate: DataTypes.DATE
+    tags: DataTypes.STRING(500)
+    notes: DataTypes.TEXT
+    conversionDate: DataTypes.DATE
+    retentionAmount: DataTypes.DECIMAL(15, 2)
+    retentionStatus: DataTypes.ENUM('pending', 'approved', 'rejected')
+    retentionDate: DataTypes.DATE
+    agreementGenerated: DataTypes.BOOLEAN
+    agreementId: DataTypes.INTEGER
+    agreementSent: DataTypes.BOOLEAN
+    agreementSigned: DataTypes.BOOLEAN
+    paymentReceived: DataTypes.BOOLEAN
+    documentsVerified: DataTypes.BOOLEAN
+ [ENUMS: priority: 'low', 'medium', 'high', 'urgent'; status: 'prospect', 'qualified', 'quotation_sent', 'negotiation', 'won', 'lost', 'closed'; retentionStatus: 'pending', 'approved', 'rejected']
+ [FKs: belongsTo -> DmcForumLeads; belongsTo -> DmEmployee; belongsTo -> DmEmployee; hasMany -> DmcOpportunityQuotations; hasMany -> DmcOpportunityPayments; hasMany -> DmcOpportunityDocuments; hasMany
+ [UNIQUE: opportunityNumber]
+
+dmc_opportunity_activities (DmcOpportunityActivities) TS - 18 cols
+  Columns:
+    id: DataTypes.INTEGER
+    opportunityId: DataTypes.INTEGER
+    activityType: DataTypes.STRING(100)
+    activityTitle: DataTypes.STRING(255)
+    description: DataTypes.TEXT
+    activityDate: DataTypes.DATE
+    duration: DataTypes.INTEGER
+    outcome: DataTypes.TEXT
+    nextStep: DataTypes.STRING(255)
+    assignedTo: DataTypes.INTEGER
+    priority: DataTypes.ENUM('low', 'medium', 'high', 'urgent')
+    status: DataTypes.ENUM('scheduled', 'in_progress', 'completed', 'cancelled')
+    location: DataTypes.STRING(255)
+    attendees: DataTypes.TEXT
+    notes: DataTypes.TEXT
+    createdBy: DataTypes.INTEGER
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+ [ENUMS: priority: 'low', 'medium', 'high', 'urgent'; status: 'scheduled', 'in_progress', 'completed', 'cancelled']
+ [FKs: belongsTo -> DmcOpportunities; belongsTo -> DmEmployee; belongsTo -> DmEmployee]
+
+dmc_opportunity_documents (DmcOpportunityDocuments) TS - 19 cols
+  Columns:
+    id: DataTypes.INTEGER
+    opportunityId: DataTypes.INTEGER
+    documentType: DataTypes.STRING(100)
+    documentName: DataTypes.STRING(255)
+    fileName: DataTypes.STRING(255)
+    filePath: DataTypes.STRING(500)
+    fileSize: DataTypes.INTEGER
+    mimeType: DataTypes.STRING(100)
+    category: DataTypes.STRING(100)
+    status: DataTypes.ENUM('pending', 'uploaded', 'verified', 'rejected', 'expired')
+    uploadDate: DataTypes.DATE
+    verifiedDate: DataTypes.DATE
+    verifiedBy: DataTypes.INTEGER
+    expiryDate: DataTypes.DATE
+    required: DataTypes.BOOLEAN
+    notes: DataTypes.TEXT
+    uploadedBy: DataTypes.INTEGER
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+ [ENUMS: status: 'pending', 'uploaded', 'verified', 'rejected', 'expired']
+ [FKs: belongsTo -> DmcOpportunities; belongsTo -> DmEmployee; belongsTo -> DmEmployee]
+
+dmc_opportunity_quotations (DmcOpportunityQuotations) TS - 22 cols
+  Columns:
+    id: DataTypes.INTEGER
+    opportunityId: DataTypes.INTEGER
+    quotationNumber: DataTypes.STRING(50)
+    version: DataTypes.INTEGER
+    validUntil: DataTypes.DATE
+    status: DataTypes.ENUM('draft', 'sent', 'accepted', 'rejected', 'expired')
+    subtotal: DataTypes.DECIMAL(15, 2)
+    discount: DataTypes.DECIMAL(15, 2)
+    discountType: DataTypes.ENUM('percentage', 'fixed')
+    tax: DataTypes.DECIMAL(15, 2)
+    taxRate: DataTypes.DECIMAL(5, 2)
+    total: DataTypes.DECIMAL(15, 2)
+    currency: DataTypes.STRING(10)
+    terms: DataTypes.TEXT
+    notes: DataTypes.TEXT
+    sentDate: DataTypes.DATE
+    acceptedDate: DataTypes.DATE
+    rejectedDate: DataTypes.DATE
+    rejectedReason: DataTypes.TEXT
+    createdBy: DataTypes.INTEGER
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+ [ENUMS: status: 'draft', 'sent', 'accepted', 'rejected', 'expired'; discountType: 'percentage', 'fixed']
+ [FKs: belongsTo -> DmcOpportunities; belongsTo -> DmEmployee; hasMany -> DmcQuotationItems]
+ [UNIQUE: quotationNumber]
+
+dmc_quotation_items (DmcQuotationItems) TS - 14 cols
+  Columns:
+    id: DataTypes.INTEGER
+    quotationId: DataTypes.INTEGER
+    itemType: DataTypes.STRING(100)
+    description: DataTypes.TEXT
+    quantity: DataTypes.DECIMAL(10, 2)
+    unitPrice: DataTypes.DECIMAL(15, 2)
+    totalPrice: DataTypes.DECIMAL(15, 2)
+    currency: DataTypes.STRING(10)
+    category: DataTypes.STRING(100)
+    serviceType: DataTypes.STRING(100)
+    duration: DataTypes.STRING(50)
+    notes: DataTypes.TEXT
+    createdAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
+ [FKs: belongsTo -> DmcOpportunityQuotations]
+
+ecacredentials (Ecacredentials) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    ecauid: DataTypes.STRING(50)
+    ecausrpsswrd: DataTypes.STRING(50)
+    regemail: DataTypes.STRING(50)
+    regpsswrd: DataTypes.STRING(50)
+    secq: DataTypes.STRING(300)
+    seca: DataTypes.STRING(100)
+
+ecacredentials_old (EcacredentialsOld) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.INTEGER
+    ecauid: DataTypes.STRING(50)
+    ecausrpsswrd: DataTypes.STRING(50)
+    regemail: DataTypes.STRING(50)
+    regpsswrd: DataTypes.STRING(50)
+    secq: DataTypes.STRING(300)
+    seca: DataTypes.STRING(100)
+
+ecacredentials_spouse (EcacredentialsSpouse) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    ecauid: DataTypes.STRING(50)
+    ecausrpsswrd: DataTypes.STRING(50)
+    regemail: DataTypes.STRING(50)
+    regpsswrd: DataTypes.STRING(50)
+    secq: DataTypes.STRING(300)
+    seca: DataTypes.STRING(100)
+
+ecacredentials_spouse_old (EcacredentialsSpouseOld) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.INTEGER
+    ecauid: DataTypes.STRING(50)
+    ecausrpsswrd: DataTypes.STRING(50)
+    regemail: DataTypes.STRING(50)
+    regpsswrd: DataTypes.STRING(50)
+    secq: DataTypes.STRING(300)
+    seca: DataTypes.STRING(100)
+
+eecredentials (Eecredentials) - 22 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    eeuid: DataTypes.STRING(50)
+    eeusrpsswrd: DataTypes.STRING(50)
+    eeregemail: DataTypes.STRING(50)
+    eeregpsswrd: DataTypes.STRING(50)
+    eesecq1: DataTypes.STRING(200)
+    ee1: DataTypes.STRING(200)
+    eesecq2: DataTypes.STRING(200)
+    ee2: DataTypes.STRING(200)
+    eesecq3: DataTypes.STRING(200)
+    ee3: DataTypes.STRING(200)
+    eesecq4: DataTypes.STRING(200)
+    ee4: DataTypes.STRING(200)
+    recq1: DataTypes.STRING(200)
+    eer1: DataTypes.STRING(200)
+    recq2: DataTypes.STRING(200)
+    eer2: DataTypes.STRING(200)
+    recq3: DataTypes.STRING(200)
+    eer3: DataTypes.STRING(200)
+    recq4: DataTypes.STRING(200)
+    eer4: DataTypes.STRING(200)
+
+eecredentials_old (EecredentialsOld) - 22 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    eeuid: DataTypes.STRING(50)
+    eeusrpsswrd: DataTypes.STRING(50)
+    eeregemail: DataTypes.STRING(50)
+    eeregpsswrd: DataTypes.STRING(50)
+    eesecq1: DataTypes.STRING(200)
+    ee1: DataTypes.STRING(200)
+    eesecq2: DataTypes.STRING(200)
+    ee2: DataTypes.STRING(200)
+    eesecq3: DataTypes.STRING(200)
+    ee3: DataTypes.STRING(200)
+    eesecq4: DataTypes.STRING(200)
+    ee4: DataTypes.STRING(200)
+    recq1: DataTypes.STRING(200)
+    eer1: DataTypes.STRING(200)
+    recq2: DataTypes.STRING(200)
+    eer2: DataTypes.STRING(200)
+    recq3: DataTypes.STRING(200)
+    eer3: DataTypes.STRING(200)
+    recq4: DataTypes.STRING(200)
+    eer4: DataTypes.STRING(200)
+
+eeprofile (Eeprofile) - 12 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    docrec: DataTypes.STRING(30)
+    docstat: DataTypes.STRING(30)
+    pcfswp: DataTypes.STRING(30)
+    noc: DataTypes.STRING(30)
+    snoc: DataTypes.STRING(200)
+    pldate: DataTypes.STRING(30)
+    pfexp: DataTypes.STRING(30)
+    crs: DataTypes.STRING(30)
+    status: DataTypes.STRING(30)
+    type: DataTypes.STRING(30)
+
+eeprofile_old (EeprofileOld) - 11 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.INTEGER
+    docrec: DataTypes.STRING(30)
+    docstat: DataTypes.STRING(30)
+    pcfswp: DataTypes.STRING(30)
+    noc: DataTypes.STRING(30)
+    pldate: DataTypes.STRING(30)
+    pfexp: DataTypes.STRING(30)
+    crs: DataTypes.STRING(30)
+    status: DataTypes.STRING(30)
+    type: DataTypes.STRING(30)
+
+escalation_logs (EscalationLogs) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead: DataTypes.INTEGER
+    emp: DataTypes.INTEGER
+    date: DataTypes.STRING(30)
+
+expense_type (ExpenseType) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    expense_type: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+    created_by: DataTypes.INTEGER
+
+gary_prospectss (GaryProspectss) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    ag_no: DataTypes.INTEGER
+    date: DataTypes.STRING(20)
+    old_new: DataTypes.STRING(20)
+    noc: DataTypes.STRING(100)
+    counselorid: DataTypes.INTEGER
+    terence: DataTypes.INTEGER
+    date_edit: DataTypes.STRING(50)
+
+gary_work_docs (GaryWorkDocs) - 3 cols
+  Columns:
+    id: DataTypes.INTEGER
+    ag_no: DataTypes.INTEGER
+    docs: DataTypes.STRING(70)
+ [FKs: belongsTo -> DmcForumLeadsContracts]
+
+ielts (Ielts) - 3 cols
+  Columns:
+    id: DataTypes.INTEGER
+    timing: DataTypes.STRING(250)
+    link: DataTypes.TEXT
+
+ielts_report (IeltsReport) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    date: DataTypes.STRING(50)
+    start: DataTypes.STRING(100)
+    end: DataTypes.STRING(100)
+    remarks: DataTypes.STRING(100)
+
+itaremarks (Itaremarks) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    date: DataTypes.STRING(30)
+    remarks: DataTypes.TEXT
+    addedby: DataTypes.INTEGER
+
+lead_logs (LeadLogs) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    date_time: DataTypes.DATE
+    leadid: DataTypes.INTEGER
+    ACTION: DataTypes.STRING(100)
+ [MAPPED: date_time -> date/time]
+
+lead_shuffle_logs (LeadShuffleLogs) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    date: DataTypes.STRING(100)
+    transfrom: DataTypes.INTEGER
+    transto: DataTypes.INTEGER
+
+lp_leads (LpLeads) - 16 cols
+  Columns:
+    id: DataTypes.INTEGER
+    name: DataTypes.STRING(255)
+    phone: DataTypes.STRING(255)
+    email: DataTypes.STRING(255)
+    location: DataTypes.STRING(255)
+    program: DataTypes.STRING(255)
+    lp: DataTypes.STRING(255)
+    ip_address: DataTypes.STRING(255)
+    status: DataTypes.INTEGER
+    created: DataTypes.DATE
+    emp_id: DataTypes.INTEGER
+    lead_id: DataTypes.INTEGER
+    lead_remark: DataTypes.TEXT
+    branch: DataTypes.INTEGER
+    education: DataTypes.STRING(255)
+    age: DataTypes.STRING(255)
+
+master_sheets (MasterSheets) - 3 cols
+  Columns:
+    id: DataTypes.INTEGER
+    userid: DataTypes.INTEGER
+    file: DataTypes.STRING(150)
+
+master_sheets_ECA (MasterSheetsECA) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    userid: DataTypes.INTEGER
+    file: DataTypes.STRING(150)
+    date: DataTypes.STRING(150)
+
+master_sheets_EIP (MasterSheetsEIP) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    userid: DataTypes.INTEGER
+    file: DataTypes.STRING(150)
+    date: DataTypes.STRING(150)
+
+master_sheets_eoi_australia (MasterSheetsEoiAustralia) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    userid: DataTypes.INTEGER
+    file: DataTypes.STRING(150)
+    date: DataTypes.STRING(150)
+
+master_sheets_EU (MasterSheetsEU) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    userid: DataTypes.INTEGER
+    file: DataTypes.STRING(150)
+    date: DataTypes.STRING(150)
+
+master_sheets_ITA (MasterSheetsITA) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    userid: DataTypes.INTEGER
+    file: DataTypes.STRING(150)
+    date: DataTypes.STRING(150)
+
+master_sheets_PNP (MasterSheetsPNP) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    userid: DataTypes.INTEGER
+    file: DataTypes.STRING(150)
+    date: DataTypes.STRING(150)
+
+master_sheets_SA (MasterSheetsSA) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    userid: DataTypes.INTEGER
+    file: DataTypes.STRING(150)
+    date: DataTypes.STRING(150)
+
+master_sheets_skill_assessment (MasterSheetsSkillAssessment) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    userid: DataTypes.INTEGER
+    file: DataTypes.STRING(150)
+    date: DataTypes.STRING(150)
+
+master_sheets_VV (MasterSheetsVV) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    userid: DataTypes.INTEGER
+    file: DataTypes.STRING(150)
+    date: DataTypes.STRING(150)
+
+master_sheets_XPS (MasterSheetsXPS) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    userid: DataTypes.INTEGER
+    file: DataTypes.STRING(150)
+    date: DataTypes.STRING(150)
+
+old_data_1 (OldData1) - 25 cols
+  Columns:
+    id: DataTypes.INTEGER
+    Agno: DataTypes.STRING(25)
+    SignupDate: DataTypes.STRING(25)
+    ClientName: DataTypes.STRING(25)
+    Mobile: DataTypes.STRING(25)
+    Email: DataTypes.STRING(25)
+    Country: DataTypes.STRING(25)
+    Branch: DataTypes.STRING(25)
+    TotalPackage: DataTypes.STRING(25)
+    PaidAmount: DataTypes.STRING(25)
+    PendingAmount: DataTypes.STRING(25)
+    Counselor: DataTypes.STRING(25)
+    CPO1: DataTypes.STRING(25)
+    CPO2: DataTypes.STRING(25)
+    EcaStatus: DataTypes.STRING(25)
+    SpouseEca: DataTypes.STRING(25)
+    IETSstatus: DataTypes.STRING(25)
+    EEstatus: DataTypes.STRING(25)
+    Noc: DataTypes.STRING(25)
+    CRS: DataTypes.STRING(25)
+    StatusLastUpdated: DataTypes.STRING(25)
+    PnpSubmitted: DataTypes.STRING(25)
+    Decision: DataTypes.STRING(25)
+    Remarks: DataTypes.STRING(25)
+    flag: DataTypes.STRING(10)
+
+old_data_2 (OldData2) - 17 cols
+  Columns:
+    temp_id: DataTypes.INTEGER
+    id: DataTypes.DECIMAL
+    agreeNo: DataTypes.STRING(111)
+    sign_up_date: DataTypes.STRING(100)
+    renDate: DataTypes.DATE
+    renExpiryDate: DataTypes.DATE
+    renew_type: DataTypes.STRING(50)
+    client_name: DataTypes.STRING(100)
+    mobile: DataTypes.STRING(100)
+    email: DataTypes.STRING(100)
+    country: DataTypes.STRING(100)
+    branch: DataTypes.STRING(100)
+    total_package: DataTypes.DECIMAL
+    paid_amount: DataTypes.DECIMAL
+    pending_amount: DataTypes.STRING(100)
+    counselor: DataTypes.STRING(100)
+    status: DataTypes.STRING(150)
+
+old_data_auh (OldDataAuh) - 25 cols
+  Columns:
+    id: DataTypes.INTEGER
+    Agno: DataTypes.STRING(25)
+    SignupDate: DataTypes.STRING(25)
+    ClientName: DataTypes.STRING(25)
+    Mobile: DataTypes.STRING(25)
+    Email: DataTypes.STRING(25)
+    Country: DataTypes.STRING(25)
+    Branch: DataTypes.STRING(25)
+    TotalPackage: DataTypes.STRING(25)
+    PaidAmount: DataTypes.STRING(25)
+    PendingAmount: DataTypes.STRING(25)
+    Counselor: DataTypes.STRING(25)
+    CPO1: DataTypes.STRING(25)
+    CPO2: DataTypes.STRING(25)
+    EcaStatus: DataTypes.STRING(25)
+    SpouseEca: DataTypes.STRING(25)
+    IETSstatus: DataTypes.STRING(25)
+    EEstatus: DataTypes.STRING(25)
+    Noc: DataTypes.STRING(25)
+    CRS: DataTypes.STRING(25)
+    StatusLastUpdated: DataTypes.STRING(25)
+    PnpSubmitted: DataTypes.STRING(25)
+    Decision: DataTypes.STRING(25)
+    Remarks: DataTypes.STRING(25)
+    flag: DataTypes.STRING(25)
+
+old_data_pun (OldDataPun) - 10 cols
+  Columns:
+    temp_id: DataTypes.INTEGER
+    id: DataTypes.DECIMAL
+    sign_up_date: DataTypes.STRING(100)
+    agreeNo: DataTypes.DECIMAL
+    client_name: DataTypes.STRING(100)
+    mobile: DataTypes.STRING(100)
+    email: DataTypes.STRING(100)
+    country: DataTypes.STRING(100)
+    counselor: DataTypes.STRING(100)
+    status: DataTypes.STRING(150)
+
+old_data_shj (OldDataShj) - 10 cols
+  Columns:
+    temp_id: DataTypes.INTEGER
+    id: DataTypes.DECIMAL
+    agreeNo: DataTypes.STRING(100)
+    sign_up_date: DataTypes.STRING(100)
+    client_name: DataTypes.STRING(100)
+    mobile: DataTypes.DECIMAL
+    email: DataTypes.STRING(100)
+    country: DataTypes.STRING(100)
+    counselor: DataTypes.STRING(100)
+    status: DataTypes.STRING(150)
+
+ops_business_remarks (OpsBusinessRemarks) - 7 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    date: DataTypes.STRING(30)
+    added_by: DataTypes.STRING(30)
+    tab: DataTypes.INTEGER
+    remark: DataTypes.TEXT
+    followup_remark_date: DataTypes.DATE
+
+ops_logs (OpsLogs) - 5 cols
+  Columns:
+    id: DataTypes.INTEGER
+    lead: DataTypes.INTEGER
+    ag_no: DataTypes.INTEGER
+    emp: DataTypes.INTEGER
+    timestamp: DataTypes.STRING(50)
+
+ops_remarks (OpsRemarks) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadId: DataTypes.INTEGER
+    date: DataTypes.STRING(30)
+    added_by: DataTypes.STRING(30)
+    tab: DataTypes.INTEGER
+    remark: DataTypes.TEXT
+
+ops_remarks_old (OpsRemarksOld) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    agreeNo: DataTypes.INTEGER
+    date: DataTypes.STRING(30)
+    added_by: DataTypes.STRING(30)
+    tab: DataTypes.INTEGER
+    remark: DataTypes.TEXT
+
+qualification (Qualification) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    qualifctn: DataTypes.STRING(30)
+    specilization: DataTypes.STRING(100)
+    university: DataTypes.STRING(100)
+    assesment_body: DataTypes.STRING(50)
+    type: DataTypes.STRING(20)
+    rating: DataTypes.STRING(100)
+
+qualification_old (QualificationOld) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    qualifctn: DataTypes.STRING(30)
+    specilization: DataTypes.STRING(100)
+    university: DataTypes.STRING(100)
+    assesment_body: DataTypes.STRING(50)
+    type: DataTypes.STRING(20)
+    rating: DataTypes.STRING(100)
+
+qualification_spouse (QualificationSpouse) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    qualifctn: DataTypes.STRING(30)
+    specilization: DataTypes.STRING(100)
+    university: DataTypes.STRING(100)
+    assesment_body: DataTypes.STRING(50)
+    type: DataTypes.STRING(20)
+    rating: DataTypes.STRING(100)
+
+qualification_spouse_old (QualificationSpouseOld) - 8 cols
+  Columns:
+    id: DataTypes.INTEGER
+    leadid: DataTypes.INTEGER
+    qualifctn: DataTypes.STRING(30)
+    specilization: DataTypes.STRING(100)
+    university: DataTypes.STRING(100)
+    assesment_body: DataTypes.STRING(50)
+    type: DataTypes.STRING(20)
+    rating: DataTypes.STRING(100)
+
+student_leads_logs (StudentLeadsLogs) - 4 cols
+  Columns:
+    id: DataTypes.INTEGER
+    Counsilor: DataTypes.INTEGER
+    lead: DataTypes.INTEGER
+    date: DataTypes.STRING(30)
+ [FKs: belongsTo -> DmEmployee]
+
+target (Target) - 11 cols
+  Columns:
+    id: DataTypes.INTEGER
+    counsilorid: DataTypes.INTEGER
+    branch: DataTypes.INTEGER
+    month: DataTypes.INTEGER
+    year: DataTypes.INTEGER
+    appointment: DataTypes.INTEGER
+    sales: DataTypes.INTEGER
+    branch_sales: DataTypes.INTEGER
+    leads: DataTypes.INTEGER
+    cold: DataTypes.INTEGER
+    target_date_id: DataTypes.INTEGER
+
+task_remarks (TaskRemarks) - 6 cols
+  Columns:
+    id: DataTypes.INTEGER
+    taskid: DataTypes.INTEGER
+    date: DataTypes.STRING(30)
+    remarks: DataTypes.TEXT
+    emp: DataTypes.STRING(150)
+    notf: DataTypes.INTEGER
+
+wp_cf7db_2916 (WpCf7db2916) - 11 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    your_name: DataTypes.TEXT
+    tel_861: DataTypes.TEXT
+    your_email: DataTypes.TEXT
+    menu_3065: DataTypes.TEXT
+    menu_359: DataTypes.TEXT
+    menu_35926: DataTypes.TEXT
+    menu_55692: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+wp_cf7db_3232 (WpCf7db3232) - 7 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    cyour_name: DataTypes.TEXT
+    tel_862055: DataTypes.TEXT
+    your_email: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+wp_cf7db_3284 (WpCf7db3284) - 11 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    your_name: DataTypes.TEXT
+    tel_861: DataTypes.TEXT
+    your_email: DataTypes.TEXT
+    menu_3065: DataTypes.TEXT
+    menu_359: DataTypes.TEXT
+    menu_35926: DataTypes.TEXT
+    menu_55692: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+wp_cf7db_3606 (WpCf7db3606) - 9 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    your_name: DataTypes.TEXT
+    your_email_52: DataTypes.TEXT
+    tel_86105: DataTypes.TEXT
+    text_34684: DataTypes.TEXT
+    your_message_58: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+wp_cf7db_3848 (WpCf7db3848) - 11 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    your_name: DataTypes.TEXT
+    tel_861: DataTypes.TEXT
+    your_email: DataTypes.TEXT
+    menu_3065: DataTypes.TEXT
+    menu_359: DataTypes.TEXT
+    menu_35926: DataTypes.TEXT
+    menu_55692: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+wp_cf7db_3870 (WpCf7db3870) - 8 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    cyour_name: DataTypes.TEXT
+    tel_862055: DataTypes.TEXT
+    your_email: DataTypes.TEXT
+    menu_404: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+wp_cf7db_3881 (WpCf7db3881) - 12 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    your_name: DataTypes.TEXT
+    tel_861: DataTypes.TEXT
+    your_email: DataTypes.TEXT
+    menu_3065: DataTypes.TEXT
+    menu_359: DataTypes.TEXT
+    menu_35926: DataTypes.TEXT
+    menu_55692: DataTypes.TEXT
+    menu_404: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+wp_cf7db_4077 (WpCf7db4077) - 9 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    your_name_52: DataTypes.TEXT
+    your_email_592: DataTypes.TEXT
+    tel_88965: DataTypes.TEXT
+    text_301504: DataTypes.TEXT
+    your_message_55986021: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+wp_cf7db_4086 (WpCf7db4086) - 9 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    your_name_car: DataTypes.TEXT
+    your_email_car: DataTypes.TEXT
+    tel_861_car: DataTypes.TEXT
+    your_message_car: DataTypes.TEXT
+    file_898_cf7dbp_file: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+wp_cf7db_5499 (WpCf7db5499) - 7 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    cyour_name: DataTypes.TEXT
+    tel_862055: DataTypes.TEXT
+    your_email: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+
+wp_cf7db_5500 (WpCf7db5500) - 8 cols
+  Columns:
+    id: DataTypes.BIGINT
+    cf7dbp_status: DataTypes.STRING(10)
+    cyour_name: DataTypes.TEXT
+    tel_862055: DataTypes.TEXT
+    your_email: DataTypes.TEXT
+    menu_404: DataTypes.TEXT
+    hidden_field_1: DataTypes.TEXT
+    form_date: DataTypes.DATE
+

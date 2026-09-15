@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "graphify": {
+      "command": "C:\\Users\\97154\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "args": ["-m", "graphify.serve", "D:\\xampp\\htdocs\\dm-next\\graphify-out\\graph.json"]
+    }
+  }
+}

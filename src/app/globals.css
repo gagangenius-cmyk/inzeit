@@ -1,0 +1,324 @@
+@import "tailwindcss";
+
+:root {
+  /* ── Global Navigator Brand Palette (from logo + navigatorglobals.com) ──
+     Extracted from the compass logo and the site's own warm/cream sections:
+       Compass navy        →  #1F3B63
+       Compass red mark    →  #D9331E
+       Site amber accent   →  #F6B44B
+       Site cream section  →  #F5F5DC
+       Peach page wash     →  #FBEAE0
+  ────────────────────────────────────────────────────────────────── */
+  --dmc-green:          #1F3B63;   /* primary – compass navy                 */
+  --dmc-green-dark:     #14273F;   /* deep navy / hover / sidebar header     */
+  --dmc-green-medium:   #3A5C88;   /* mid navy – borders, secondary buttons  */
+  --dmc-green-light:    #6E93BE;   /* light navy tint / highlight            */
+  --dmc-green-soft:     #FBEAE0;   /* page & card background tint – peach    */
+  --dmc-green-softer:   #FDF3EC;   /* subtler surface bg – soft peach        */
+
+  /* Neutral / text */
+  --dmc-ink:            #2C353F;   /* primary text – warm charcoal navy      */
+  --dmc-muted:          #585A5E;   /* secondary text / labels                */
+  --dmc-border:         #F0D7C7;   /* borders – peach-tinted                 */
+  --dmc-surface:        #FFFFFF;   /* card / panel surface                   */
+
+  /* Semantic */
+  --dmc-red:            #D9331E;
+  --dmc-red-dark:       #B0241E;
+  --dmc-gold:           #F6B44B;   /* accents / warning badges / active nav  */
+  --dmc-gold-soft:      #FDECD2;
+
+  /* CSS-layer aliases (used by older components) */
+  --cmg-blue:           var(--dmc-green);
+  --cmg-blue-dark:      var(--dmc-green-dark);
+  --cmg-blue-soft:      var(--dmc-green-soft);
+  --cmg-red:            var(--dmc-red);
+  --cmg-red-dark:       var(--dmc-red-dark);
+  --cmg-ink:            var(--dmc-ink);
+  --cmg-muted:          var(--dmc-muted);
+  --cmg-border:         var(--dmc-border);
+  --cmg-surface:        var(--dmc-surface);
+
+  /* Page background */
+  --background:         var(--dmc-green-softer);
+  --foreground:         var(--dmc-ink);
+
+  /* ── shadcn/ui token bridge ───────────────────────────────────────
+     Input, Select (Radix) and a few other primitives are written
+     against the standard shadcn token names (border-input, ring-ring,
+     bg-popover, bg-accent, bg-muted, …). Those tokens were never
+     defined here, so every one of those utilities was a silent no-op —
+     Radix selects had no visible focus ring, no popover background, no
+     hover state. Wiring them to the brand palette makes every
+     shadcn-shaped component themed for free, with no per-file edits. */
+  --border:             var(--dmc-border);
+  --input:              var(--dmc-border);
+  --ring:               var(--dmc-green);
+  --card:               var(--dmc-surface);
+  --card-foreground:    var(--dmc-ink);
+  --popover:            var(--dmc-surface);
+  --popover-foreground: var(--dmc-ink);
+  --primary:            var(--dmc-green);
+  --primary-foreground: #FFFFFF;
+  --secondary:          var(--dmc-green-soft);
+  --secondary-foreground: var(--dmc-green);
+  --accent:             var(--dmc-green-soft);
+  --accent-foreground:  var(--dmc-green);
+  --muted:              var(--dmc-green-softer);
+  --muted-foreground:   var(--dmc-muted);
+  --destructive:        var(--dmc-red);
+  --destructive-foreground: #FFFFFF;
+  --radius:             0.75rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --radius-sm: calc(var(--radius) - 0.375rem);
+  --radius-md: calc(var(--radius) - 0.25rem);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 0.25rem);
+
+  /* Brand-tinted elevation — every shadow-* utility in the app picks
+     this up automatically. Ink-tinted instead of pure black reads as
+     considerably more premium than the Tailwind default at the same
+     opacity, for zero per-component cost. */
+  --shadow-xs: 0 1px 2px 0 rgb(44 53 63 / 0.04);
+  --shadow-sm: 0 1px 3px 0 rgb(44 53 63 / 0.08), 0 1px 2px -1px rgb(44 53 63 / 0.06);
+  --shadow-md: 0 4px 6px -1px rgb(44 53 63 / 0.08), 0 2px 4px -2px rgb(44 53 63 / 0.06);
+  --shadow-lg: 0 10px 15px -3px rgb(44 53 63 / 0.08), 0 4px 6px -4px rgb(44 53 63 / 0.06);
+  --shadow-xl: 0 20px 25px -5px rgb(44 53 63 / 0.10), 0 8px 10px -6px rgb(44 53 63 / 0.06);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.dm-form-invalid {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.16) !important;
+}
+
+.dm-form-error-message {
+  animation: dm-form-error-in 140ms ease-out;
+}
+
+@keyframes dm-form-error-in {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+::selection {
+  background: rgba(31, 59, 99, 0.18);
+  color: var(--dmc-ink);
+}
+
+/* ── Page shell ─────────────────────────────────────────────────── */
+.cmg-page-shell {
+  background:
+    linear-gradient(180deg, rgba(251, 234, 224, 0.92), rgba(253, 243, 236, 0.98) 240px),
+    var(--background);
+}
+
+/* ── Card ───────────────────────────────────────────────────────── */
+.cmg-card {
+  background: var(--dmc-surface);
+  border: 1px solid var(--dmc-border);
+  box-shadow: 0 10px 30px rgba(44, 53, 63, 0.08);
+}
+
+/* ── Focus ring ─────────────────────────────────────────────────── */
+.cmg-focus { outline: none; }
+.cmg-focus:focus {
+  box-shadow: 0 0 0 3px rgba(31, 59, 99, 0.22);
+}
+
+/* ── Tailwind blue → Global Navigator navy remaps ────────────────── */
+/* These override Tailwind's blue utilities so legacy JSX that still
+   uses e.g. "bg-blue-600" renders with the brand navy instead.     */
+.bg-blue-600  { background-color: var(--dmc-green) !important; }
+.bg-blue-700  { background-color: var(--dmc-green-medium) !important; }
+.bg-blue-800  { background-color: var(--dmc-green-dark) !important; }
+.bg-blue-50,
+.bg-blue-100  { background-color: var(--dmc-green-soft) !important; }
+.bg-blue-200  { background-color: #F5D9C6 !important; }
+
+.hover\:bg-blue-700:hover { background-color: var(--dmc-green-medium) !important; }
+.hover\:bg-blue-800:hover { background-color: var(--dmc-green-dark) !important; }
+.hover\:bg-blue-50:hover  { background-color: var(--dmc-green-soft) !important; }
+
+.text-blue-600 { color: var(--dmc-green) !important; }
+.text-blue-700,
+.text-blue-800,
+.text-blue-900 { color: var(--dmc-green-dark) !important; }
+
+.border-blue-200,
+.border-blue-300,
+.border-blue-400,
+.border-blue-500,
+.border-blue-600 { border-color: var(--dmc-border) !important; }
+
+/* Focus/hover border variants aren't covered by the plain classes above
+   (Tailwind compiles them to distinct `.focus\:border-blue-500:focus`
+   selectors) - without these, inputs using the common
+   `focus:border-blue-500 focus:ring-blue-500` pairing got a green focus
+   ring but kept Tailwind's actual blue border underneath. */
+.focus\:border-blue-500:focus,
+.focus\:border-blue-400:focus {
+  border-color: var(--dmc-green) !important;
+}
+
+.hover\:border-blue-300:hover,
+.hover\:border-blue-400:hover {
+  border-color: var(--dmc-green) !important;
+}
+
+.focus\:ring-blue-500:focus,
+.focus\:ring-blue-400:focus {
+  --tw-ring-color: rgba(31, 59, 99, 0.40) !important;
+}
+
+.ring-blue-500 { --tw-ring-color: rgba(31, 59, 99, 0.40) !important; }
+
+/* ── Indigo / violet → Global Navigator navy remaps ──────────────── */
+.bg-indigo-600,
+.bg-indigo-700  { background-color: var(--dmc-green) !important; }
+.text-indigo-600,
+.text-indigo-700 { color: var(--dmc-green) !important; }
+
+/* ── Scrollbar ──────────────────────────────────────────────────── */
+/* Wide enough (both axes) to see and grab without hunting for it —
+   6px was easy to miss entirely, especially the horizontal one on wide
+   tables (leads, invoices, reports, etc). */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: var(--dmc-green-softer); }
+::-webkit-scrollbar-thumb {
+  background: #E8C29B;
+  border-radius: 6px;
+  border: 2px solid var(--dmc-green-softer);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--dmc-green-medium); }
+::-webkit-scrollbar-corner { background: var(--dmc-green-softer); }
+
+/* Firefox */
+* { scrollbar-width: auto; scrollbar-color: #E8C29B var(--dmc-green-softer); }
+
+/* ── Sidebar nav scrollbar (always visible, styled) ─────────────── */
+.sidebar-nav {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+.sidebar-nav::-webkit-scrollbar {
+  width: 5px;
+}
+.sidebar-nav::-webkit-scrollbar-track {
+  background: #FAF3EE;
+  border-radius: 4px;
+}
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: var(--dmc-border);
+  border-radius: 4px;
+}
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: var(--dmc-green);
+}
+
+.dmc-one-brand {
+  position: relative;
+  min-height: 104px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(251, 234, 224, 0.95), rgba(255, 255, 255, 0.96) 46%, rgba(253, 236, 210, 0.55)),
+    #ffffff;
+}
+
+.dmc-one-brand::before {
+  content: "";
+  position: absolute;
+  inset: -60% auto -60% -45%;
+  width: 62%;
+  background: linear-gradient(100deg, transparent, rgba(246, 180, 75, 0.28), transparent);
+  transform: rotate(14deg);
+  animation: dmc-brand-sheen 5.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.dmc-one-logo-frame {
+  /* The logo image is a fully self-contained mark (its own white fill +
+     navy/red compass) - no card/shadow/gradient backdrop behind it, or it
+     reads as a rounded-rect card nested around the mark, which fights its
+     own shape. Just a subtle float to match the rest of the brand block's
+     motion. */
+  animation: dmc-logo-float 4.8s ease-in-out infinite;
+}
+
+.dmc-one-title {
+  color: var(--dmc-ink);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.dmc-one-subtitle {
+  color: var(--dmc-green-dark);
+  background: rgba(253, 236, 210, 0.9);
+  box-shadow: inset 0 0 0 1px rgba(240, 215, 199, 0.9);
+}
+
+@keyframes dmc-brand-sheen {
+  0%, 58% {
+    transform: translateX(0) rotate(14deg);
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(310%) rotate(14deg);
+    opacity: 0;
+  }
+}
+
+@keyframes dmc-logo-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dmc-one-brand::before,
+  .dmc-one-logo-frame {
+    animation: none;
+  }
+}

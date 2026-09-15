@@ -1,0 +1,86 @@
+import { DataTypes, Model } from 'sequelize';
+import { sequelize } from '../lib/sequelize';
+
+class ItSupportTicket extends Model {}
+ItSupportTicket.init({
+  id: { type: DataTypes.CHAR(36), primaryKey: true },
+  ticket_seq: { type: DataTypes.INTEGER, autoIncrement: true },
+  ticket_number: { type: DataTypes.STRING(30), allowNull: true },
+  title: { type: DataTypes.STRING(255), allowNull: false },
+  description: { type: DataTypes.TEXT, allowNull: true },
+  category: {
+    type: DataTypes.ENUM(
+      'Laptop / Desktop Hardware',
+      'Access & Accounts',
+      'New Procurement',
+      'Network & Internet',
+      'Email & Communication',
+      'Software & Licensing',
+    ),
+    allowNull: false,
+  },
+  priority: { type: DataTypes.ENUM('High', 'Medium', 'Low'), defaultValue: 'Medium' },
+  estimated_cost_aed: { type: DataTypes.DECIMAL(12, 2), allowNull: true },
+  raised_by: { type: DataTypes.INTEGER, allowNull: false },
+  branch_id: { type: DataTypes.INTEGER, allowNull: false },
+  status: { type: DataTypes.ENUM('Open', 'Resolved', 'Closed', 'Rejected'), defaultValue: 'Open' },
+  workflow_status: {
+    type: DataTypes.ENUM(
+      'IT Manager Review',
+      'Branch Manager Review',
+      'Director Review',
+      'Assigned',
+      'In Progress',
+      'Resolved Awaiting Confirmation',
+      'Closed',
+      'Rejected',
+    ),
+    defaultValue: 'IT Manager Review',
+  },
+  requires_branch_approval: { type: DataTypes.BOOLEAN, defaultValue: false },
+  requires_director_approval: { type: DataTypes.BOOLEAN, defaultValue: false },
+  it_manager_id: { type: DataTypes.INTEGER, allowNull: true },
+  it_manager_status: { type: DataTypes.ENUM('Pending', 'Approved', 'Rejected'), defaultValue: 'Pending' },
+  it_manager_reviewed_at: { type: DataTypes.DATE, allowNull: true },
+  it_manager_comment: { type: DataTypes.TEXT, allowNull: true },
+  branch_manager_id: { type: DataTypes.INTEGER, allowNull: true },
+  branch_manager_status: { type: DataTypes.ENUM('Pending', 'Approved', 'Rejected', 'Not Required'), defaultValue: 'Not Required' },
+  branch_manager_reviewed_at: { type: DataTypes.DATE, allowNull: true },
+  branch_manager_comment: { type: DataTypes.TEXT, allowNull: true },
+  director_id: { type: DataTypes.INTEGER, allowNull: true },
+  director_status: { type: DataTypes.ENUM('Pending', 'Approved', 'Rejected', 'Not Required'), defaultValue: 'Not Required' },
+  director_reviewed_at: { type: DataTypes.DATE, allowNull: true },
+  director_comment: { type: DataTypes.TEXT, allowNull: true },
+  assigned_to: { type: DataTypes.INTEGER, allowNull: true },
+  assigned_by: { type: DataTypes.INTEGER, allowNull: true },
+  assigned_at: { type: DataTypes.DATE, allowNull: true },
+  in_progress_at: { type: DataTypes.DATE, allowNull: true },
+  resolved_by: { type: DataTypes.INTEGER, allowNull: true },
+  resolved_at: { type: DataTypes.DATE, allowNull: true },
+  resolution_notes: { type: DataTypes.TEXT, allowNull: true },
+  confirmed_by: { type: DataTypes.INTEGER, allowNull: true },
+  confirmed_at: { type: DataTypes.DATE, allowNull: true },
+  closed_at: { type: DataTypes.DATE, allowNull: true },
+  reopened_count: { type: DataTypes.INTEGER, defaultValue: 0 },
+  rejected_by: { type: DataTypes.INTEGER, allowNull: true },
+  rejected_at: { type: DataTypes.DATE, allowNull: true },
+  rejected_stage: { type: DataTypes.STRING(40), allowNull: true },
+  rejection_reason: { type: DataTypes.TEXT, allowNull: true },
+  due_at: { type: DataTypes.DATE, allowNull: false },
+  created_at: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW },
+  updated_at: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW },
+}, { sequelize, modelName: 'ItSupportTicket', tableName: 'crm_it_tickets', timestamps: false });
+
+class ItSupportTicketComment extends Model {}
+ItSupportTicketComment.init({
+  id: { type: DataTypes.CHAR(36), primaryKey: true },
+  ticket_id: { type: DataTypes.CHAR(36), allowNull: false },
+  author_id: { type: DataTypes.INTEGER, allowNull: false },
+  comment_type: { type: DataTypes.ENUM('Comment', 'StatusChange', 'System'), defaultValue: 'Comment' },
+  body: { type: DataTypes.TEXT, allowNull: false },
+  old_value: { type: DataTypes.STRING(120), allowNull: true },
+  new_value: { type: DataTypes.STRING(120), allowNull: true },
+  created_at: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW },
+}, { sequelize, modelName: 'ItSupportTicketComment', tableName: 'crm_it_ticket_comments', timestamps: false });
+
+export { ItSupportTicket, ItSupportTicketComment };

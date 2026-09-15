@@ -1,0 +1,232 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+// Main Lead Management Table
+model Lead {
+  id                Int      @id
+  fname             String   @map("fname") @db.VarChar(555)
+  mname             String   @map("mname") @db.VarChar(555)
+  lname             String   @map("lname") @db.VarChar(555)
+  email             String   @map("email") @db.VarChar(555)
+  phone             String   @map("phone") @db.VarChar(555)
+  mobile            String   @map("mobile") @db.VarChar(555)
+  nationality       String   @map("nationality") @db.VarChar(555)
+  address           String   @map("address") @db.Text
+  dob               DateTime? @map("dob") @db.Date
+  gender            String   @map("gender") @db.VarChar(55)
+  idNumber          String   @map("id_number") @db.VarChar(255)
+  idExpiry          DateTime @map("id_expiry") @db.Date
+  countryInterest   String   @map("country_interest") @db.VarChar(555)
+  serviceInterest   String   @map("service_interest") @db.VarChar(555)
+  marketSource      String   @map("market_source") @db.VarChar(555)
+  appointment       DateTime? @map("appointment") @db.Date
+  followup          DateTime @map("followup") @db.Date
+  followupTime      DateTime @map("folowuptime") @db.Time
+  followupStat      Int      @map("followupstat") @default(0)
+  enquiry           String   @map("enquiry") @db.VarChar(555)
+  convert           String   @map("convet") @db.VarChar(555)
+  priority          String   @map("priority") @db.VarChar(10)
+  regdate           DateTime @map("regdate") @db.Date
+  lastUpdated       String   @map("last_updated") @db.VarChar(30)
+  lastUpdatedTime   String   @map("last_updtd_time") @db.VarChar(50)
+  stepComplete      Int      @map("stepComplete") @default(1)
+  payType           String?  @map("payType") @db.VarChar(55)
+  assignTo          Int      @map("assignTo")
+  caseOfficer       Int      @map("case_officer")
+  counsilor         Int      @map("Counsilor")
+  branch            Int      @map("branch")
+  region            Int      @map("region")
+  payTotal          Decimal  @map("payTotal") @default(0.00) @db.Decimal(10, 2)
+  discount          Decimal  @map("discount") @default(0.00) @db.Decimal(10, 2)
+  paidYet           Decimal? @map("paidYet") @default(0.00) @db.Decimal(10, 2)
+  payBalance        Decimal  @map("payBalance") @default(0.00) @db.Decimal(10, 2)
+  feeAgreeDate      DateTime? @map("feeAgreeDate") @db.Date
+  demandAmt         Decimal  @map("demandAmt") @default(0.00) @db.Decimal(10, 2)
+  dueDate           DateTime? @map("dueDate") @db.Date
+  demandRemark      String?  @map("demdRemark") @db.Text
+  agreeDate         DateTime? @map("agreeDate") @db.Date
+  renDate           DateTime? @map("renDate") @db.Date
+  renExpiryDate     DateTime? @map("renExpiryDate") @db.Date
+  renewType         String?  @map("renew_type") @db.VarChar(50)
+  status            String?  @map("status") @db.VarChar(55)
+  statusDate        DateTime @map("status_date") @db.Date
+  notf              Int      @map("notf") @default(0)
+  type              String   @map("type") @db.Text
+  password          String?  @map("password") @db.VarChar(30)
+
+  // Relations
+  assessments       LeadAssessment[]
+  contracts         LeadContract[]
+  fees              LeadFee[]
+  observations      LeadObservation[]
+  remarks           LeadRemark[]
+  payments          Payment[]
+  
+  // Foreign key relations
+  assignedEmployee   Employee? @relation("AssignedLeads", fields: [assignTo], references: [id])
+  counseledEmployee  Employee? @relation("CounseledLeads", fields: [counsilor], references: [id])
+  caseOfficerEmployee Employee? @relation("CaseOfficerLeads", fields: [caseOfficer], references: [id])
+  branchInfo         Branch?   @relation(fields: [branch], references: [id])
+  regionInfo         Region?   @relation(fields: [region], references: [id])
+
+  @@map("dmc_forum_leads")
+}
+
+// Lead Assessments
+model LeadAssessment {
+  id          Int      @id
+  leadId      Int      @map("lead")
+  designation String   @map("assesment_desgn") @db.Text
+  education   String   @map("assesment_edu") @db.Text
+  created     DateTime @default(now()) @db.Timestamp
+  createdBy   Int      @map("created_by")
+
+  lead Lead @relation(fields: [leadId], references: [id])
+
+  @@map("dmc_forum_leads_assesments")
+}
+
+// Lead Contracts
+model LeadContract {
+  id        Int      @id
+  leadId    Int      @map("lead")
+  agreeNo   String   @map("agreeNo") @db.VarChar(100)
+  filename  String   @map("filename") @db.VarChar(255)
+  created   DateTime @default(now()) @db.Timestamp
+
+  lead Lead @relation(fields: [leadId], references: [id])
+
+  @@map("dmc_forum_leads_contracts")
+}
+
+// Lead Fees
+model LeadFee {
+  id        Int      @id
+  leadId    Int      @map("lead")
+  feeType   String   @map("fee_type") @db.VarChar(100)
+  amount    Decimal  @map("amount") @db.Decimal(10, 2)
+  status    String   @map("status") @db.VarChar(50)
+  created   DateTime @default(now()) @db.Timestamp
+
+  lead Lead @relation(fields: [leadId], references: [id])
+
+  @@map("dmc_forum_leads_fee")
+}
+
+// Lead Observations
+model LeadObservation {
+  id        Int      @id
+  leadId    Int      @map("lead")
+  remark    String   @map("remark") @db.Text
+  created   DateTime @default(now()) @db.Timestamp
+  createdBy Int      @map("created_by")
+
+  lead Lead @relation(fields: [leadId], references: [id])
+
+  @@map("dmc_forum_leads_observations")
+}
+
+// Lead Remarks
+model LeadRemark {
+  id      Int      @id
+  leadId  Int      @map("lead")
+  date    DateTime @map("date") @db.Date
+  remark  String   @map("remark") @db.Text
+  emp     Int      @map("emp") @default(0)
+  created DateTime @map("created") @db.Time
+
+  lead Lead @relation(fields: [leadId], references: [id])
+
+  @@map("dmc_forum_leads_remarks")
+}
+
+// Employees
+model Employee {
+  id          Int      @id
+  name        String   @db.VarChar(255)
+  email       String   @db.VarChar(255)
+  phone       String?  @db.VarChar(50)
+  role        Int      @map("role")
+  branch      Int      @map("branch")
+  region      Int      @map("region")
+  status      Int      @default(1)
+  created     DateTime @default(now()) @db.Timestamp
+  password    String   @db.VarChar(255)
+
+  // Relations
+  leadsAssigned   Lead[] @relation("AssignedLeads")
+  leadsCounseled  Lead[] @relation("CounseledLeads")
+  leadsCaseOfficer Lead[] @relation("CaseOfficerLeads")
+  remarks         LeadRemark[]
+  observations    LeadObservation[]
+
+  @@map("dm_employee")
+}
+
+// Branches
+model Branch {
+  id     Int    @id
+  name   String @db.VarChar(255)
+  region Int    @map("region")
+  status Int    @default(1)
+
+  // Relations
+  employees Employee[]
+  leads    Lead[]
+
+  @@map("dm_branch")
+}
+
+// Regions
+model Region {
+  id     Int    @id
+  name   String @db.VarChar(255)
+  status Int    @default(1)
+
+  // Relations
+  branches  Branch[]
+  employees Employee[]
+  leads     Lead[]
+
+  @@map("dm_region")
+}
+
+// Appointments
+model Appointment {
+  id          Int      @id
+  leadId      Int?     @map("leadid")
+  date        String   @map("date") @db.VarChar(50)
+  time        DateTime @map("appointtime") @db.Time
+  counsilorId Int?     @map("counsilorid")
+  booked      Int?     @map("booked")
+  done        Int?     @map("done")
+  notDone     Int?     @map("not_done")
+  region      Int?     @map("region")
+  branch      Int      @default(0) @map("branch")
+  screenshot  String   @map("screenshot") @db.VarChar(255)
+
+  @@map("appointments")
+}
+
+// Payments
+model Payment {
+  id          Int      @id
+  leadId      Int      @map("lead")
+  amount      Decimal  @map("amount") @db.Decimal(10, 2)
+  paymentType String   @map("payment_type") @db.VarChar(100)
+  status      String   @map("status") @db.VarChar(50)
+  date        DateTime @map("date") @db.Date
+  created     DateTime @default(now()) @db.Timestamp
+
+  lead Lead @relation(fields: [leadId], references: [id])
+
+  @@map("dm_pay_history")
+}
