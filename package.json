@@ -16,7 +16,9 @@
     "db:seed:employees": "node scripts/seed-employees.js",
     "db:seed:countries": "node scripts/seed-countries.js",
     "db:seed:program-types": "node scripts/seed-program-types.js",
-    "db:seed:program-validity": "node scripts/seed-program-validity.js"
+    "db:seed:program-validity": "node scripts/seed-program-validity.js",
+    "db:verify:opportunity-flow": "node scripts/verify-opportunity-flow-db.js",
+    "db:audit:missing-columns": "node scripts/audit-missing-db-columns.js"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",

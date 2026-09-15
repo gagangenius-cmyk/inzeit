@@ -43,11 +43,13 @@ CrmClientUploadPortal.init(
     clientId: {
       type: DataTypes.STRING(40),
       allowNull: false,
-      unique: true
+      unique: true,
+      field: 'client_id'
     },
     leadId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      field: 'lead_id',
       references: {
         model: 'crm_forum_leads',
         key: 'id'
@@ -56,6 +58,7 @@ CrmClientUploadPortal.init(
     opportunityId: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      field: 'opportunity_id',
       references: {
         model: 'crm_opportunities',
         key: 'id'
@@ -63,12 +66,14 @@ CrmClientUploadPortal.init(
     },
     agreementNumber: {
       type: DataTypes.STRING(100),
-      allowNull: true
+      allowNull: true,
+      field: 'agreement_number'
     },
     accessToken: {
       type: DataTypes.CHAR(64),
       allowNull: false,
-      unique: true
+      unique: true,
+      field: 'access_token'
     },
     status: {
       type: DataTypes.ENUM('active', 'closed', 'expired'),
@@ -77,12 +82,14 @@ CrmClientUploadPortal.init(
     },
     expiresAt: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
+      field: 'expires_at'
     },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: DataTypes.NOW
+      defaultValue: DataTypes.NOW,
+      field: 'created_at'
     }
   },
   {

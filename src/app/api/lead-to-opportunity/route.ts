@@ -11,6 +11,7 @@ import { notifyRole } from '@/lib/notify';
 import { deriveProductTypeFromLabel } from '@/lib/clientPortalProducts';
 import { getAdminFeeAmount } from '@/lib/receiptTemplate';
 import { ensurePayHistoryAdminFeeColumns } from '@/lib/ensurePayHistoryAdminFeeColumns';
+import { ensurePayHistoryProofColumn } from '@/lib/ensurePayHistoryProofColumn';
 import { ensureClientActualNameColumn } from '@/lib/ensureClientActualNameColumn';
 import crypto from 'crypto';
 
@@ -178,7 +179,7 @@ const AGREEMENT_FLOW_ATTRIBUTES = [
 ];
 
 export async function POST(request: NextRequest) {
-  await Promise.all([ensurePayHistoryAdminFeeColumns(), ensureClientActualNameColumn()]);
+  await Promise.all([ensurePayHistoryAdminFeeColumns(), ensurePayHistoryProofColumn(), ensureClientActualNameColumn()]);
   const transaction = await sequelize.transaction();
 
   try {
