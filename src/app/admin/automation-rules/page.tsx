@@ -132,7 +132,10 @@ export default function AutomationRulesPage() {
             Preview (dry run)
           </button>
           <button
-            onClick={() => setShowFormModal(true) || setEditingRule(null)}
+            onClick={() => {
+              setShowFormModal(true);
+              setEditingRule(null);
+            }}
             className="flex items-center gap-2 bg-[var(--cmg-blue)] text-white px-4 py-2 rounded-lg hover:bg-[var(--cmg-blue-dark)] transition-colors"
           >
             <Plus className="w-4 h-4" /> New Rule
