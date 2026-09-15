@@ -40,6 +40,23 @@ export interface Lead {
   campaign?: string;
   latest_remark?: string;
   agreementNumber?: string;
+  agreement_status?: string | null;
+  receiptNumber?: string | null;
+  receipt_accountant_status?: string | null;
+  agreement_compliance_status?: string | null;
+  discount_status?: string | null;
+  finance_status?: string | null;
+  compliance_status?: string | null;
+  workflow_status?: string | null;
+  opp_stage?: string | null;
+  opp_status?: string | null;
+  opportunity_id?: number | null;
+  resolved_opportunity_id?: number | null;
+  formal_client_id?: number | null;
+  paymentReceived?: boolean | number | null;
+  agreementSigned?: boolean | number | null;
+  finance_reason?: string | null;
+  compliance_reason?: string | null;
   dmEmployeeByASSIGNTo?: { id: number; name: string };
   dmEmployeeByCoUNSILOR?: { id: number; name: string };
   dmBranch?: {

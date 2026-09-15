@@ -386,6 +386,44 @@ export default function LeadManagement({ onLeadSelect, onConvertToOpportunity, s
     return { label: 'New Lead', color: 'bg-gray-100 text-gray-800 border-gray-200', stepIndex: 0 };
   };
 
+  const normalizeWorkflowStatus = (value?: string | null) => String(value || '').toLowerCase().replace(/[\s_]+/g, '-');
+
+  const getWorkflowBadgeClass = (status?: string | null) => {
+    const normalized = normalizeWorkflowStatus(status);
+    if (['started', 'approved', 'verified', 'generated', 'signed', 'uploaded', 'completed', 'won'].includes(normalized)) {
+      return 'border-emerald-200 bg-emerald-50 text-emerald-800';
+    }
+    if (['pending', 'pending-finance-review', 'pending-compliance', 'draft', 'sent', 'processing'].includes(normalized)) {
+      return 'border-amber-200 bg-amber-50 text-amber-800';
+    }
+    if (['rejected', 'failed', 'expired', 'finance-review-failed', 'compliance-review-failed'].includes(normalized)) {
+      return 'border-rose-200 bg-rose-50 text-rose-800';
+    }
+    if (['not-required', 'not-submitted', 'missing'].includes(normalized)) {
+      return 'border-gray-200 bg-gray-50 text-gray-600';
+    }
+    return 'border-slate-200 bg-slate-50 text-slate-700';
+  };
+
+  const getWorkflowChecks = (lead: Lead) => {
+    const row = lead as any;
+    const hasOpportunity = Boolean(row.resolved_opportunity_id || row.opportunity_id);
+    const discountStatus = row.discount_status || 'not_required';
+    const receiptStatus = row.receiptNumber ? (row.receipt_accountant_status || 'generated') : 'missing';
+    const agreementStatus = row.agreementNumber ? (row.agreement_status || 'generated') : 'missing';
+    const financeStatus = row.finance_status || (row.receipt_accountant_status === 'verified' ? 'verified' : 'pending');
+    const complianceStatus = row.compliance_status || row.agreement_compliance_status || 'pending';
+
+    return [
+      { id: 'opportunity', label: 'Opportunity Flow', value: hasOpportunity ? 'started' : 'missing', icon: Target },
+      { id: 'discount', label: 'Discount Approval', value: discountStatus, icon: DollarSign },
+      { id: 'receipt', label: 'Receipt Generate', value: receiptStatus, icon: Receipt, detail: row.receiptNumber || null },
+      { id: 'finance', label: 'Finance Approval', value: financeStatus, icon: CheckCircle },
+      { id: 'agreement', label: 'Agreement Generate', value: agreementStatus, icon: ClipboardCheck, detail: row.agreementNumber || null },
+      { id: 'compliance', label: 'Compliance Approval', value: complianceStatus, icon: AlertCircle },
+    ];
+  };
+
   const { sorted: sortedLeadRows, sortKey: leadSortKey, sortDirection: leadSortDirection, toggleSort: toggleLeadSort } = useSortableData(
     leads,
     {
@@ -2007,6 +2045,8 @@ export default function LeadManagement({ onLeadSelect, onConvertToOpportunity, s
                   const waLink = getWhatsAppLink(waNumber);
                   const name = [lead.fname, lead.mname, lead.lname].filter(Boolean).join(' ') || `Lead #${lead.id}`;
                   const initials = `${lead.fname?.[0] || ''}${lead.lname?.[0] || ''}`.toUpperCase() || 'LD';
+                  const workflowChecks = getWorkflowChecks(lead);
+                  const showWorkflowChecks = activeTab !== 'leads' && activeTab !== 'my-leads';
 
                   return (
                     <motion.article
@@ -2133,6 +2173,30 @@ export default function LeadManagement({ onLeadSelect, onConvertToOpportunity, s
                                 <div className="h-full rounded-full bg-gradient-to-r from-[var(--cmg-blue)] to-[var(--dmc-gold)] transition-[width] duration-300" style={{ width: `${progressPct}%` }} />
                               </div>
                             </div>
+
+                            {showWorkflowChecks && (
+                              <div className="mt-3 grid grid-cols-1 gap-1.5 sm:grid-cols-2 xl:grid-cols-3">
+                                {workflowChecks.map((item) => {
+                                  const Icon = item.icon;
+                                  const value = String(item.value || 'pending').replace(/[-_]+/g, ' ');
+                                  return (
+                                    <div
+                                      key={item.id}
+                                      className={`min-w-0 rounded-md border px-2 py-1.5 text-xs ${getWorkflowBadgeClass(item.value)}`}
+                                      title={item.detail || `${item.label}: ${value}`}
+                                    >
+                                      <div className="flex min-w-0 items-center gap-1.5">
+                                        <Icon className="h-3.5 w-3.5 shrink-0" />
+                                        <span className="truncate font-bold">{item.label}</span>
+                                      </div>
+                                      <div className="mt-0.5 truncate pl-5 font-semibold capitalize">
+                                        {item.detail || value}
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            )}
 
                             {activeTab === 'rejected' && (() => {
                               const rejections: Array<{ gate: string; note: string | null }> = [];

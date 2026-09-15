@@ -441,10 +441,14 @@ export async function GET(request: NextRequest) {
         b.vat_gst_percent as branch_vat_gst_percent, b.abbrv as branch_abbrv,
         o.status AS opp_status, o.stage AS opp_stage,
         o.paymentReceived, o.agreementSigned, o.retentionStatus,
-        (SELECT agr.agreementNumber FROM crm_opportunity_agreements agr WHERE agr.opportunityId = o.id ORDER BY agr.id DESC LIMIT 1) as agreementNumber${withWorkflow ? `,
+        (SELECT agr.agreementNumber FROM crm_opportunity_agreements agr WHERE agr.opportunityId = o.id ORDER BY agr.id DESC LIMIT 1) as agreementNumber,
+        (SELECT agr.status FROM crm_opportunity_agreements agr WHERE agr.opportunityId = o.id ORDER BY agr.id DESC LIMIT 1) as agreement_status,
+        (SELECT COALESCE(NULLIF(pay.receiptNumber, ''), pay.paymentNumber) FROM crm_opportunity_payments pay WHERE pay.opportunityId = o.id ORDER BY pay.id DESC LIMIT 1) as receiptNumber,
+        (SELECT pay.accountantStatus FROM crm_opportunity_payments pay WHERE pay.opportunityId = o.id ORDER BY pay.id DESC LIMIT 1) as receipt_accountant_status,
+        (SELECT ca.status FROM crm_opportunity_compliance_approvals ca WHERE ca.opportunityId = o.id OR ca.leadId = l.id ORDER BY ca.id DESC LIMIT 1) as agreement_compliance_status${withWorkflow ? `,
         wr.workflow_status, wr.finance_status, wr.compliance_status, wr.formal_client_id,
         wr.finance_reason, wr.compliance_reason,
-        (SELECT status FROM crm_discount_approvals da WHERE da.leadId = l.id ORDER BY da.id DESC LIMIT 1) as discount_status` : ''}
+        (SELECT status FROM crm_discount_approvals da WHERE da.leadId = l.id AND COALESCE(da.is_deleted, 0) = 0 ORDER BY da.id DESC LIMIT 1) as discount_status` : ''}
       FROM crm_forum_leads l
       LEFT JOIN crm_employee e1 ON l.assignTo = e1.id
       LEFT JOIN crm_branch b ON l.branch = b.id
