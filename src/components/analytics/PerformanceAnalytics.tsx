@@ -94,7 +94,7 @@ function KpiCard({
   icon: React.ElementType; color?: string; trend?: 'up' | 'down' | 'neutral';
 }) {
   const colorMap: Record<string, { bg: string; text: string; icon: string }> = {
-    green:  { bg: 'bg-[#FBEAE0]', text: 'text-[#14273F]', icon: 'text-[#1F3B63]' },
+    green:  { bg: 'bg-[#FBF6EC]', text: 'text-[#1C1812]', icon: 'text-[#2A2620]' },
     blue:   { bg: 'bg-blue-50',   text: 'text-blue-800',  icon: 'text-blue-500' },
     purple: { bg: 'bg-purple-50', text: 'text-purple-800', icon: 'text-purple-500' },
     orange: { bg: 'bg-orange-50', text: 'text-orange-800', icon: 'text-orange-500' },
@@ -130,7 +130,7 @@ function KpiCard({
 function SectionHeader({ icon: Icon, title }: { icon: React.ElementType; title: string }) {
   return (
     <div className="flex items-center gap-2 mb-4">
-      <Icon className="w-5 h-5 text-[#1F3B63]" />
+      <Icon className="w-5 h-5 text-[#2A2620]" />
       <h3 className="text-base font-semibold text-gray-800">{title}</h3>
     </div>
   );
@@ -217,7 +217,7 @@ export default function PerformanceAnalytics() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-100 gap-3 text-gray-500">
-        <RefreshCw className="w-8 h-8 animate-spin text-[#1F3B63]" />
+        <RefreshCw className="w-8 h-8 animate-spin text-[#2A2620]" />
         <span>Loading live data…</span>
       </div>
     );
@@ -230,7 +230,7 @@ export default function PerformanceAnalytics() {
         <span>{error || 'No data'}</span>
         <button
           onClick={() => load(range)}
-          className="mt-2 px-4 py-2 rounded-lg bg-[#1F3B63] text-white text-sm hover:bg-[#14273F]"
+          className="mt-2 px-4 py-2 rounded-lg bg-[#2A2620] text-white text-sm hover:bg-[#1C1812]"
         >
           Retry
         </button>
@@ -260,7 +260,7 @@ export default function PerformanceAnalytics() {
               <button
                 key={key}
                 onClick={() => setRange(key)}
-                className={`px-3 py-1.5 transition-colors ${range === key ? 'bg-[#1F3B63] text-white font-medium' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                className={`px-3 py-1.5 transition-colors ${range === key ? 'bg-[#2A2620] text-white font-medium' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
               >
                 {label.replace('Last ', '')}
               </button>
@@ -306,12 +306,12 @@ export default function PerformanceAnalytics() {
                   <div key={i} className="relative flex-1 group">
                     {/* total bar */}
                     <div
-                      className="w-full bg-[#FBEAE0] border border-[#F0D7C7] rounded-sm overflow-hidden"
+                      className="w-full bg-[#FBF6EC] border border-[#E7DCC3] rounded-sm overflow-hidden"
                       style={{ height: `${Math.max((m.total / maxLeads) * 136, m.total > 0 ? 4 : 0)}px` }}
                     >
                       {/* converted portion fills from bottom */}
                       <div
-                        className="absolute bottom-0 left-0 right-0 bg-[#1F3B63] rounded-sm"
+                        className="absolute bottom-0 left-0 right-0 bg-[#2A2620] rounded-sm"
                         style={{ height: m.total > 0 ? `${(m.converted / m.total) * 100}%` : 0 }}
                       />
                     </div>
@@ -328,8 +328,8 @@ export default function PerformanceAnalytics() {
                 ))}
               </div>
               <div className="flex gap-4 text-xs text-gray-500 mt-2">
-                <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-[#1F3B63] inline-block" /> Converted</span>
-                <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-[#FBEAE0] border border-[#F0D7C7] inline-block" /> In Pipeline</span>
+                <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-[#2A2620] inline-block" /> Converted</span>
+                <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-[#FBF6EC] border border-[#E7DCC3] inline-block" /> In Pipeline</span>
               </div>
             </div>
           )}
@@ -353,7 +353,7 @@ export default function PerformanceAnalytics() {
                     </div>
                     <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-[#1F3B63] rounded-full"
+                        className="h-full bg-[#2A2620] rounded-full"
                         style={{ width: `${pct}%` }}
                       />
                     </div>
@@ -415,7 +415,7 @@ export default function PerformanceAnalytics() {
                 {paymentTrend.map((p, i) => (
                   <div key={i} className="flex-1 flex flex-col items-center gap-1 group relative">
                     <div
-                      className="w-full bg-[#1F3B63] rounded-t-md opacity-85 transition-opacity group-hover:opacity-100"
+                      className="w-full bg-[#2A2620] rounded-t-md opacity-85 transition-opacity group-hover:opacity-100"
                       style={{ height: `${(p.collected / maxPay) * 112}px`, minHeight: p.collected > 0 ? 4 : 0 }}
                     />
                     <div className="opacity-0 group-hover:opacity-100 absolute bottom-full mb-1 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] rounded px-1.5 py-0.5 whitespace-nowrap pointer-events-none z-10">
@@ -432,7 +432,7 @@ export default function PerformanceAnalytics() {
               <div className="grid grid-cols-2 gap-3 mt-2 pt-2 border-t border-gray-100">
                 <div>
                   <div className="text-xs text-gray-400">Total Collected (period)</div>
-                  <div className="text-sm font-semibold text-[#14273F]">{fmtCurrency(paymentTrend.reduce((a, b) => a + b.collected, 0))}</div>
+                  <div className="text-sm font-semibold text-[#1C1812]">{fmtCurrency(paymentTrend.reduce((a, b) => a + b.collected, 0))}</div>
                 </div>
                 <div>
                   <div className="text-xs text-gray-400">Pending Amount</div>
@@ -454,7 +454,7 @@ export default function PerformanceAnalytics() {
               onClick={() => setActiveTab(tab)}
               className={`px-5 py-3 text-sm font-medium capitalize transition-colors ${
                 activeTab === tab
-                  ? 'text-[#14273F] border-b-2 border-[#1F3B63] bg-[#FDF3EC]'
+                  ? 'text-[#1C1812] border-b-2 border-[#2A2620] bg-[#FDFAF4]'
                   : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
               }`}
             >
@@ -487,7 +487,7 @@ export default function PerformanceAnalytics() {
                       <td className="px-5 py-3 text-sm text-gray-400">{i + 1}</td>
                       <td className="px-5 py-3">
                         <div className="flex items-center gap-2.5">
-                          <div className="w-8 h-8 rounded-full bg-[#FBEAE0] flex items-center justify-center text-[#14273F] text-xs font-bold shrink-0">
+                          <div className="w-8 h-8 rounded-full bg-[#FBF6EC] flex items-center justify-center text-[#1C1812] text-xs font-bold shrink-0">
                             {c.name.charAt(0).toUpperCase()}
                           </div>
                           <span className="text-sm font-medium text-gray-900">{c.name}</span>
@@ -503,7 +503,7 @@ export default function PerformanceAnalytics() {
                         <span className={`font-semibold ${rateColor(c.conversionRate)}`}>{c.conversionRate}%</span>
                       </td>
                       <td className="px-5 py-3 text-sm text-right text-gray-700">{fmtCurrency(c.revenue)}</td>
-                      <td className="px-5 py-3 text-sm text-right text-[#14273F] font-medium">{fmtCurrency(c.collected)}</td>
+                      <td className="px-5 py-3 text-sm text-right text-[#1C1812] font-medium">{fmtCurrency(c.collected)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -545,7 +545,7 @@ export default function PerformanceAnalytics() {
                         <span className={`font-semibold ${rateColor(b.conversionRate)}`}>{b.conversionRate}%</span>
                       </td>
                       <td className="px-5 py-3 text-sm text-right text-gray-700">{fmtCurrency(b.revenue)}</td>
-                      <td className="px-5 py-3 text-sm text-right text-[#14273F] font-medium">{fmtCurrency(b.collected)}</td>
+                      <td className="px-5 py-3 text-sm text-right text-[#1C1812] font-medium">{fmtCurrency(b.collected)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -558,7 +558,7 @@ export default function PerformanceAnalytics() {
       {/* ── Recent Leads ──────────────────────────────────────────────────── */}
       <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
         <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
-          <Clock className="w-5 h-5 text-[#1F3B63]" />
+          <Clock className="w-5 h-5 text-[#2A2620]" />
           <h3 className="text-base font-semibold text-gray-800">Recent Leads</h3>
         </div>
         {recentLeads.length === 0 ? (

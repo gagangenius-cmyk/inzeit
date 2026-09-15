@@ -1623,7 +1623,7 @@ export default function LeadManagement({ onLeadSelect, onConvertToOpportunity, s
             className={`flex shrink-0 items-center px-3 py-2 rounded-md text-sm font-semibold transition-colors ${
               activeTab === 'leads'
                 ? 'bg-[var(--cmg-blue)] text-white shadow-sm'
-                : 'text-[var(--cmg-muted)] hover:bg-[#FBF0E9] hover:text-[var(--cmg-ink)]'
+                : 'text-[var(--cmg-muted)] hover:bg-[#F6EEDC] hover:text-[var(--cmg-ink)]'
             }`}
           >
             <Users className="w-4 h-4 mr-2" />
@@ -1635,7 +1635,7 @@ export default function LeadManagement({ onLeadSelect, onConvertToOpportunity, s
               className={`flex shrink-0 items-center px-3 py-2 rounded-md text-sm font-semibold transition-colors ${
                 activeTab === 'my-leads'
                   ? 'bg-[var(--cmg-blue)] text-white shadow-sm'
-                  : 'text-[var(--cmg-muted)] hover:bg-[#FBF0E9] hover:text-[var(--cmg-ink)]'
+                  : 'text-[var(--cmg-muted)] hover:bg-[#F6EEDC] hover:text-[var(--cmg-ink)]'
               }`}
             >
               <Users className="w-4 h-4 mr-2" />
@@ -1647,7 +1647,7 @@ export default function LeadManagement({ onLeadSelect, onConvertToOpportunity, s
             className={`flex shrink-0 items-center px-3 py-2 rounded-md text-sm font-semibold transition-colors ${
               activeTab === 'opportunities'
                 ? 'bg-[var(--cmg-blue)] text-white shadow-sm'
-                : 'text-[var(--cmg-muted)] hover:bg-[#FBF0E9] hover:text-[var(--cmg-ink)]'
+                : 'text-[var(--cmg-muted)] hover:bg-[#F6EEDC] hover:text-[var(--cmg-ink)]'
             }`}
           >
             <Target className="w-4 h-4 mr-2" />
@@ -1658,7 +1658,7 @@ export default function LeadManagement({ onLeadSelect, onConvertToOpportunity, s
             className={`flex shrink-0 items-center px-3 py-2 rounded-md text-sm font-semibold transition-colors ${
               activeTab === 'clients'
                 ? 'bg-[var(--cmg-blue)] text-white shadow-sm'
-                : 'text-[var(--cmg-muted)] hover:bg-[#FBF0E9] hover:text-[var(--cmg-ink)]'
+                : 'text-[var(--cmg-muted)] hover:bg-[#F6EEDC] hover:text-[var(--cmg-ink)]'
             }`}
           >
             <CheckCircle className="w-4 h-4 mr-2" />
@@ -1669,7 +1669,7 @@ export default function LeadManagement({ onLeadSelect, onConvertToOpportunity, s
             className={`flex shrink-0 items-center px-3 py-2 rounded-md text-sm font-semibold transition-colors ${
               activeTab === 'duplicates'
                 ? 'bg-[var(--cmg-red)] text-white shadow-sm'
-                : 'text-[var(--cmg-muted)] hover:bg-[#FBF0E9] hover:text-[var(--cmg-ink)]'
+                : 'text-[var(--cmg-muted)] hover:bg-[#F6EEDC] hover:text-[var(--cmg-ink)]'
             }`}
           >
             <AlertCircle className="w-4 h-4 mr-2" />
@@ -1680,7 +1680,7 @@ export default function LeadManagement({ onLeadSelect, onConvertToOpportunity, s
             className={`flex shrink-0 items-center px-3 py-2 rounded-md text-sm font-semibold transition-colors ${
               activeTab === 'rejected'
                 ? 'bg-[var(--cmg-red)] text-white shadow-sm'
-                : 'text-[var(--cmg-muted)] hover:bg-[#FBF0E9] hover:text-[var(--cmg-ink)]'
+                : 'text-[var(--cmg-muted)] hover:bg-[#F6EEDC] hover:text-[var(--cmg-ink)]'
             }`}
             title="Opportunities rejected by Accounts, CRM Compliance, or a discount request"
           >

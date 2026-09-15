@@ -477,7 +477,7 @@ const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
                           w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-md transition-all duration-150 border-l-[3px]
                           ${isActive
                             ? 'bg-[var(--cmg-blue-soft)] text-[var(--cmg-blue)] border-[var(--dmc-gold)] font-semibold'
-                            : 'text-[var(--cmg-muted)] border-transparent hover:bg-[#FBF0E9] hover:text-[var(--cmg-ink)] hover:translate-x-0.5'
+                            : 'text-[var(--cmg-muted)] border-transparent hover:bg-[#F6EEDC] hover:text-[var(--cmg-ink)] hover:translate-x-0.5'
                           }
                         `}
                       >
@@ -499,7 +499,7 @@ const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
         </nav>
 
         {/* User info in sidebar */}
-        <div className="p-4 border-t border-[var(--cmg-border)] flex-shrink-0 bg-[#FEFAF7]">
+        <div className="p-4 border-t border-[var(--cmg-border)] flex-shrink-0 bg-[#FDFBF6]">
           <div className="flex items-center">
             <div className="w-9 h-9 bg-[var(--cmg-blue-soft)] rounded-full flex items-center justify-center">
               <User className="w-5 h-5 text-[var(--cmg-blue)]" />
@@ -560,7 +560,7 @@ const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
                           type="button"
                           onMouseDown={(event) => event.preventDefault()}
                           onClick={() => openSearchResult(result.href)}
-                          className="block w-full px-4 py-3 text-left hover:bg-[#FBF0E9]"
+                          className="block w-full px-4 py-3 text-left hover:bg-[#F6EEDC]"
                         >
                           <div className="flex items-center justify-between gap-3">
                             <span className="truncate text-sm font-medium text-[var(--cmg-ink)]">{result.title}</span>

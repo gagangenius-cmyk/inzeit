@@ -60,7 +60,7 @@ const monthLabel = (m: string) => {
   return d.toLocaleDateString('en', { month: 'short', year: '2-digit' });
 };
 
-const CHART_COLORS = ['#1F3B63', '#14273F', '#3A5C88', '#D9331E', '#F6B44B', '#B0241E', '#0f766e', '#7c3aed'];
+const CHART_COLORS = ['#2A2620', '#1C1812', '#4A4137', '#DC2626', '#C7973E', '#B91C1C', '#0f766e', '#7c3aed'];
 
 const STATUS_COLOR: Record<string, string> = {
   won: 'bg-green-100 text-green-700',
@@ -79,8 +79,8 @@ function KpiCard({ label, value, sub, icon: Icon, trend }: {
   return (
     <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
       <div className="flex items-start justify-between">
-        <div className="w-10 h-10 rounded-lg bg-[#FBEAE0] flex items-center justify-center shrink-0">
-          <Icon className="w-5 h-5 text-[#1F3B63]" />
+        <div className="w-10 h-10 rounded-lg bg-[#FBF6EC] flex items-center justify-center shrink-0">
+          <Icon className="w-5 h-5 text-[#2A2620]" />
         </div>
         {trend && (
           <div className={`flex items-center gap-1 text-xs font-medium ${trend === 'up' ? 'text-green-600' : 'text-red-500'}`}>
@@ -115,14 +115,14 @@ function DateBranchFilterRow({
           type="date"
           value={dateFrom}
           onChange={e => setDateFrom(e.target.value)}
-          className="border border-gray-200 rounded-lg text-sm px-3 py-2 focus:ring-2 focus:ring-[#1F3B63]"
+          className="border border-gray-200 rounded-lg text-sm px-3 py-2 focus:ring-2 focus:ring-[#2A2620]"
         />
         <span>To</span>
         <input
           type="date"
           value={dateTo}
           onChange={e => setDateTo(e.target.value)}
-          className="border border-gray-200 rounded-lg text-sm px-3 py-2 focus:ring-2 focus:ring-[#1F3B63]"
+          className="border border-gray-200 rounded-lg text-sm px-3 py-2 focus:ring-2 focus:ring-[#2A2620]"
         />
       </div>
       <SearchableSelect
@@ -265,7 +265,7 @@ export default function DMCFinanceModule() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64 gap-3 text-gray-400">
-        <RefreshCw className="w-6 h-6 animate-spin text-[#1F3B63]" /> Loading finance data…
+        <RefreshCw className="w-6 h-6 animate-spin text-[#2A2620]" /> Loading finance data…
       </div>
     );
   }
@@ -275,7 +275,7 @@ export default function DMCFinanceModule() {
       <div className="flex flex-col items-center justify-center h-64 gap-3 text-red-500">
         <AlertCircle className="w-8 h-8" />
         <span>{error || 'No data available'}</span>
-        <button onClick={load} className="px-4 py-2 bg-[#1F3B63] text-white rounded-lg text-sm hover:bg-[#14273F]">Retry</button>
+        <button onClick={load} className="px-4 py-2 bg-[#2A2620] text-white rounded-lg text-sm hover:bg-[#1C1812]">Retry</button>
       </div>
     );
   }
@@ -288,7 +288,7 @@ export default function DMCFinanceModule() {
       {/* ── Top bar ─────────────────────────────────────────────────────────── */}
       <div className="flex flex-wrap items-center justify-between gap-3 bg-white border border-gray-200 rounded-xl px-5 py-3 shadow-sm">
         <div className="flex items-center gap-2">
-          <BarChart3 className="w-5 h-5 text-[#1F3B63]" />
+          <BarChart3 className="w-5 h-5 text-[#2A2620]" />
           <span className="font-semibold text-gray-800">Finance Dashboard</span>
           <span className="text-xs text-gray-400 hidden sm:inline">· Live database</span>
         </div>
@@ -296,7 +296,7 @@ export default function DMCFinanceModule() {
           <SearchableSelect
             value={months}
             onChange={e => setMonths(e.target.value)}
-            className="text-sm border border-gray-200 rounded-lg px-3 py-1.5 focus:ring-2 focus:ring-[#1F3B63]"
+            className="text-sm border border-gray-200 rounded-lg px-3 py-1.5 focus:ring-2 focus:ring-[#2A2620]"
           >
             <option value="1">Last 1 month</option>
             <option value="3">Last 3 months</option>
@@ -339,7 +339,7 @@ export default function DMCFinanceModule() {
               onClick={() => setActiveTab(tab.key)}
               className={`px-5 py-3 text-sm font-medium whitespace-nowrap transition-colors ${
                 activeTab === tab.key
-                  ? 'text-[#14273F] border-b-2 border-[#1F3B63] bg-[#FDF3EC]'
+                  ? 'text-[#1C1812] border-b-2 border-[#2A2620] bg-[#FDFAF4]'
                   : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
               }`}
             >
@@ -366,7 +366,7 @@ export default function DMCFinanceModule() {
                       <YAxis tick={{ fontSize: 11 }} tickFormatter={fmtShort} />
                       <Tooltip formatter={(v: number | undefined) => fmtMoney(v ?? 0)} />
                       <Legend wrapperStyle={{ fontSize: 11 }} />
-                      <Bar dataKey="collected" name="Collected" fill="#1F3B63" radius={[3,3,0,0]} />
+                      <Bar dataKey="collected" name="Collected" fill="#2A2620" radius={[3,3,0,0]} />
                       <Bar dataKey="expenses" name="Expenses" fill="#ef4444" radius={[3,3,0,0]} />
                       <Bar dataKey="profit" name="Net Profit" fill="#2563eb" radius={[3,3,0,0]} />
                     </BarChart>
@@ -412,7 +412,7 @@ export default function DMCFinanceModule() {
                   placeholder="Search client, counselor, service..."
                   value={search}
                   onChange={e => setSearch(e.target.value)}
-                  className="flex-1 min-w-48 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#1F3B63]"
+                  className="flex-1 min-w-48 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#2A2620]"
                 />
                 <SearchableSelect
                   value={statusFilter}
@@ -503,7 +503,7 @@ export default function DMCFinanceModule() {
                   placeholder="Search description or branch..."
                   value={search}
                   onChange={e => setSearch(e.target.value)}
-                  className="flex-1 min-w-48 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#1F3B63]"
+                  className="flex-1 min-w-48 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#2A2620]"
                 />
                 <DateBranchFilterRow
                   dateFrom={dateFrom} setDateFrom={setDateFrom}
@@ -564,7 +564,7 @@ export default function DMCFinanceModule() {
                   <YAxis tick={{ fontSize: 11 }} tickFormatter={fmtShort} />
                   <Tooltip formatter={(v: number | undefined) => fmtMoney(v ?? 0)} />
                   <Legend wrapperStyle={{ fontSize: 11 }} />
-                  <Bar dataKey="Collected" fill="#1F3B63" radius={[3,3,0,0]} />
+                  <Bar dataKey="Collected" fill="#2A2620" radius={[3,3,0,0]} />
                   <Bar dataKey="Revenue" fill="#2563eb" radius={[3,3,0,0]} />
                 </BarChart>
               </ResponsiveContainer>
@@ -588,7 +588,7 @@ export default function DMCFinanceModule() {
                         <td className="px-4 py-3 text-right text-gray-800">{fmtMoney(b.revenue)}</td>
                         <td className="px-4 py-3 text-right text-green-700 font-medium">{fmtMoney(b.collected)}</td>
                         <td className="px-4 py-3 text-right">
-                          <span className="font-semibold text-[#1F3B63]">
+                          <span className="font-semibold text-[#2A2620]">
                             {b.revenue > 0 ? ((b.collected / b.revenue) * 100).toFixed(1) : '0'}%
                           </span>
                         </td>
@@ -621,12 +621,12 @@ export default function DMCFinanceModule() {
                       <tr key={c.id} className="hover:bg-gray-50 transition-colors">
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2.5">
-                            <div className="w-7 h-7 rounded-full bg-[#FBEAE0] flex items-center justify-center text-[#14273F] text-xs font-bold shrink-0">
+                            <div className="w-7 h-7 rounded-full bg-[#FBF6EC] flex items-center justify-center text-[#1C1812] text-xs font-bold shrink-0">
                               {c.name.charAt(0)}
                             </div>
                             <div>
                               <div className="font-medium text-gray-900">{c.name}</div>
-                              {c.id === topCounselorId && <div className="text-[10px] text-[#1F3B63] font-semibold">Top Performer</div>}
+                              {c.id === topCounselorId && <div className="text-[10px] text-[#2A2620] font-semibold">Top Performer</div>}
                             </div>
                           </div>
                         </td>

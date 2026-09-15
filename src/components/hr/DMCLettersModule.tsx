@@ -6,13 +6,13 @@ import { Search, Download, Printer, Eye, Edit2, X, User, RefreshCw, Mail } from 
 import { useAuth } from '@/contexts/AuthContext';
 
 // ── BRAND ─────────────────────────────────────────────────────────────────
-const G  = '#14273F';   // deep navy (table headers, left cells)
-const G2 = '#1F3B63';   // primary compass navy (subject lines, badges, highlights)
-const GL = '#FBEAE0';   // light peach bg (alternating table rows)
-const GD = '#0D1B2E';   // deepest navy (total row, darkest accents)
+const G  = '#1C1812';   // deep ink (table headers, left cells)
+const G2 = '#2A2620';   // primary ink (subject lines, badges, highlights)
+const GL = '#FBF6EC';   // light ivory bg (alternating table rows)
+const GD = '#0F0C08';   // deepest ink (total row, darkest accents)
 const TX = '#2D2D2D';
 const GR = '#666666';
-const RD = '#D9331E';
+const RD = '#DC2626';
 
 // ── BRANCH ────────────────────────────────────────────────────────────────
 const BRANCH = {

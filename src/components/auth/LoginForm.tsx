@@ -34,7 +34,7 @@ interface LoginResponse {
   }
 }
 
-// Waypoint markers scattered over the compass panel — each one a fixed
+// Waypoint markers scattered over the hero panel — each one a fixed
 // (top%, left%) plus an animation delay so they pulse out of sync.
 const WAYPOINTS = [
   { top: '18%', left: '78%', delay: 0 },
@@ -43,9 +43,9 @@ const WAYPOINTS = [
   { top: '82%', left: '62%', delay: 2.1 },
 ]
 
-// The route the plane flies, and the compass-panel SVG line drawn under it,
-// share this same 0-100 coordinate space so the marker visually rides the
-// dashed path instead of drifting near it.
+// The route the plane flies, and the dashed SVG line drawn under it, share
+// this same 0-100 coordinate space so the marker visually rides the dashed
+// path instead of drifting near it.
 const ROUTE_POINTS = [
   { x: 8, y: 86 },
   { x: 26, y: 62 },
@@ -55,22 +55,32 @@ const ROUTE_POINTS = [
 ]
 const ROUTE_PATH = 'M8,86 C 22,70 32,78 46,68 C 58,60 56,48 66,42 C 76,36 82,26 92,18'
 
-// The brand mark's needle, made interactive: it tracks the pointer while
-// hovered and idles into a slow drift otherwise. Ties a compass motif into
-// the login page itself instead of using it as flat wordmark artwork.
-function BrandCompass({ reduceMotion }: { reduceMotion: boolean }) {
+// A dotted globe, echoing the mark on the Inzeit logo itself, made
+// interactive: it tracks the pointer while hovered and idles into a slow
+// spin otherwise. Ties the brand mark into the login page rather than using
+// it as flat wordmark artwork.
+function BrandGlobe({ reduceMotion }: { reduceMotion: boolean }) {
   const panelRef = useRef<HTMLDivElement>(null)
-  const [angle, setAngle] = useState(-35)
+  const [angle, setAngle] = useState(-12)
   const [hovering, setHovering] = useState(false)
 
   const handleMove = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
     const rect = panelRef.current?.getBoundingClientRect()
     if (!rect) return
     const centerX = rect.left + rect.width / 2
-    const centerY = rect.top + rect.height / 2
-    const degrees = (Math.atan2(event.clientY - centerY, event.clientX - centerX) * 180) / Math.PI + 90
-    setAngle(degrees)
+    const percent = (event.clientX - centerX) / (rect.width / 2)
+    setAngle(percent * 18)
   }, [])
+
+  // Dots tracing one meridian arc, matching the dotted-globe texture in the
+  // logo mark instead of a flat ring of latitude/longitude lines.
+  const dots = Array.from({ length: 26 }).map((_, i) => {
+    const t = i / 25
+    const theta = t * Math.PI
+    const x = 100 + Math.sin(theta) * 78
+    const y = 30 + (1 - Math.cos(theta)) * 70
+    return { x, y, r: 1.4 + Math.sin(theta) * 1.6 }
+  })
 
   return (
     <div
@@ -82,31 +92,33 @@ function BrandCompass({ reduceMotion }: { reduceMotion: boolean }) {
       aria-hidden="true"
     >
       <motion.div
-        className="absolute left-1/2 top-1/2 h-[26rem] w-[26rem] -translate-x-1/2 -translate-y-1/2 opacity-[0.16]"
+        className="absolute left-1/2 top-1/2 h-[26rem] w-[26rem] -translate-x-1/2 -translate-y-1/2 opacity-[0.18]"
         animate={
-          reduceMotion ? undefined : hovering ? { rotate: angle } : { rotate: [angle, angle + 360] }
+          reduceMotion ? undefined : { rotateY: hovering ? angle : [angle - 10, angle + 10], rotate: -8 }
         }
         transition={
           hovering
-            ? { type: 'spring', stiffness: 55, damping: 14 }
-            : { duration: 40, repeat: Infinity, ease: 'linear' }
+            ? { type: 'spring', stiffness: 45, damping: 16 }
+            : { duration: 9, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }
         }
+        style={{ transformStyle: 'preserve-3d', perspective: 800 }}
       >
         <svg viewBox="0 0 200 200" className="h-full w-full">
-          <circle cx="100" cy="100" r="97" fill="none" stroke="white" strokeWidth="1.5" />
-          <circle cx="100" cy="100" r="80" fill="none" stroke="white" strokeWidth="1" strokeDasharray="1 7" />
-          {Array.from({ length: 24 }).map((_, i) => (
-            <line
-              key={i}
-              x1="100" y1="6" x2="100" y2={i % 6 === 0 ? 20 : 15}
-              stroke="white"
-              strokeWidth={i % 6 === 0 ? 1.5 : 1}
-              transform={`rotate(${i * 15} 100 100)`}
-            />
+          <circle cx="100" cy="100" r="94" fill="none" stroke="white" strokeWidth="1.5" />
+          {/* Latitude rings, flattening near the poles like a sphere */}
+          <ellipse cx="100" cy="100" rx="94" ry="94" fill="none" stroke="white" strokeWidth="1" />
+          <ellipse cx="100" cy="100" rx="94" ry="46" fill="none" stroke="white" strokeWidth="1" opacity="0.8" />
+          <ellipse cx="100" cy="100" rx="94" ry="10" fill="none" stroke="white" strokeWidth="1" opacity="0.6" />
+          {/* Meridian rings */}
+          <ellipse cx="100" cy="100" rx="46" ry="94" fill="none" stroke="white" strokeWidth="1" opacity="0.8" />
+          <ellipse cx="100" cy="100" rx="10" ry="94" fill="none" stroke="white" strokeWidth="1" opacity="0.6" />
+          {/* Dotted arc, matching the logo's dot texture */}
+          {dots.map((d, i) => (
+            <circle key={i} cx={d.x} cy={d.y} r={d.r} fill="#C7973E" />
           ))}
-          <polygon points="100,26 110,100 100,90 90,100" fill="#F6B44B" />
-          <polygon points="100,174 110,100 100,110 90,100" fill="white" />
-          <circle cx="100" cy="100" r="7" fill="white" />
+          {/* Small axis cross at the top, echoing the logo's stand mark */}
+          <line x1="100" y1="2" x2="100" y2="12" stroke="#C7973E" strokeWidth="2" />
+          <line x1="95" y1="7" x2="105" y2="7" stroke="#C7973E" strokeWidth="2" />
         </svg>
       </motion.div>
     </div>
@@ -269,9 +281,9 @@ export default function LoginForm() {
         className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] bg-white border border-[var(--cmg-border)]/70 shadow-xl rounded-xl overflow-hidden"
       >
         <div className="relative hidden lg:flex flex-col justify-between overflow-hidden bg-[var(--cmg-blue-dark)] px-10 py-10 text-white">
-          <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[var(--dmc-gold)]/20 blur-3xl" />
-          <div className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-[var(--dmc-green-medium)]/30 blur-3xl" />
-          <BrandCompass reduceMotion={reduceMotion} />
+          <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[var(--dmc-gold)]/25 blur-3xl" />
+          <div className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-[var(--dmc-gold)]/10 blur-3xl" />
+          <BrandGlobe reduceMotion={reduceMotion} />
           <FlightPath reduceMotion={reduceMotion} />
 
           <motion.div
@@ -280,20 +292,20 @@ export default function LoginForm() {
             animate="show"
             variants={{ show: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } } }}
           >
-            <motion.div variants={fadeUp} transition={{ duration: 0.5 }} className="inline-flex bg-white rounded-md p-4 shadow-sm">
+            <motion.div variants={fadeUp} transition={{ duration: 0.5 }} className="inline-flex bg-white rounded-md p-4 shadow-sm ring-1 ring-[var(--dmc-gold)]/30">
               <div className="relative h-20 w-44">
                 <Image src="/logo.png" alt="Inzeit Business Consultants" fill sizes="176px" className="object-contain" priority />
               </div>
             </motion.div>
 
             <div className="mt-10 max-w-lg">
-              <motion.p variants={fadeUp} transition={{ duration: 0.5 }} className="text-sm font-semibold uppercase text-[#F6B44B]">
+              <motion.p variants={fadeUp} transition={{ duration: 0.5 }} className="text-sm font-semibold uppercase text-[#D9A94A]">
                 Inzeit Business Consultants
               </motion.p>
               <motion.h1 variants={fadeUp} transition={{ duration: 0.5 }} className="mt-3 text-4xl font-bold leading-tight">
                 Inzeit CRM Portal
               </motion.h1>
-              <motion.p variants={fadeUp} transition={{ duration: 0.5 }} className="mt-4 text-base leading-7 text-[#F3DFD2]">
+              <motion.p variants={fadeUp} transition={{ duration: 0.5 }} className="mt-4 text-base leading-7 text-[#E7DFC9]">
                 A focused workspace for leads, clients, operations, payments, and reporting across every Inzeit branch.
               </motion.p>
             </div>
@@ -322,14 +334,14 @@ export default function LoginForm() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-white">{feature.title}</h3>
-                    <p className="text-sm leading-6 text-[#F3DFD2]">{feature.description}</p>
+                    <p className="text-sm leading-6 text-[#E7DFC9]">{feature.description}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
           </motion.div>
-          <div className="relative mt-10 flex items-center gap-3 border-t border-white/15 pt-6 text-sm text-[#F3DFD2]">
-            <CheckCircle2 className="h-5 w-5 text-[var(--cmg-red)]" />
+          <div className="relative mt-10 flex items-center gap-3 border-t border-white/15 pt-6 text-sm text-[#E7DFC9]">
+            <CheckCircle2 className="h-5 w-5 text-[var(--dmc-gold)]" />
             Built for daily admissions, sales, and operations work.
           </div>
         </div>
@@ -404,7 +416,7 @@ export default function LoginForm() {
                       disabled={loading}
                       className="w-full py-3 px-4 bg-[var(--cmg-blue)] text-white font-semibold rounded-lg shadow-sm hover:bg-[var(--cmg-blue-dark)] hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--cmg-blue)] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 relative overflow-hidden group"
                     >
-                      <div className="absolute inset-y-0 left-0 w-1 bg-[var(--cmg-red)]"></div>
+                      <div className="absolute inset-y-0 left-0 w-1 bg-[var(--dmc-gold)]"></div>
                       <div className="relative z-10 flex items-center justify-center">
                         {loading ? (
                           <>
@@ -431,7 +443,7 @@ export default function LoginForm() {
                     <button
                       type="button"
                       onClick={() => { setMfaStep(false); setMfaCode(''); setError('') }}
-                      className="text-sm font-semibold text-[var(--cmg-blue)] hover:text-[var(--cmg-red)] transition-colors duration-200"
+                      className="text-sm font-semibold text-[var(--cmg-blue)] hover:text-[var(--dmc-gold-dark)] transition-colors duration-200"
                     >
                       Back to sign in
                     </button>
@@ -503,7 +515,7 @@ export default function LoginForm() {
                   </div>
 
                   <div className="text-sm">
-                    <a href="#" className="font-semibold text-[var(--cmg-blue)] hover:text-[var(--cmg-red)] transition-colors duration-200">
+                    <a href="#" className="font-semibold text-[var(--cmg-blue)] hover:text-[var(--dmc-gold-dark)] transition-colors duration-200">
                       Forgot your password?
                     </a>
                   </div>
@@ -515,7 +527,7 @@ export default function LoginForm() {
                     disabled={loading}
                     className="w-full py-3 px-4 bg-[var(--cmg-blue)] text-white font-semibold rounded-lg shadow-sm hover:bg-[var(--cmg-blue-dark)] hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--cmg-blue)] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 relative overflow-hidden group"
                   >
-                    <div className="absolute inset-y-0 left-0 w-1 bg-[var(--cmg-red)]"></div>
+                    <div className="absolute inset-y-0 left-0 w-1 bg-[var(--dmc-gold)]"></div>
                     <div className="relative z-10 flex items-center justify-center">
                       {loading ? (
                         <>

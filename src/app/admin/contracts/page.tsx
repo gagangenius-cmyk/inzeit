@@ -95,7 +95,7 @@ export default function ContractsPage() {
           <h1 className="text-2xl font-bold text-gray-900">Contract Management</h1>
           <p className="text-gray-500 text-sm mt-1">Manage and track all client contracts and agreements</p>
         </div>
-        <button onClick={fetchContracts} className="flex items-center gap-2 px-4 py-2 bg-[#1F3B63] text-white rounded-lg hover:bg-[#14273F] text-sm font-medium">
+        <button onClick={fetchContracts} className="flex items-center gap-2 px-4 py-2 bg-[#2A2620] text-white rounded-lg hover:bg-[#1C1812] text-sm font-medium">
           <RefreshCw className="w-4 h-4" /> Refresh
         </button>
       </div>
@@ -129,13 +129,13 @@ export default function ContractsPage() {
             placeholder="Search by lead name or contract number..."
             value={search}
             onChange={e => { setSearch(e.target.value); setPage(1); }}
-            className="pl-9 pr-3 py-2 border border-gray-300 rounded-lg text-sm w-full focus:ring-2 focus:ring-[#1F3B63] focus:border-transparent"
+            className="pl-9 pr-3 py-2 border border-gray-300 rounded-lg text-sm w-full focus:ring-2 focus:ring-[#2A2620] focus:border-transparent"
           />
         </div>
         <SearchableSelect
           value={statusFilter}
           onChange={e => { setStatusFilter(e.target.value); setPage(1); }}
-          className="border border-gray-300 rounded-lg text-sm px-3 py-2 focus:ring-2 focus:ring-[#1F3B63]"
+          className="border border-gray-300 rounded-lg text-sm px-3 py-2 focus:ring-2 focus:ring-[#2A2620]"
         >
           <option value="">All Status</option>
           <option value="signed">Signed</option>
@@ -204,7 +204,7 @@ export default function ContractsPage() {
                     { label: 'Branch', value: c.branchName },
                     { label: 'Created', value: c.createdDate ? new Date(c.createdDate).toLocaleDateString() : '—' },
                     { label: 'Signed', value: c.signedDate ? new Date(c.signedDate).toLocaleDateString() : '—' },
-                    { label: 'File', value: c.fileName ? <span className="text-[#1F3B63]">{c.fileSize}</span> : <span className="text-gray-400">No file</span> },
+                    { label: 'File', value: c.fileName ? <span className="text-[#2A2620]">{c.fileSize}</span> : <span className="text-gray-400">No file</span> },
                   ]}
                 />
               ))}

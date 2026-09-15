@@ -633,7 +633,7 @@ export default function LeadPool() {
                           <button
                             onClick={() => handleClaim(lead)}
                             disabled={claimingId === lead.id}
-                            className="inline-flex items-center gap-1.5 bg-[#1F3B63] hover:bg-[#14273F] disabled:opacity-60 text-white text-xs font-medium px-3 py-1.5 rounded-lg"
+                            className="inline-flex items-center gap-1.5 bg-[#2A2620] hover:bg-[#1C1812] disabled:opacity-60 text-white text-xs font-medium px-3 py-1.5 rounded-lg"
                           >
                             {claimingId === lead.id ? (
                               <><RefreshCw className="w-3 h-3 animate-spin" /> Claiming…</>
@@ -719,7 +719,7 @@ export default function LeadPool() {
                     setConfirmVisible(true);
                   }}
                   disabled={!counsellorId}
-                  className="flex items-center gap-2 bg-[#1F3B63] hover:bg-[#14273F] disabled:opacity-50 text-white text-sm font-medium px-5 py-2 rounded-lg transition-colors"
+                  className="flex items-center gap-2 bg-[#2A2620] hover:bg-[#1C1812] disabled:opacity-50 text-white text-sm font-medium px-5 py-2 rounded-lg transition-colors"
                 >
                   Transfer
                   <ArrowRight className="w-4 h-4" />
@@ -733,7 +733,7 @@ export default function LeadPool() {
                   <button
                     onClick={handleTransfer}
                     disabled={transferring}
-                    className="flex items-center gap-2 bg-[#1F3B63] hover:bg-[#14273F] disabled:opacity-70 text-white text-sm font-medium px-4 py-2 rounded-lg"
+                    className="flex items-center gap-2 bg-[#2A2620] hover:bg-[#1C1812] disabled:opacity-70 text-white text-sm font-medium px-4 py-2 rounded-lg"
                   >
                     {transferring ? (
                       <span className="flex items-center gap-2">
