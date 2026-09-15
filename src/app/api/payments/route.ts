@@ -103,12 +103,12 @@ export async function POST(request: NextRequest) {
     const paymentWithDetails = await Crm3partyPayment.findByPk(payment.id, {
       include: [
         {
-          association: 'lead',
+          association: 'dmcForumLeads',
           attributes: ['id', 'fname', 'lname', 'email']
         },
         {
           model: Crm3partyPaymentDet,
-          as: 'details'
+          as: 'dm3partyPaymentDets'
         }
       ]
     });

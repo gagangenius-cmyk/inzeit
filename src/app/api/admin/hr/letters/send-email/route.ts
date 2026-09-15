@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth, isAuthError } from '@/lib/apiAuth';
 import { sendEmail } from '@/lib/mailer';
 
-// Emails an already-generated letter PDF (base64, produced client-side by DMCLettersModule's
+// Emails an already-generated letter PDF (base64, produced client-side by CRMLettersModule's
 // existing jsPDF/html2canvas pipeline - see downloadPDF/emailToEmployee) as an attachment,
 // rather than re-rendering the letter server-side.
 export async function POST(request: NextRequest) {

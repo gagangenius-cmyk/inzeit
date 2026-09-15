@@ -139,7 +139,7 @@ function DateBranchFilterRow({
 
 // ── Main component ────────────────────────────────────────────────────────────
 
-export default function DMCFinanceModule() {
+export default function CRMFinanceModule() {
   const { currencyCode } = useAuth();
   // Shadows the module-level fmtMoney so every call site below (which relies
   // on the default 'AED' param) shows the logged-in user's own branch

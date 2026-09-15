@@ -452,7 +452,7 @@ const inputCls = 'w-full px-2.5 py-1.5 border border-green-200 rounded text-sm f
 const selectCls = inputCls;
 
 // ── MAIN MODULE ────────────────────────────────────────────────────────────
-export default function DMCLettersModule() {
+export default function CRMLettersModule() {
   const { currencyCode } = useAuth();
   const [form, setForm]           = useState<FormState>(defaultForm);
   const [mode, setMode]           = useState<'form' | 'preview'>('form');
